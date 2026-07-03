@@ -5,41 +5,41 @@ export const PILLARS = [
   {
     slug: "start-a-business",
     label: "Start a Business",
-    tagline: "Incorporate cleanly. File once, file right.",
+    tagline: "Incorporation and registration filed by chartered accountants and company secretaries.",
     intro:
-      "Choose the right structure, register with the MCA, and get every certificate you need before Day 1 of operations.",
+      "Entity structuring, MCA incorporation, DSC, PAN, TAN, IEC and Startup India recognition — every certificate required for Day-1 operations, filed under one engagement.",
     framing: "benefit",
   },
   {
     slug: "protect-your-brand",
     label: "Protect Your Brand",
-    tagline: "File the mark. Own the name.",
+    tagline: "Intellectual property filings drafted and prosecuted by registered attorneys.",
     intro:
-      "Search, file and defend trademarks. Register copyrights and patents so imitators can be stopped, not just noticed.",
+      "Trademark, copyright and patent filings prepared and prosecuted by Bar Council-registered attorneys and IPO-registered patent agents. Registry correspondence handled end-to-end.",
     framing: "benefit",
   },
   {
     slug: "tax-compliance",
     label: "Tax & Compliance",
-    tagline: "Miss a due date, pay a penalty.",
+    tagline: "Statutory returns filed before the due date. Penalty exposure managed proactively.",
     intro:
-      "GST, TDS, income tax, ROC. Every return has a due date and a penalty attached. We file on time so you never see the notice.",
+      "GST, TDS, income tax and ROC returns filed by ICAI and ICSI members. Every return reconciled and reviewed with you before submission, filed within statutory due dates.",
     framing: "loss",
   },
   {
     slug: "people-money",
     label: "People & Money",
-    tagline: "Payroll, PF, ESI, books — closed monthly.",
+    tagline: "Payroll, statutory contributions and financial reporting managed as an outsourced function.",
     intro:
-      "Run payroll, stay compliant with labour laws, and keep books audit-ready. Delegated to a dedicated manager.",
+      "End-to-end payroll, PF, ESI, TDS, bookkeeping and virtual CFO services delivered by qualified accountants and dedicated relationship managers.",
     framing: "benefit",
   },
   {
     slug: "grow-certify",
     label: "Grow & Certify",
-    tagline: "Get the certificate. Win the tender.",
+    tagline: "Certifications required for enterprise tenders, marketplaces and export.",
     intro:
-      "ISO, MSME/Udyam, FSSAI, Shop Act. The certifications you need to sell to enterprises, marketplaces and government.",
+      "ISO 9001/14001/27001/45001, MSME/Udyam, FSSAI and state business licences — assessed, documented and issued through accredited certification bodies.",
     framing: "benefit",
   },
 ];

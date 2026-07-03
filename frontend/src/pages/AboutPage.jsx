@@ -1,71 +1,70 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Layout } from "../components/Layout";
-import { Seal } from "../components/Seal";
+import { CredentialRow } from "../components/Seal";
+import { TeamGrid } from "../components/TeamGrid";
+import { CompliancePDFCta } from "../components/CompliancePDFCta";
 import { ArrowRight, Check } from "lucide-react";
 
 export default function AboutPage() {
   return (
     <Layout>
-      <section className="container-x pt-12 grid lg:grid-cols-12 gap-10 items-start">
-        <div className="lg:col-span-8">
-          <div className="mono text-[11px] uppercase tracking-[0.25em] text-slate2">Home / About</div>
-          <h1 className="font-display text-5xl lg:text-6xl text-ink mt-3 leading-[1.0]">
-            We file the paperwork so founders can build the business.
+      <section className="container-x pt-10">
+        <div className="mono text-[11px] uppercase tracking-[0.22em] text-slate2">Home / About the practice</div>
+        <div className="mt-4 max-w-4xl">
+          <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl text-ink leading-[1.05]">
+            A statutory compliance practice run by chartered accountants and company secretaries.
           </h1>
-          <p className="text-lg text-ink/80 mt-6 max-w-2xl leading-relaxed">
-            RightTeam was started in 2019 by a chartered accountant, a company secretary and a former founder who spent 400 hours of his last startup on compliance instead of customers. Since then we've filed 41,000+ returns and registrations for 8,400+ Indian businesses.
+          <p className="text-base sm:text-lg text-ink/75 mt-5 leading-relaxed max-w-3xl">
+            RightTeam Consultancy Pvt. Ltd. was incorporated in Mumbai in 2019 and now services 8,400+ Indian businesses across 24 states. The firm is registered with ICAI as a member firm and maintains active practising registrations across ICSI and the Bar Council of Maharashtra.
           </p>
-        </div>
-        <div className="lg:col-span-4 flex justify-center">
-          <Seal
-            size={200}
-            color="#12203D"
-            label="Since 2019"
-            outerText="· INCORPORATED 2019 · CIN U74999MH2019PTC · MUMBAI ·"
-            center={
-              <div>
-                <div className="text-3xl font-black leading-none">2019</div>
-                <div className="mono text-[9px] tracking-[0.18em] uppercase mt-1 font-semibold">Est.</div>
-              </div>
-            }
-          />
+
+          <div className="mt-6">
+            <CredentialRow
+              items={[
+                { label: "ICAI Member Firm" },
+                { label: "ICSI Registered Practice" },
+                { label: "GST Practitioner GSTP/27/00429", color: "#8A6D1F" },
+                { label: "IPO Registered Patent Agent" },
+              ]}
+            />
+          </div>
         </div>
       </section>
 
-      <section className="container-x pt-20">
+      <section className="container-x pt-16">
         <div className="hairline pt-8" />
         <div className="grid md:grid-cols-4 gap-8">
           {[
-            { n: "8,400+", l: "Businesses served" },
-            { n: "41,000+", l: "Filings completed" },
-            { n: "24", l: "States and UTs" },
-            { n: "4.8 / 5", l: "Google rating" },
+            { n: "8,400+", l: "Businesses on retainer" },
+            { n: "41,000+", l: "Statutory filings completed" },
+            { n: "24", l: "States and Union Territories" },
+            { n: "0", l: "Fee-refund penalty misses to date" },
           ].map((s, i) => (
-            <div key={i} className="border-l-2 border-gold pl-5 py-2">
-              <div className="font-display text-4xl font-black text-ink leading-none">{s.n}</div>
+            <div key={i} className="border-l-2 border-gold pl-5 py-1">
+              <div className="font-display text-3xl font-bold text-ink leading-none">{s.n}</div>
               <div className="mono text-[11px] uppercase tracking-widest text-slate2 mt-2">{s.l}</div>
             </div>
           ))}
         </div>
       </section>
 
-      <section className="container-x pt-24 grid lg:grid-cols-2 gap-12">
-        <div>
-          <div className="mono text-[11px] uppercase tracking-[0.25em] text-slate2">Section 02 · What we believe</div>
-          <h2 className="font-display text-4xl text-ink mt-3 leading-tight">
-            Compliance is boring. That's why it should be predictable.
+      <section className="container-x pt-20 grid lg:grid-cols-12 gap-10">
+        <div className="lg:col-span-5">
+          <div className="mono text-[11px] uppercase tracking-[0.22em] text-slate2">Principles of practice</div>
+          <h2 className="font-display text-3xl sm:text-4xl text-ink mt-3 leading-tight">
+            Statutory work is boring by design. It should also be predictable.
           </h2>
         </div>
-        <div className="space-y-6">
+        <div className="lg:col-span-7 space-y-5">
           {[
-            { t: "Fixed fees, always.", b: "You should know the total cost before you send us anything. No hourly billing games." },
-            { t: "One manager, one thread.", b: "You get one dedicated person and one WhatsApp thread. No hand-offs, no repeating yourself." },
-            { t: "Miss a deadline, we refund.", b: "If we miss a filing due date because of us, you don't pay. Simple." },
-            { t: "Explain before you file.", b: "Every draft is reviewed with you before it goes to the government. No surprises after filing." },
+            { t: "Fixed-fee engagements.", b: "The quote issued at engagement is the fee billed at completion. Hourly billing is not offered." },
+            { t: "Named accountability.", b: "Every engagement is assigned to a named manager whose ICAI or ICSI membership number appears on the engagement letter." },
+            { t: "Missed-deadline refund.", b: "If a statutory return is filed late due to the firm, the professional fee for that return is refunded in full." },
+            { t: "Documented review.", b: "Every return is reviewed with the client before submission. Draft, approval and filing are all logged in the client dashboard." },
           ].map((v, i) => (
-            <div key={i} className="border-t border-ink/15 pt-5 flex gap-4">
-              <div className="w-6 h-6 border border-approve bg-approve text-paper flex items-center justify-center shrink-0">
+            <div key={i} className="border-t border-ink/10 pt-5 flex gap-4">
+              <div className="w-6 h-6 border border-approve bg-approve text-white flex items-center justify-center shrink-0 rounded-sm">
                 <Check size={14} strokeWidth={3} />
               </div>
               <div>
@@ -77,36 +76,20 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="container-x pt-24">
-        <div className="mono text-[11px] uppercase tracking-[0.25em] text-slate2">Section 03 · The team</div>
-        <h2 className="font-display text-4xl text-ink mt-3">Who actually files your paperwork.</h2>
+      <TeamGrid />
 
-        <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[
-            { n: "Rakesh Iyer, FCA", r: "Head of Tax & Compliance", y: "18 years · Big 4 alumnus" },
-            { n: "Nishtha Bansal, CS", r: "Head of Corporate Filings", y: "12 years · MCA specialist" },
-            { n: "Adv. Vishal Rao", r: "Head of IP Practice", y: "10 years · Registered patent agent" },
-            { n: "Meera Kulkarni", r: "Head of Client Managers", y: "8 years · Serviced 2,000+ SMEs" },
-            { n: "Karan Deshmukh", r: "Founder & CEO", y: "Ex-founder · 2x compliance survivor" },
-            { n: "Anisha Rao", r: "Head of Growth Services", y: "Certifications, MSME, FSSAI, ISO" },
-          ].map((p, i) => (
-            <div key={i} className="paper-card p-6" data-testid={`team-${i}`}>
-              <div className="mono text-[11px] uppercase tracking-widest text-slate2">{p.r}</div>
-              <div className="font-display text-xl text-ink mt-2">{p.n}</div>
-              <div className="text-sm text-slate2 mt-2">{p.y}</div>
-            </div>
-          ))}
-        </div>
+      <section className="container-x pt-16">
+        <CompliancePDFCta />
       </section>
 
-      <section className="container-x pt-24 pb-8">
-        <div className="border border-ink bg-ink text-paper p-10 flex flex-col md:flex-row items-center gap-6 justify-between">
+      <section className="container-x pt-14 pb-6">
+        <div className="border border-ink bg-ink text-white p-8 sm:p-10 flex flex-col md:flex-row items-center gap-6 justify-between rounded-sm">
           <div>
-            <div className="mono text-[11px] uppercase tracking-[0.25em] text-gold">Ready to file?</div>
-            <h3 className="font-display text-3xl mt-2 leading-tight">Let a manager take it from here.</h3>
+            <div className="mono text-[11px] uppercase tracking-[0.22em] text-gold">Engage the practice</div>
+            <h3 className="font-display text-2xl sm:text-3xl mt-2 leading-tight">Request a fixed-fee quote.</h3>
           </div>
-          <Link to="/quote" className="inline-flex items-center gap-2 bg-paper text-ink px-6 py-3 font-medium hover:animate-stamp-down">
-            Get a Quote <ArrowRight size={16} />
+          <Link to="/quote" className="inline-flex items-center gap-2 bg-white text-ink px-6 py-3 font-medium hover:animate-stamp-down rounded-sm">
+            Request a Quote <ArrowRight size={16} />
           </Link>
         </div>
       </section>

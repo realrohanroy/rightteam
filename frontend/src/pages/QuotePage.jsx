@@ -60,16 +60,16 @@ export default function QuotePage() {
 
   return (
     <Layout>
-      <section className="container-x pt-12 grid lg:grid-cols-12 gap-10 items-start">
+      <section className="container-x pt-10 grid lg:grid-cols-12 gap-10 items-start">
         <div className="lg:col-span-8">
-          <div className="mono text-[11px] uppercase tracking-[0.25em] text-seal font-semibold">
+          <div className="mono text-[11px] uppercase tracking-[0.22em] text-slate2 font-semibold">
             RT/QUOTE/2026 · Fixed-fee estimate
           </div>
-          <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl text-ink mt-3 leading-[1.0]">
-            Get a fixed quote in 3 quick steps.
+          <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl text-ink mt-3 leading-[1.05]">
+            Request a fixed-fee quote in three steps.
           </h1>
-          <p className="text-lg text-ink/80 mt-4 max-w-2xl">
-            No cost. No obligation. Your dedicated manager calls back within 15 minutes with the fixed fee and the exact document list.
+          <p className="text-base sm:text-lg text-ink/75 mt-4 max-w-2xl">
+            No cost. No obligation. Your dedicated manager acknowledges within 15 minutes with the fixed fee and the exact document list.
           </p>
 
           {/* Progress */}
@@ -81,7 +81,7 @@ export default function QuotePage() {
                 return (
                   <div
                     key={label}
-                    className={`flex-1 py-4 px-4 border-r last:border-r-0 border-ink/10 flex items-center gap-3 ${current ? "bg-paper" : ""}`}
+                    className={`flex-1 py-4 px-4 border-r last:border-r-0 border-ink/10 flex items-center gap-3 ${current ? "bg-alt" : ""}`}
                   >
                     <span
                       className={`w-6 h-6 border flex items-center justify-center shrink-0 ${
@@ -128,7 +128,7 @@ export default function QuotePage() {
                     </select>
                   </div>
                   {chosen && (
-                    <div className="mt-5 border border-ink/15 p-4 bg-paper">
+                    <div className="mt-5 border border-ink/15 p-4 bg-alt">
                       <div className="mono text-[10px] uppercase tracking-widest text-slate2">You picked</div>
                       <div className="font-display text-xl text-ink mt-1">{chosen.name}</div>
                       <div className="text-sm text-slate2 mt-1">{chosen.oneLine}</div>
@@ -250,25 +250,25 @@ export default function QuotePage() {
                 <div className="text-center py-6" data-testid="quote-success">
                   <div className="flex justify-center">
                     <Seal
-                      size={180}
+                      size={110}
                       color="#1E5631"
                       label="Received"
-                      outerText="· RECEIVED · MANAGER ASSIGNED · CALLING BACK ·"
+                      outerText="· RECEIVED · MANAGER ASSIGNED ·"
                       center={
                         <div>
-                          <ClipboardCheck size={28} className="mx-auto text-approve" />
-                          <div className="mono text-[9px] tracking-[0.18em] uppercase mt-2 font-semibold">Filed</div>
+                          <ClipboardCheck size={22} className="mx-auto text-approve" />
+                          <div className="mono text-[8px] tracking-[0.15em] uppercase mt-1 font-semibold">Filed</div>
                         </div>
                       }
                     />
                   </div>
-                  <h2 className="font-display text-3xl text-ink mt-6">Quote received.</h2>
-                  <p className="text-slate2 mt-2 max-w-md mx-auto">
+                  <h2 className="font-display text-2xl text-ink mt-5">Quote request received.</h2>
+                  <p className="text-slate2 mt-2 text-sm max-w-md mx-auto">
                     Your manager will call {form.full_name.split(" ")[0]} on {form.phone} within 15 minutes.
                   </p>
-                  <div className="mt-6 inline-block border border-ink/20 bg-paper px-5 py-3 text-left">
-                    <div className="mono text-[10px] uppercase tracking-widest text-slate2">Reference number</div>
-                    <div className="mono text-lg font-semibold text-ink mt-1">{result.reference}</div>
+                  <div className="mt-5 inline-block border border-ink/20 bg-alt px-5 py-3 text-left rounded-sm">
+                    <div className="mono text-[10px] uppercase tracking-widest text-slate2">Engagement reference</div>
+                    <div className="mono text-base font-semibold text-ink mt-1">{result.reference}</div>
                   </div>
                   <div className="mt-8">
                     <Link to="/" className="btn-outline">Back to home</Link>

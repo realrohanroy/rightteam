@@ -34,10 +34,10 @@ export default function ServicePage() {
           <div className={`mono text-[11px] uppercase tracking-[0.25em] font-semibold flex items-center gap-2 ${isLoss ? "text-seal" : "text-approve"}`}>
             RT/SVC/{service.slug.toUpperCase()}
           </div>
-          <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl text-ink mt-3 leading-[1.0]">
+          <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl text-ink mt-3 leading-[1.05]">
             {service.name}
           </h1>
-          <p className="text-lg text-ink/80 mt-5 leading-relaxed max-w-2xl">
+          <p className="text-base sm:text-lg text-ink/75 mt-4 leading-relaxed max-w-2xl">
             {service.heroSummary}
           </p>
 
@@ -104,7 +104,7 @@ export default function ServicePage() {
               Every step ticks off in your dashboard. You always know where the filing stands.
             </p>
 
-            <div className="mt-6 flex items-center gap-3 border border-ink/15 bg-paper p-4">
+            <div className="mt-6 flex items-center gap-3 border border-ink/15 bg-alt p-4">
               <div className="w-10 h-10 rounded-full bg-approve/10 flex items-center justify-center text-approve">
                 <Check size={20} strokeWidth={3} />
               </div>
@@ -173,25 +173,25 @@ export default function ServicePage() {
       )}
 
       {/* Final CTA */}
-      <section className="container-x pt-20 pb-8">
-        <div className="border border-ink bg-ink text-paper p-8 sm:p-12 flex flex-col md:flex-row items-center gap-8 justify-between">
+      <section className="container-x pt-16 pb-6">
+        <div className="border border-ink bg-ink text-white p-8 sm:p-10 flex flex-col md:flex-row items-center gap-8 justify-between rounded-sm">
           <div>
-            <div className="mono text-[11px] uppercase tracking-[0.25em] text-gold">
-              File in 3 steps · Manager assigned same day
+            <div className="mono text-[11px] uppercase tracking-[0.22em] text-gold">
+              Engagement letter issued same day
             </div>
-            <h3 className="font-display text-3xl sm:text-4xl mt-3 leading-tight max-w-xl">
-              Send the docs. We'll file the {service.name}.
+            <h3 className="font-display text-2xl sm:text-3xl mt-2 leading-tight max-w-xl">
+              Request a fixed-fee quote for {service.name}.
             </h3>
           </div>
           <div className="flex flex-col gap-2 w-full md:w-auto">
             <Link
               to={`/quote?service=${service.slug}`}
-              className="inline-flex items-center gap-2 bg-paper text-ink px-6 py-3 font-medium hover:animate-stamp-down justify-center"
+              className="inline-flex items-center gap-2 bg-white text-ink px-6 py-3 font-medium hover:animate-stamp-down justify-center rounded-sm"
               data-testid="service-final-cta"
             >
-              Start this filing <ArrowRight size={16} />
+              Request a Quote <ArrowRight size={16} />
             </Link>
-            <a href="tel:+919999999999" className="mono text-sm text-paper/70 text-center inline-flex items-center gap-1 justify-center">
+            <a href="tel:+919999999999" className="mono text-sm text-white/70 text-center inline-flex items-center gap-1 justify-center">
               <Phone size={12} /> or +91 99999 99999
             </a>
           </div>

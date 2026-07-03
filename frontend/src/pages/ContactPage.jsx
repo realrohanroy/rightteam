@@ -29,14 +29,14 @@ export default function ContactPage() {
 
   return (
     <Layout>
-      <section className="container-x pt-12 grid lg:grid-cols-12 gap-12 items-start">
+      <section className="container-x pt-10 grid lg:grid-cols-12 gap-12 items-start">
         <div className="lg:col-span-6">
-          <div className="mono text-[11px] uppercase tracking-[0.25em] text-slate2">Home / Contact</div>
-          <h1 className="font-display text-5xl lg:text-6xl text-ink mt-3 leading-[1.0]">
-            Say hello.<br />Get a manager assigned.
+          <div className="mono text-[11px] uppercase tracking-[0.22em] text-slate2">Home / Contact</div>
+          <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl text-ink mt-4 leading-[1.05]">
+            Reach the practice.
           </h1>
-          <p className="text-lg text-ink/80 mt-5 max-w-xl">
-            We reply within 15 minutes on business hours. If it's a specific filing, use the quote form for a fixed-fee answer.
+          <p className="text-base sm:text-lg text-ink/75 mt-5 max-w-xl">
+            Enquiries are acknowledged within 15 minutes during business hours. For a specific filing, use the quote form for a fixed-fee estimate.
           </p>
 
           <div className="mt-10 space-y-5">
@@ -74,14 +74,14 @@ export default function ContactPage() {
 
           <div className="mt-10 flex flex-wrap gap-6 items-center">
             <Seal
-              size={140}
+              size={100}
               color="#1E5631"
               label="15 min reply"
-              outerText="· 15 MIN REPLY · GUARANTEE · BUSINESS HOURS ·"
+              outerText="· 15 MIN REPLY · BUSINESS HOURS ·"
               center={
                 <div>
-                  <div className="text-2xl font-black leading-none">15m</div>
-                  <div className="mono text-[9px] tracking-[0.18em] uppercase mt-1 font-semibold">Reply SLA</div>
+                  <div className="text-base font-black leading-none">15m</div>
+                  <div className="mono text-[8px] tracking-[0.15em] uppercase mt-0.5 font-semibold">Reply SLA</div>
                 </div>
               }
             />
@@ -166,23 +166,23 @@ export default function ContactPage() {
               <div className="text-center py-8" data-testid="contact-success">
                 <div className="flex justify-center">
                   <Seal
-                    size={160}
+                    size={96}
                     color="#1E5631"
                     label="Received"
                     outerText="· MESSAGE RECEIVED · REPLY SOON ·"
                     center={
                       <div>
-                        <Check size={28} className="mx-auto text-approve" strokeWidth={3} />
-                        <div className="mono text-[9px] tracking-[0.18em] uppercase mt-2 font-semibold">Sent</div>
+                        <Check size={20} className="mx-auto text-approve" strokeWidth={3} />
+                        <div className="mono text-[8px] tracking-[0.15em] uppercase mt-1 font-semibold">Sent</div>
                       </div>
                     }
                   />
                 </div>
-                <h3 className="font-display text-2xl text-ink mt-6">Message received.</h3>
-                <p className="text-slate2 mt-2">We'll reply on {form.email} within 15 minutes.</p>
-                <div className="mt-5 inline-block border border-ink/20 bg-paper px-5 py-3 text-left">
+                <h3 className="font-display text-xl text-ink mt-5">Message received.</h3>
+                <p className="text-slate2 mt-2 text-sm">We'll reply on {form.email} within 15 minutes.</p>
+                <div className="mt-5 inline-block border border-ink/20 bg-alt px-5 py-3 text-left rounded-sm">
                   <div className="mono text-[10px] uppercase tracking-widest text-slate2">Reference number</div>
-                  <div className="mono text-lg font-semibold text-ink mt-1">{result.reference}</div>
+                  <div className="mono text-base font-semibold text-ink mt-1">{result.reference}</div>
                 </div>
               </div>
             )}

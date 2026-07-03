@@ -17,13 +17,13 @@ export const Header = () => {
     <header className="sticky top-0 z-40 bg-paper/95 backdrop-blur border-b border-ink/15">
       <div className="container-x flex items-center justify-between py-4">
         <Link to="/" className="flex items-center gap-3" data-testid="brand-home-link">
-          <CornerSeal color="#12203D" />
+          <CornerSeal color="#0B1E3D" size={28} />
           <div className="leading-none">
-            <div className="font-display text-xl font-black tracking-tight text-ink">
+            <div className="font-display text-lg font-bold tracking-tight text-ink">
               RightTeam<span className="text-gold">.in</span>
             </div>
-            <div className="mono text-[10px] uppercase tracking-[0.25em] text-slate2 mt-1">
-              Compliance · Since 2019
+            <div className="mono text-[10px] uppercase tracking-[0.22em] text-slate2 mt-1">
+              Compliance Practice · Est. 2019
             </div>
           </div>
         </Link>
@@ -98,32 +98,32 @@ export const Footer = () => {
     to: `/${p.slug}`,
   }));
   return (
-    <footer className="mt-24 border-t border-ink/20 bg-ink text-paper">
+    <footer className="mt-20 border-t border-ink/15 bg-ink text-white">
       <div className="container-x py-14 grid grid-cols-1 md:grid-cols-4 gap-10">
         <div>
           <div className="flex items-center gap-3">
-            <CornerSeal color="#F7F4EC" />
+            <CornerSeal color="#FFFFFF" size={28} />
             <div>
-              <div className="font-display text-xl font-black">
+              <div className="font-display text-lg font-bold">
                 RightTeam<span className="text-gold">.in</span>
               </div>
-              <div className="mono text-[10px] uppercase tracking-widest text-paper/60 mt-1">
+              <div className="mono text-[10px] uppercase tracking-widest text-white/60 mt-1">
                 CIN · U74999MH2019PTC000000
               </div>
             </div>
           </div>
-          <p className="text-sm text-paper/70 mt-4 leading-relaxed">
-            Business compliance and registration for Indian startups and SMEs. Filed by chartered accountants, company secretaries and IP attorneys.
+          <p className="text-sm text-white/70 mt-4 leading-relaxed">
+            An Indian compliance and registration practice — chartered accountants, company secretaries and IP attorneys, in-house.
           </p>
-          <div className="mono text-xs text-paper/60 mt-6 space-y-1">
+          <div className="mono text-xs text-white/60 mt-6 space-y-1">
             <div>hello@rightteam.in</div>
             <div>+91 99999 99999</div>
-            <div>4th Floor, Nariman Point, Mumbai 400021</div>
+            <div>4th Floor, Nariman Chambers, Nariman Point, Mumbai 400021</div>
           </div>
         </div>
 
         <div>
-          <div className="mono text-[11px] uppercase tracking-widest text-paper/50 mb-4">Services</div>
+          <div className="mono text-[11px] uppercase tracking-widest text-white/50 mb-4">Practice areas</div>
           <ul className="space-y-2 text-sm">
             {groups.map((g) => (
               <li key={g.to}>
@@ -134,32 +134,32 @@ export const Footer = () => {
         </div>
 
         <div>
-          <div className="mono text-[11px] uppercase tracking-widest text-paper/50 mb-4">Company</div>
+          <div className="mono text-[11px] uppercase tracking-widest text-white/50 mb-4">Firm</div>
           <ul className="space-y-2 text-sm">
-            <li><Link to="/about" className="hover:text-gold">About</Link></li>
-            <li><Link to="/reviews" className="hover:text-gold">Reviews</Link></li>
+            <li><Link to="/about" className="hover:text-gold">About the practice</Link></li>
+            <li><Link to="/reviews" className="hover:text-gold">Client references</Link></li>
             <li><Link to="/contact" className="hover:text-gold">Contact</Link></li>
-            <li><Link to="/quote" className="hover:text-gold">Get a Quote</Link></li>
+            <li><Link to="/quote" className="hover:text-gold">Request a quote</Link></li>
           </ul>
         </div>
 
         <div>
-          <div className="mono text-[11px] uppercase tracking-widest text-paper/50 mb-4">Legal</div>
-          <ul className="space-y-2 text-sm text-paper/80">
-            <li>Terms of Service</li>
-            <li>Privacy Policy</li>
-            <li>Refund Policy</li>
-            <li>GST 27AABCU9603R1ZM</li>
+          <div className="mono text-[11px] uppercase tracking-widest text-white/50 mb-4">Statutory registrations</div>
+          <ul className="space-y-2 text-sm text-white/80 mono text-[11px] uppercase tracking-widest">
+            <li>ICAI Member Firm</li>
+            <li>ICSI Registered Practice</li>
+            <li>GSTIN 27AABCU9603R1ZM</li>
+            <li>Bar Council MAH/1092/2015</li>
           </ul>
         </div>
       </div>
-      <div className="border-t border-paper/15">
+      <div className="border-t border-white/15">
         <div className="container-x py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <div className="mono text-[11px] tracking-widest text-paper/50 uppercase">
-            © {new Date().getFullYear()} RightTeam Consultancy Pvt. Ltd. All filings are subject to government processing timelines.
+          <div className="mono text-[11px] tracking-widest text-white/50 uppercase">
+            © {new Date().getFullYear()} RightTeam Consultancy Pvt. Ltd. Filings subject to government processing timelines.
           </div>
-          <div className="mono text-[11px] tracking-widest text-paper/50 uppercase">
-            Document Ref: RT/WEB/2026/HOME
+          <div className="mono text-[11px] tracking-widest text-white/50 uppercase">
+            Ref: RT/WEB/2026/HOME
           </div>
         </div>
       </div>

@@ -9,7 +9,7 @@ const items = [
 ];
 
 export const TrustStrip = () => (
-  <div className="border-y border-ink/15 bg-white/40" data-testid="trust-strip">
+  <div className="border-y border-ink/10 bg-alt" data-testid="trust-strip">
     <div className="container-x grid grid-cols-2 md:grid-cols-4 divide-x divide-ink/10">
       {items.map((it, i) => (
         <div key={i} className="py-6 px-4 flex items-start gap-3">

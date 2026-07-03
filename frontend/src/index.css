@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800;9..144,900&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -6,26 +6,26 @@
 
 @layer base {
   :root {
-    --background: 40 33% 95%;
-    --foreground: 220 54% 15%;
+    --background: 0 0% 100%;
+    --foreground: 218 71% 14%;
     --card: 0 0% 100%;
-    --card-foreground: 220 54% 15%;
+    --card-foreground: 218 71% 14%;
     --popover: 0 0% 100%;
-    --popover-foreground: 220 54% 15%;
-    --primary: 220 54% 15%;
-    --primary-foreground: 40 33% 95%;
-    --secondary: 40 20% 90%;
-    --secondary-foreground: 220 54% 15%;
-    --muted: 40 20% 90%;
+    --popover-foreground: 218 71% 14%;
+    --primary: 218 71% 14%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 216 14% 96%;
+    --secondary-foreground: 218 71% 14%;
+    --muted: 216 14% 96%;
     --muted-foreground: 215 11% 40%;
-    --accent: 40 66% 48%;
-    --accent-foreground: 220 54% 15%;
+    --accent: 40 66% 33%;
+    --accent-foreground: 0 0% 100%;
     --destructive: 358 66% 46%;
-    --destructive-foreground: 40 33% 95%;
-    --border: 215 11% 78%;
-    --input: 215 11% 78%;
-    --ring: 220 54% 15%;
-    --radius: 0.375rem;
+    --destructive-foreground: 0 0% 100%;
+    --border: 216 12% 88%;
+    --input: 216 12% 88%;
+    --ring: 218 71% 14%;
+    --radius: 0.25rem;
   }
 }
 
@@ -35,33 +35,26 @@
   }
   html,
   body {
-    background-color: #f7f4ec;
-    color: #12203d;
+    background-color: #ffffff;
+    color: #0b1e3d;
     font-family: "Inter", system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  body {
-    background-image:
-      radial-gradient(rgba(18, 32, 61, 0.035) 1px, transparent 1px),
-      radial-gradient(rgba(91, 100, 114, 0.025) 1px, transparent 1px);
-    background-size: 3px 3px, 7px 7px;
-    background-position: 0 0, 1px 1px;
-  }
   h1, h2 {
     font-family: "Fraunces", Georgia, serif;
-    letter-spacing: -0.025em;
-    font-weight: 800;
+    letter-spacing: -0.022em;
+    font-weight: 700;
   }
   h3, h4 {
     font-family: "Inter", system-ui, sans-serif;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.008em;
   }
 }
 
 @layer components {
   .hairline {
-    @apply border-t border-[#5B6472]/25;
+    @apply border-t border-[#0B1E3D]/10;
   }
   .container-x {
     @apply mx-auto max-w-7xl px-5 sm:px-8 lg:px-10;
@@ -71,33 +64,39 @@
     letter-spacing: 0.02em;
   }
   .btn-primary {
-    @apply inline-flex items-center gap-2 bg-ink text-paper px-5 py-3 text-sm font-medium tracking-wide transition-transform;
+    @apply inline-flex items-center gap-2 bg-ink text-white px-5 py-3 text-sm font-medium tracking-wide transition-transform rounded-sm;
   }
   .btn-primary:hover {
-    animation: stamp-down 250ms ease-in;
+    animation: stamp-down 220ms ease-in;
   }
   .btn-outline {
-    @apply inline-flex items-center gap-2 border border-ink/70 text-ink px-5 py-3 text-sm font-medium tracking-wide;
+    @apply inline-flex items-center gap-2 border border-ink/40 text-ink px-5 py-3 text-sm font-medium tracking-wide rounded-sm hover:border-ink;
   }
   .btn-outline:hover {
-    @apply bg-ink text-paper;
+    @apply bg-ink text-white border-ink;
   }
   .btn-urgent {
-    @apply inline-flex items-center gap-2 bg-seal text-paper px-5 py-3 text-sm font-medium tracking-wide;
+    @apply inline-flex items-center gap-2 bg-seal text-white px-5 py-3 text-sm font-medium tracking-wide rounded-sm;
   }
   .btn-urgent:hover {
-    animation: stamp-down 250ms ease-in;
+    animation: stamp-down 220ms ease-in;
   }
   .filing-tab {
-    @apply relative px-5 pt-3 pb-3 text-sm font-medium border border-b-0 border-ink/25 rounded-t-md bg-paper/60 text-ink/70 hover:text-ink hover:bg-paper transition;
+    @apply relative px-5 pt-3 pb-3 text-sm font-medium border border-b-0 border-ink/20 rounded-t-sm bg-alt text-ink/70 hover:text-ink hover:bg-white transition;
   }
   .filing-tab-active {
-    @apply bg-white text-ink border-ink/70 shadow-[0_-2px_0_0_#C99A2E_inset];
+    @apply bg-white text-ink border-ink/60 shadow-[0_-2px_0_0_#8A6D1F_inset];
   }
   .paper-card {
-    @apply relative bg-white border border-ink/10 shadow-[0_1px_0_0_rgba(18,32,61,0.05),0_10px_25px_-15px_rgba(18,32,61,0.25)] transition-transform;
+    @apply relative bg-white border border-ink/10 shadow-[0_1px_0_0_rgba(11,30,61,0.04),0_8px_20px_-15px_rgba(11,30,61,0.2)] transition-transform rounded-sm;
   }
   .paper-card:hover {
-    @apply -translate-y-0.5 shadow-[0_1px_0_0_rgba(18,32,61,0.08),0_16px_35px_-15px_rgba(18,32,61,0.35)];
+    @apply -translate-y-0.5 shadow-[0_1px_0_0_rgba(11,30,61,0.06),0_14px_28px_-15px_rgba(11,30,61,0.3)];
+  }
+  .section-alt {
+    background: #f5f6f8;
+  }
+  .credential-badge {
+    @apply inline-flex items-center gap-1.5 px-2 py-1 mono text-[10px] uppercase tracking-widest border border-ink/25 bg-white text-ink;
   }
 }

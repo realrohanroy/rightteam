@@ -5,10 +5,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        ink: "#12203D",
-        paper: "#F7F4EC",
+        ink: "#0B1E3D",
+        paper: "#FFFFFF",
+        alt: "#F5F6F8",
         seal: "#C1272D",
-        gold: "#C99A2E",
+        gold: "#8A6D1F",
         approve: "#1E5631",
         slate2: "#5B6472",
         // shadcn variables kept for library components
@@ -39,21 +40,21 @@ module.exports = {
         "accordion-down": { from: { height: "0" }, to: { height: "var(--radix-accordion-content-height)" } },
         "accordion-up": { from: { height: "var(--radix-accordion-content-height)" }, to: { height: "0" } },
         "stamp-in": {
-          "0%": { opacity: "0", transform: "scale(0.5) rotate(-18deg)" },
-          "60%": { opacity: "1", transform: "scale(1.06) rotate(4deg)" },
+          "0%": { opacity: "0", transform: "scale(0.6) rotate(-10deg)" },
+          "70%": { opacity: "1", transform: "scale(1.04) rotate(2deg)" },
           "100%": { opacity: "1", transform: "scale(1) rotate(0deg)" },
         },
         "stamp-down": {
           "0%": { transform: "scale(1) rotate(0deg)" },
-          "40%": { transform: "scale(0.94) rotate(-1.5deg)" },
+          "40%": { transform: "scale(0.96) rotate(-1deg)" },
           "100%": { transform: "scale(1) rotate(0deg)" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "stamp-in": "stamp-in 700ms cubic-bezier(.22,1.2,.36,1) both",
-        "stamp-down": "stamp-down 250ms ease-in",
+        "stamp-in": "stamp-in 500ms cubic-bezier(.22,1.2,.36,1) both",
+        "stamp-down": "stamp-down 220ms ease-in",
       },
     },
   },

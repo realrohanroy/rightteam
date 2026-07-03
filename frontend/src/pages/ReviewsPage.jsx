@@ -20,37 +20,37 @@ export default function ReviewsPage() {
   const avg = (REVIEWS.reduce((s, r) => s + r.r, 0) / REVIEWS.length).toFixed(1);
   return (
     <Layout>
-      <section className="container-x pt-12 grid lg:grid-cols-12 gap-10">
+      <section className="container-x pt-10 grid lg:grid-cols-12 gap-10">
         <div className="lg:col-span-8">
-          <div className="mono text-[11px] uppercase tracking-[0.25em] text-slate2">Home / Reviews</div>
-          <h1 className="font-display text-5xl lg:text-6xl text-ink mt-3 leading-[1.0]">
-            Real filings. Real founders. Verified reviews.
+          <div className="mono text-[11px] uppercase tracking-[0.22em] text-slate2">Home / Client references</div>
+          <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl text-ink mt-4 leading-[1.05]">
+            Client references, each tied to a filing on record.
           </h1>
-          <p className="text-lg text-ink/80 mt-5 max-w-2xl">
-            Every review below is tied to a filing reference number. No fabricated names, no purchased ratings.
+          <p className="text-base sm:text-lg text-ink/75 mt-4 max-w-2xl">
+            The reviews below are verified against the corresponding filing reference number. Names and firms are used with client permission.
           </p>
           <div className="mt-6 flex items-center gap-6">
             <div className="flex items-center gap-1 text-gold">
               {Array.from({ length: 5 }).map((_, i) => (
-                <Star key={i} size={20} fill="currentColor" stroke="currentColor" />
+                <Star key={i} size={18} fill="currentColor" stroke="currentColor" />
               ))}
             </div>
             <div>
-              <div className="font-display text-2xl font-bold text-ink">{avg} / 5.0</div>
-              <div className="mono text-[10px] uppercase tracking-widest text-slate2">Average across 1,200 reviews</div>
+              <div className="font-display text-xl font-bold text-ink">{avg} / 5.0</div>
+              <div className="mono text-[10px] uppercase tracking-widest text-slate2">Aggregated across 1,200 verified reviews</div>
             </div>
           </div>
         </div>
-        <div className="lg:col-span-4 flex justify-center items-start">
+        <div className="lg:col-span-4 flex justify-start lg:justify-end items-start">
           <Seal
-            size={200}
-            color="#C99A2E"
+            size={110}
+            color="#8A6D1F"
             label="1,200 Reviews"
-            outerText="· 1,200 REVIEWS · GOOGLE · JUSTDIAL · VERIFIED ·"
+            outerText="· 1,200 REVIEWS · GOOGLE · JUSTDIAL ·"
             center={
               <div>
-                <div className="text-3xl font-black leading-none">4.8</div>
-                <div className="mono text-[9px] tracking-[0.18em] uppercase mt-1 font-semibold">Google · JD</div>
+                <div className="text-lg font-black leading-none">4.8</div>
+                <div className="mono text-[8px] tracking-[0.15em] uppercase mt-1 font-semibold">Google/JD</div>
               </div>
             }
           />
@@ -87,13 +87,13 @@ export default function ReviewsPage() {
       </section>
 
       <section className="container-x pt-24 pb-8">
-        <div className="border border-ink bg-ink text-paper p-10 flex flex-col md:flex-row items-center gap-6 justify-between">
+        <div className="border border-ink bg-ink text-white p-10 flex flex-col md:flex-row items-center gap-6 justify-between rounded-sm">
           <div>
-            <div className="mono text-[11px] uppercase tracking-[0.25em] text-gold">Your review, next.</div>
-            <h3 className="font-display text-3xl mt-2 leading-tight">File your first RightTeam job.</h3>
+            <div className="mono text-[11px] uppercase tracking-[0.22em] text-gold">Your engagement, next.</div>
+            <h3 className="font-display text-2xl sm:text-3xl mt-2 leading-tight">Request a fixed-fee quote.</h3>
           </div>
-          <Link to="/quote" className="inline-flex items-center gap-2 bg-paper text-ink px-6 py-3 font-medium hover:animate-stamp-down">
-            Get a Quote <ArrowRight size={16} />
+          <Link to="/quote" className="inline-flex items-center gap-2 bg-white text-ink px-6 py-3 font-medium hover:animate-stamp-down rounded-sm">
+            Request a Quote <ArrowRight size={16} />
           </Link>
         </div>
       </section>
