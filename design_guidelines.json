@@ -1,0 +1,134 @@
+{
+  "theme_and_archetype": {
+    "theme": "LIGHT",
+    "archetype": "Custom: Official Ledger & Seal (Variant of Swiss/Authority)",
+    "description": "A high-trust, official 'letterhead and seal' identity. Avoids generic SaaS tropes (no cream+serif+terracotta, no near-black+neon-accent). Heavy reliance on real paper aesthetics, precise grid hairlines, and stamping motifs to convey government compliance, authority, and reliability."
+  },
+  "colors": {
+    "primary": {
+      "name": "Primary Ink",
+      "hex": "#12203D",
+      "usage": "Deep indigo for primary text, major headings, dark contrast blocks, and primary CTAs. Simulates wet ink."
+    },
+    "background": {
+      "name": "Background Paper",
+      "hex": "#F7F4EC",
+      "usage": "Warmer and greyer than generic cream. Represents real bond paper. Used as the universal page background."
+    },
+    "accent_red": {
+      "name": "Seal Red",
+      "hex": "#C1272D",
+      "usage": "Used ONLY for stamps, status marks, penalty callouts, and extremely urgent CTAs. Never as a base color or generic button color."
+    },
+    "accent_gold": {
+      "name": "Marigold Gold",
+      "hex": "#C99A2E",
+      "usage": "Culturally resonant accent for links, highlights, and secondary interactive states."
+    },
+    "success": {
+      "name": "Approval Green",
+      "hex": "#1E5631",
+      "usage": "Used for success states, approved marks, and positive tick marks in checklists."
+    },
+    "neutral": {
+      "name": "Slate",
+      "hex": "#5B6472",
+      "usage": "Secondary text, metadata, and 1px hairline rules for the ledger layout."
+    }
+  },
+  "typography": {
+    "display": {
+      "family": "Fraunces, Zilla Slab, serif",
+      "weight": "800",
+      "tracking": "tracking-tight",
+      "usage": "Used EXCLUSIVELY for H1 and H2 headings. Heavy slab-serif to convey institutional authority."
+    },
+    "body": {
+      "family": "Inter, General Sans, sans-serif",
+      "weight": "400",
+      "usage": "Clean grotesk for all body text, paragraphs, and UI elements. Plain, active, highly readable."
+    },
+    "monospace": {
+      "family": "IBM Plex Mono, monospace",
+      "weight": "500",
+      "usage": "Used for reference numbers, filing IDs, timestamps, and quotes to simulate government form numbers."
+    }
+  },
+  "layout_and_spacing": {
+    "spacing_scale": "Generous spacing (p-8 to p-24) to allow the 'paper' to breathe. Standard tailwind scale.",
+    "ledger_hairlines": {
+      "description": "Thin 1px hairline rules between sections to create a ledger-paper feel.",
+      "implementation": "Use `border-t border-b border-[#5B6472]/20` on major sections and list items."
+    },
+    "container": "Max width 7xl (max-w-7xl) centered with mx-auto, keeping a structured column feel.",
+    "alignment": "Strict left-alignment for dense content, mimicking official documents. Center alignment only for hero or specific break-out quotes."
+  },
+  "components": {
+    "ink_stamp_seal": {
+      "description": "Signature circular ink-stamp motif.",
+      "usage": "Used sparingly (once prominently per page) to house trust stats (e.g., '500+ Filings', 'GST Registered').",
+      "visuals": "SVG circular text path, border-dashed or rigged edges, colored in #C1272D (Seal Red) or #12203D (Primary Ink).",
+      "motion": "Animates in on scroll (scale up + slight rotation)."
+    },
+    "filing_tab_nav": {
+      "description": "Category/pillar navigation styled as filing folder tabs.",
+      "implementation": "Tabs should have a straight bottom, rounded top corners (`rounded-t-lg`), and connect seamlessly with the content border below them. Active tab matches content background, inactive tabs are slightly darker or transparent with bottom borders."
+    },
+    "checklist_steps": {
+      "description": "Process/step sections shown as a checklist with tick states.",
+      "implementation": "Do not use numbered circles. Use square checkbox icons (☐ for upcoming, ☑ in #1E5631 for completed). Connect with a vertical hairline border."
+    },
+    "service_cards": {
+      "description": "Paper-card style for services.",
+      "implementation": "Background #FFFFFF or slightly lighter than #F7F4EC. Subtle edge shadow (`shadow-sm`). Include a small static seal mark (SVG) in the corner. Must show starting price directly on the card.",
+      "hover_state": "Subtle -translate-y-1 with slightly increased shadow. Do not make it 'glow'."
+    },
+    "buttons": {
+      "primary": "Solid #12203D background, white text. Or #C1272D for urgent actions.",
+      "hover_animation": "Stamp-down effect: On hover, button scales down slightly (`scale-95`) and rotates minimally (`rotate-1` or `-rotate-1`) to simulate a hand stamping paper."
+    },
+    "penalty_callout": {
+      "description": "Loss-framed messaging on tax/compliance pages.",
+      "implementation": "Bordered box with a left red accent (`border-l-4 border-[#C1272D]`), light red background tint, and monospace citation of the penalty."
+    }
+  },
+  "motion": {
+    "global": "Snappy, mechanical, official. Avoid smooth, floating SaaS animations.",
+    "stamp_hover": "scale-95 rotate-1 transition-transform duration-100 ease-in",
+    "seal_scroll": "opacity-0 scale-50 rotate-[-15deg] to opacity-100 scale-100 rotate-0 transition-all duration-500 ease-out"
+  },
+  "media": {
+    "image_urls": [
+      {
+        "url": "https://images.pexels.com/photos/7413920/pexels-photo-7413920.jpeg",
+        "category": "hero_team",
+        "description": "Indian professionals in an office presentation. Good for About Us or Homepage Hero."
+      },
+      {
+        "url": "https://images.pexels.com/photos/8815849/pexels-photo-8815849.jpeg",
+        "category": "paperwork_signature",
+        "description": "Close up of hand signing document. Perfect for the Registration and Protection service pages."
+      },
+      {
+        "url": "https://images.pexels.com/photos/7581126/pexels-photo-7581126.jpeg",
+        "category": "consultation",
+        "description": "Smiling diverse team in modern office. Use for 'Dedicated Manager' sections."
+      }
+    ]
+  },
+  "copy_guidelines": {
+    "voice": "Plain, active, specific. Avoid filler adjectives.",
+    "examples": {
+      "good": "File your GST return",
+      "bad": "Comprehensive GST Solutions"
+    },
+    "trust_markers": "Every CTA must be accompanied by a trust marker (e.g., 'No hidden fees', 'Government recognized', 'Takes 5 minutes')."
+  },
+  "instructions_to_main_agent": {
+    "tailwind_config": "You MUST customize tailwind.config.js to include the exact hex codes provided in 'colors'. Add 'Fraunces' and 'IBM Plex Mono' to the font family config.",
+    "testing_attributes": "All interactive elements (buttons, form inputs, tabs, quote steps) MUST include a 'data-testid' attribute in kebab-case. Example: data-testid='submit-gst-form'.",
+    "component_creation": "Build custom HTML/Tailwind components for the Filing Tabs, Service Cards, and Ink Stamps. Do not rely on generic shadcn cards if they conflict with the 'paper' styling.",
+    "page_structure": "Ensure all 40+ required pages or templates (Homepage, 5 Pillar Hubs, Service page templates, Quote form, About, Reviews, Contact) follow the exact ledger layout structure.",
+    "multi_step_quote": "Implement a progressive form with discrete steps, using a ledger hairline progress indicator. Use monospace font for the generated quote reference ID."
+  }
+}
