@@ -24,8 +24,12 @@
     --destructive-foreground: 0 0% 100%;
     --border: 216 12% 88%;
     --input: 216 12% 88%;
-    --ring: 218 71% 14%;
+    --ring: 21 82% 54%; /* coral focus ring */
     --radius: 0.25rem;
+    /* Accent coral */
+    --coral: #E8632A;
+    --coral-light: #FEE8DB;
+    --coral-dark: #C1450E;
   }
 }
 
@@ -33,8 +37,12 @@
   * {
     @apply border-border;
   }
-  html,
-  body {
+  /* Global focus ring — coral, consistent everywhere */
+  *:focus-visible {
+    outline: 2px solid #E8632A;
+    outline-offset: 2px;
+  }
+  html, body {
     background-color: #ffffff;
     color: #0b1e3d;
     font-family: "Inter", system-ui, sans-serif;
@@ -63,40 +71,136 @@
     font-family: "IBM Plex Mono", ui-monospace, monospace;
     letter-spacing: 0.02em;
   }
+
+  /* ── Primary button — coral on hover ─────────────────────────────── */
   .btn-primary {
-    @apply inline-flex items-center gap-2 bg-ink text-white px-5 py-3 text-sm font-medium tracking-wide transition-transform rounded-sm;
+    @apply inline-flex items-center gap-2 bg-ink text-white px-5 py-3 text-sm font-medium tracking-wide transition-all rounded-sm;
   }
   .btn-primary:hover {
-    animation: stamp-down 220ms ease-in;
+    background-color: #E8632A;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(232, 99, 42, 0.35);
   }
+  .btn-primary:active {
+    animation: stamp-down 220ms ease-in;
+    background-color: #C1450E;
+  }
+
+  /* ── Outline button — coral fill on hover ────────────────────────── */
   .btn-outline {
-    @apply inline-flex items-center gap-2 border border-ink/40 text-ink px-5 py-3 text-sm font-medium tracking-wide rounded-sm hover:border-ink;
+    @apply inline-flex items-center gap-2 border border-ink/40 text-ink px-5 py-3 text-sm font-medium tracking-wide rounded-sm transition-all;
   }
   .btn-outline:hover {
-    @apply bg-ink text-white border-ink;
+    background-color: #E8632A;
+    border-color: #E8632A;
+    color: #ffffff;
+    transform: translateY(-1px);
   }
+
+  /* ── Urgent button ────────────────────────────────────────────────── */
   .btn-urgent {
-    @apply inline-flex items-center gap-2 bg-seal text-white px-5 py-3 text-sm font-medium tracking-wide rounded-sm;
+    @apply inline-flex items-center gap-2 bg-seal text-white px-5 py-3 text-sm font-medium tracking-wide rounded-sm transition-all;
   }
   .btn-urgent:hover {
     animation: stamp-down 220ms ease-in;
+    background-color: #A01E23;
   }
+
+  /* ── Filing folder tabs ───────────────────────────────────────────── */
   .filing-tab {
     @apply relative px-5 pt-3 pb-3 text-sm font-medium border border-b-0 border-ink/20 rounded-t-sm bg-alt text-ink/70 hover:text-ink hover:bg-white transition;
   }
-  .filing-tab-active {
-    @apply bg-white text-ink border-ink/60 shadow-[0_-2px_0_0_#8A6D1F_inset];
+  .filing-tab:hover {
+    box-shadow: inset 0 -2px 0 0 rgba(232, 99, 42, 0.4);
   }
+  .filing-tab-active {
+    @apply bg-white text-ink border-ink/60;
+    box-shadow: inset 0 -2px 0 0 #E8632A;
+  }
+
+  /* ── Cards ────────────────────────────────────────────────────────── */
   .paper-card {
-    @apply relative bg-white border border-ink/10 shadow-[0_1px_0_0_rgba(11,30,61,0.04),0_8px_20px_-15px_rgba(11,30,61,0.2)] transition-transform rounded-sm;
+    @apply relative bg-white border border-ink/10 shadow-[0_1px_0_0_rgba(11,30,61,0.04),0_8px_20px_-15px_rgba(11,30,61,0.2)] transition-all rounded-sm;
   }
   .paper-card:hover {
-    @apply -translate-y-0.5 shadow-[0_1px_0_0_rgba(11,30,61,0.06),0_14px_28px_-15px_rgba(11,30,61,0.3)];
+    @apply -translate-y-1;
+    box-shadow: 0 0 0 1.5px #E8632A33, 0 12px 30px -10px rgba(11,30,61,0.22);
+    border-color: rgba(232, 99, 42, 0.25);
   }
-  .section-alt {
-    background: #f5f6f8;
+
+  /* ── Icon card ────────────────────────────────────────────────────── */
+  .icon-card {
+    @apply flex flex-col gap-3 p-5 bg-white border border-ink/10 rounded-sm transition-all;
   }
+  .icon-card:hover {
+    border-color: rgba(232, 99, 42, 0.3);
+    box-shadow: 0 6px 20px -8px rgba(232, 99, 42, 0.2);
+    transform: translateY(-2px);
+  }
+
+  /* ── Service chips (base) — colour overrides applied per pillar ───── */
+  .service-chip {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-full border text-sm font-medium transition-all;
+  }
+  .service-chip:hover {
+    background-color: #E8632A;
+    border-color: #E8632A;
+    color: #ffffff;
+    box-shadow: 0 2px 10px rgba(232, 99, 42, 0.3);
+    transform: translateY(-1px);
+  }
+
+  /* ── Background sections ──────────────────────────────────────────── */
+  .section-alt  { background: #f5f6f8; }
+  .section-warm { background: #f7f4ec; }
+  .section-navy { background: #0B1E3D; color: #ffffff; }
+  .section-coral {
+    background: linear-gradient(135deg, #E8632A 0%, #C1450E 100%);
+    color: #ffffff;
+  }
+
+  /* ── Credential badge ─────────────────────────────────────────────── */
   .credential-badge {
     @apply inline-flex items-center gap-1.5 px-2 py-1 mono text-[10px] uppercase tracking-widest border border-ink/25 bg-white text-ink;
   }
+
+  /* ── Link underline — coral accent ───────────────────────────────── */
+  .link-coral {
+    @apply underline underline-offset-4 text-ink transition-colors;
+    text-decoration-color: #E8632A;
+    text-decoration-thickness: 2px;
+  }
+  .link-coral:hover {
+    color: #E8632A;
+  }
+
+  /* ── Count-up number ─────────────────────────────────────────────── */
+  .stat-figure {
+    @apply font-display font-bold text-ink leading-tight;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* ── Keyframes ────────────────────────────────────────────────────────── */
+@keyframes stamp-in {
+  0%   { opacity: 0; transform: scale(0.6) rotate(-10deg); }
+  70%  { opacity: 1; transform: scale(1.04) rotate(2deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+@keyframes stamp-down {
+  0%   { transform: scale(1) rotate(0deg); }
+  40%  { transform: scale(0.96) rotate(-1deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+@keyframes fade-up {
+  0%   { opacity: 0; transform: translateY(18px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes coral-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(232, 99, 42, 0.4); }
+  50%       { box-shadow: 0 0 0 8px rgba(232, 99, 42, 0); }
 }

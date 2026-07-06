@@ -9,7 +9,7 @@ const severityStyles = {
   low: "border-l-approve bg-approve/[0.04]",
 };
 
-export const RiskCalculator = () => {
+export const RiskCalculator = ({ inverted = false }) => {
   const [entity, setEntity] = useState("");
   const [state, setState] = useState("");
   const [employees, setEmployees] = useState("no");
@@ -21,23 +21,26 @@ export const RiskCalculator = () => {
   );
   const highCount = filings.filter((f) => f.severity === "high").length;
 
+  const label = inverted ? "text-white/50" : "text-slate2";
+  const heading = inverted ? "text-white" : "text-ink";
+  const body = inverted ? "text-white/70" : "text-ink/70";
+
   return (
-    <section className="container-x pt-20" data-testid="risk-calculator">
+    <section className="container-x pt-0" data-testid="risk-calculator">
       <div className="grid lg:grid-cols-12 gap-10 items-start">
         <div className="lg:col-span-5">
-          <div className="mono text-[11px] uppercase tracking-[0.22em] text-slate2">
-            Compliance exposure · Interactive
+          <div className={`mono text-[11px] uppercase tracking-[0.22em] ${label}`}>
+            Enter your details below
           </div>
-          <h2 className="font-display text-3xl sm:text-4xl text-ink mt-3 leading-tight">
-            See every deadline your entity owes this year.
-          </h2>
-          <p className="text-ink/70 mt-3 leading-relaxed">
-            Enter your entity type and state. We list every statutory filing that applies, its due date, and the penalty exposure per day of delay.
+          <p className={`${body} mt-3 leading-relaxed`}>
+            Select your entity type and state. We list every statutory filing
+            that applies, its due date, and the penalty exposure per day of
+            delay.
           </p>
 
           <div className="mt-6 space-y-4">
             <div>
-              <label className="mono text-[11px] uppercase tracking-widest text-slate2">Entity type</label>
+              <label className={`mono text-[11px] uppercase tracking-widest ${label}`}>Entity type</label>
               <select
                 value={entity}
                 onChange={(e) => setEntity(e.target.value)}
@@ -52,7 +55,7 @@ export const RiskCalculator = () => {
             </div>
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="mono text-[11px] uppercase tracking-widest text-slate2">State</label>
+                <label className={`mono text-[11px] uppercase tracking-widest ${label}`}>State</label>
                 <select
                   value={state}
                   onChange={(e) => setState(e.target.value)}
@@ -64,7 +67,7 @@ export const RiskCalculator = () => {
                 </select>
               </div>
               <div>
-                <label className="mono text-[11px] uppercase tracking-widest text-slate2">Employees on payroll?</label>
+                <label className={`mono text-[11px] uppercase tracking-widest ${label}`}>Employees on payroll?</label>
                 <select
                   value={employees}
                   onChange={(e) => setEmployees(e.target.value)}

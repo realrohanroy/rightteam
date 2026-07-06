@@ -7,7 +7,9 @@ module.exports = {
       colors: {
         ink: "#0B1E3D",
         paper: "#FFFFFF",
+        warm: "#F7F4EC",
         alt: "#F5F6F8",
+        coral: "#E8632A",
         seal: "#C1272D",
         gold: "#8A6D1F",
         approve: "#1E5631",
@@ -49,12 +51,22 @@ module.exports = {
           "40%": { transform: "scale(0.96) rotate(-1deg)" },
           "100%": { transform: "scale(1) rotate(0deg)" },
         },
+        "fade-up": {
+          "0%": { opacity: "0", transform: "translateY(18px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        "fade-in": {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "stamp-in": "stamp-in 500ms cubic-bezier(.22,1.2,.36,1) both",
         "stamp-down": "stamp-down 220ms ease-in",
+        "fade-up": "fade-up 0.5s ease-out both",
+        "fade-in": "fade-in 0.4s ease-out both",
       },
     },
   },

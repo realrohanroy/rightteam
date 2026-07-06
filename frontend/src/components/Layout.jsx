@@ -108,7 +108,7 @@ export const Footer = () => {
                 RightTeam<span className="text-gold">.in</span>
               </div>
               <div className="mono text-[10px] uppercase tracking-widest text-white/60 mt-1">
-                CIN · U74999MH2019PTC000000
+                CIN · [TO BE CONFIRMED]
               </div>
             </div>
           </div>
@@ -148,15 +148,16 @@ export const Footer = () => {
           <ul className="space-y-2 text-sm text-white/80 mono text-[11px] uppercase tracking-widest">
             <li>ICAI Member Firm</li>
             <li>ICSI Registered Practice</li>
-            <li>GSTIN 27AABCU9603R1ZM</li>
-            <li>Bar Council MAH/1092/2015</li>
+            <li>GSTIN [TO BE CONFIRMED]</li>
+            <li>Bar Council [TO BE CONFIRMED]</li>
           </ul>
         </div>
       </div>
       <div className="border-t border-white/15">
         <div className="container-x py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="mono text-[11px] tracking-widest text-white/50 uppercase">
-            © {new Date().getFullYear()} RightTeam Consultancy Pvt. Ltd. Filings subject to government processing timelines.
+            © {new Date().getFullYear()} RightTeam Consultancy Pvt. Ltd. · CIN [TO BE CONFIRMED]
+            Filings subject to government processing timelines.
           </div>
           <div className="mono text-[11px] tracking-widest text-white/50 uppercase">
             Ref: RT/WEB/2026/HOME
