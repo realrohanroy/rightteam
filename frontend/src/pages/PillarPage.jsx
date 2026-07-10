@@ -1,16 +1,17 @@
 import React from "react";
-import { useParams, Link, Navigate } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { Layout } from "../components/Layout";
 import { FilingTabs } from "../components/FilingTabs";
 import { ServiceCard } from "../components/ServiceCard";
 import { CompliancePDFCta } from "../components/CompliancePDFCta";
 import { PILLARS, servicesByPillar, findPillar } from "../data/services";
 import { AlertOctagon, Sparkles } from "lucide-react";
+import NotFoundPage from "./NotFoundPage";
 
 export default function PillarPage() {
   const { pillar: slug } = useParams();
   const pillar = findPillar(slug);
-  if (!pillar) return <Navigate to="/" replace />;
+  if (!pillar) return <NotFoundPage />;
 
   const services = servicesByPillar(slug);
   const idx = PILLARS.findIndex((p) => p.slug === slug);

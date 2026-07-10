@@ -216,3 +216,111 @@
   100% { transform: translateY(-504px); }
 }
 
+/* ── Custom scrollbar site-wide ─────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0B1E3D; /* Navy track */
+}
+::-webkit-scrollbar-thumb {
+  background: #E8522B; /* Brand orange-red thumb */
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #C14410; /* Darker orange-red on hover */
+}
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #E8522B #0B1E3D;
+}
+
+/* ── Hover and Focus States sitewide ─────────────────────────────────── */
+/* Lighter orange-red (#F0613C) for WCAG AA compliance (4.9:1 contrast) on dark backgrounds */
+.section-navy *:focus-visible,
+.bg-ink *:focus-visible,
+.bg-\[\#050B14\] *:focus-visible,
+.bg-\[\#050b14\] *:focus-visible {
+  outline: 2px solid #F0613C;
+  outline-offset: 2px;
+}
+
+/* Global hover state color changes for links */
+a:hover {
+  color: #E8522B;
+}
+.section-navy a:hover,
+.bg-\[\#050B14\] a:hover,
+.bg-\[\#050b14\] a:hover {
+  color: #F0613C;
+}
+
+/* Specific interactive link hovers */
+header a:hover {
+  color: #E8522B !important;
+}
+.bg-transparent header a:hover {
+  color: #F0613C !important;
+}
+footer a:hover {
+  color: #E8522B !important;
+  text-decoration: underline;
+}
+
+/* ── Print Media Stylesheet ────────────────────────────────────────── */
+@media print {
+  html, body {
+    background: #ffffff !important;
+    color: #0B1E3D !important;
+    font-size: 12pt;
+  }
+  
+  /* Reset navy/dark sections to white with dark outlines */
+  .section-navy, 
+  .bg-ink, 
+  .bg-\[\#050B14\],
+  .bg-\[\#050b14\] {
+    background: #ffffff !important;
+    color: #0B1E3D !important;
+    border: 1px solid #0B1E3D !important;
+  }
+  
+  /* Hide interactive / non-printable elements */
+  header, 
+  footer, 
+  form, 
+  button, 
+  .btn-primary, 
+  .btn-outline, 
+  .btn-urgent,
+  [data-testid="quote-progress"],
+  [data-testid="sidebar-quote"],
+  .relative.overflow-hidden.min-h-\[85vh\] { 
+    display: none !important; 
+  }
+  
+  /* Ensure comparison table is clean and legible */
+  table {
+    border-collapse: collapse !important;
+    width: 100% !important;
+    page-break-inside: avoid;
+  }
+  th, td {
+    border: 1px solid #0B1E3D !important;
+    color: #0B1E3D !important;
+    background: transparent !important;
+  }
+  
+  /* Prevent layout breaking columns */
+  .grid {
+    display: block !important;
+  }
+}
+
+/* ── Legacy inline font size overrides to enforce the 12px minimum scale ── */
+.text-\[8px\], .text-\[10px\], .text-\[11px\] {
+  font-size: 12px !important;
+}
+
+

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Download, Check, ArrowRight } from "lucide-react";
+import { Download, Check, ArrowRight, AlertOctagon } from "lucide-react";
 import { CornerSeal } from "./Seal";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
@@ -14,10 +14,19 @@ export const CompliancePDFCta = ({ variant = "default" }) => {
   const [email, setEmail] = useState("");
   const [state, setState] = useState("idle"); // idle | submitting | done | error
   const [reference, setReference] = useState("");
+  const [emailError, setEmailError] = useState("");
 
   const submit = async (e) => {
     e.preventDefault();
-    if (!email.includes("@")) return;
+    if (!email) {
+      setEmailError("Email address is required.");
+      return;
+    }
+    if (!email.includes("@") || !email.includes(".")) {
+      setEmailError("Please enter a valid work email address.");
+      return;
+    }
+    setEmailError("");
     setState("submitting");
     try {
       const { data } = await axios.post(`${API}/leads`, {
@@ -70,31 +79,49 @@ export const CompliancePDFCta = ({ variant = "default" }) => {
 
       <div className="md:col-span-2">
         {state !== "done" ? (
-          <form onSubmit={submit} className="flex flex-col gap-3">
+          <form onSubmit={submit} noValidate className="flex flex-col gap-3">
             <label className={`mono text-[11px] uppercase tracking-widest ${variant === "dark" ? "text-white/70" : "text-slate2"}`}>
               Work email
             </label>
             <input
               type="email"
-              required
               placeholder="you@company.in"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className={`px-3 py-3 focus:outline-none rounded-sm ${
-                variant === "dark"
-                  ? "bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white"
-                  : "bg-white text-ink border border-ink/25 focus:border-ink"
+              onChange={(e) => {
+                setEmail(e.target.value);
+                if (emailError) setEmailError("");
+              }}
+              className={`px-3 py-3 focus:outline-none rounded-sm border ${
+                emailError
+                  ? "border-seal focus:border-seal"
+                  : variant === "dark"
+                  ? "bg-white/10 text-white placeholder-white/50 border-white/20 focus:border-white"
+                  : "bg-white text-ink border-ink/25 focus:border-ink"
               }`}
               data-testid="pdf-email"
             />
+            {emailError && (
+              <div className="flex items-center gap-1.5 mt-0.5 text-xs bg-white border border-seal/30 px-2.5 py-1.5 rounded shadow-sm text-ink w-fit">
+                <AlertOctagon size={14} className="text-seal shrink-0" />
+                <span className="font-semibold">{emailError}</span>
+              </div>
+            )}
             <button
               type="submit"
               disabled={state === "submitting"}
               className={`${variant === "dark" ? "bg-white text-ink" : "bg-ink text-white"} px-5 py-3 text-sm font-medium rounded-sm hover:animate-stamp-down flex items-center justify-center gap-2 disabled:opacity-40`}
               data-testid="pdf-submit"
             >
-              {state === "submitting" ? "Sending link…" : "Email me the calendar"}
-              <ArrowRight size={14} />
+              {state === "submitting" ? (
+                <>
+                  <span className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
+                  Sending link…
+                </>
+              ) : (
+                <>
+                  Email me the calendar <ArrowRight size={14} />
+                </>
+              )}
             </button>
             {state === "error" && (
               <div className="text-xs text-seal">Something went wrong. Please try again.</div>

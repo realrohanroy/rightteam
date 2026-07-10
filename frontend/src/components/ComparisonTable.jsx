@@ -51,7 +51,7 @@ export const ComparisonTable = () => (
           </thead>
           <tbody>
             {COMPARISON.rows.map((r, i) => (
-              <tr key={i} className="border-b border-ink/10 last:border-b-0">
+              <tr key={i} className="border-b border-ink/10 last:border-b-0 hover:bg-brand/[0.02] transition-colors">
                 <td className="p-4 text-ink font-medium">{r.feature}</td>
                 {COMPARISON.columns.map((c) => (
                   <td

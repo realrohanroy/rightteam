@@ -8,6 +8,7 @@ import QuotePage from "@/pages/QuotePage";
 import AboutPage from "@/pages/AboutPage";
 import ReviewsPage from "@/pages/ReviewsPage";
 import ContactPage from "@/pages/ContactPage";
+import NotFoundPage from "@/pages/NotFoundPage";
 import { useSmoothScroll } from "@/hooks/useSmoothScroll";
 
 /* Register GSAP plugins globally */
@@ -38,6 +39,7 @@ function AppInner() {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/service/:slug" element={<ServicePage />} />
         <Route path="/:pillar" element={<PillarPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>
   );

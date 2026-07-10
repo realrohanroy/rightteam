@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams, Link, Navigate } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { Layout } from "../components/Layout";
 import { FilingTabs } from "../components/FilingTabs";
 import { Checklist, NeedsList } from "../components/Checklist";
@@ -8,11 +8,12 @@ import { Seal, CornerSeal } from "../components/Seal";
 import { findService, findPillar, servicesByPillar } from "../data/services";
 import { ArrowRight, Check, Phone, ChevronDown } from "lucide-react";
 import * as Accordion from "@radix-ui/react-accordion";
+import NotFoundPage from "./NotFoundPage";
 
 export default function ServicePage() {
   const { slug } = useParams();
   const service = findService(slug);
-  if (!service) return <Navigate to="/" replace />;
+  if (!service) return <NotFoundPage />;
 
   const pillar = findPillar(service.pillar);
   const related = servicesByPillar(service.pillar).filter((s) => s.slug !== slug).slice(0, 3);
@@ -209,18 +210,18 @@ const FAQItem = ({ q, a, idx }) => {
     <div className="p-5">
       <button
         onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between text-left gap-6"
+        className="w-full flex items-center justify-between text-left gap-6 group focus-visible:outline-none"
         data-testid={`faq-${idx}`}
       >
         <div className="flex items-start gap-4">
-          <span className="mono text-[11px] uppercase tracking-widest text-slate2 pt-1">
+          <span className="mono text-[11px] uppercase tracking-widest text-slate2 pt-1 group-hover:text-brand transition-colors group-focus:text-brand">
             Q.{String(idx + 1).padStart(2, "0")}
           </span>
-          <span className="font-semibold text-ink">{q}</span>
+          <span className="font-semibold text-ink group-hover:text-brand transition-colors group-focus:text-brand">{q}</span>
         </div>
         <ChevronDown
           size={18}
-          className={`text-ink shrink-0 transition-transform ${open ? "rotate-180" : ""}`}
+          className={`text-ink shrink-0 transition-transform group-hover:text-brand group-focus:text-brand ${open ? "rotate-180" : ""}`}
         />
       </button>
       {open && <p className="text-slate2 text-sm mt-3 pl-16 leading-relaxed prose-narrow">{a}</p>}

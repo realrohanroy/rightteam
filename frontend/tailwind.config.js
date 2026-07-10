@@ -30,6 +30,25 @@ module.exports = {
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
       },
+      fontSize: {
+        xs: "12px",
+        sm: "14px",
+        base: "16px",
+        lg: "20px",
+        xl: "25px",
+        "2xl": "31px",
+        "3xl": "39px",
+        "4xl": "49px",
+        "5xl": "49px",
+      },
+      spacing: {
+        3: "8px",   // maps 12px -> 8px
+        5: "24px",  // maps 20px -> 24px
+        10: "32px", // maps 40px -> 32px
+        14: "64px", // maps 56px -> 64px
+        20: "96px", // maps 80px -> 96px
+        28: "96px", // maps 112px -> 96px
+      },
       fontFamily: {
         display: ['"Fraunces"', "Georgia", "serif"],
         sans: ['"Inter"', "system-ui", "sans-serif"],

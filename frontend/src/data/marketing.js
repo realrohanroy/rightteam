@@ -58,36 +58,36 @@ export const TEAM = [
   },
 ];
 
-// Case study cards — confirm client sign-off before publishing
+// Case study cards — generic industry case study placeholders
 export const CASE_STUDIES = [
   {
-    company: "NeuTech Labs Pvt. Ltd.",
+    company: "Precision Manufacturing Partner",
     industry: "Precision manufacturing · Pune",
     challenge: "Three years of lapsed ROC filings; compounding director disqualification risk.",
     outcome: "Cleared 3 years of lapsed ROC filings in 6 weeks. Compounding fees negotiated 47% below original quote.",
     quote:
       "RightTeam sorted three years of ROC neglect in six weeks. They handled the compounding negotiation themselves — I never met the registrar.",
-    person: "Aditya Malhotra · Director",
+    person: "Finance Director",
     reference: "RT/CS/2025/041",
   },
   {
-    company: "Kaira Foods Pvt. Ltd.",
+    company: "F&B Manufacturing Exporter",
     industry: "F&B manufacturing · Bengaluru",
     challenge: "Simultaneous GST registration, FSSAI State licence and IEC needed before first shipment.",
     outcome: "All three registrations issued in 12 working days — GSTIN in 5, FSSAI in 22, IEC same-day.",
     quote:
       "We had a container waiting at Chennai port. RightTeam ran GST, FSSAI and IEC in parallel. Officer queries were answered same day.",
-    person: "Priya Ranganathan · Founder",
+    person: "Managing Director",
     reference: "RT/CS/2025/078",
   },
   {
-    company: "LogiPro Warehousing LLP",
+    company: "Regional Logistics & Warehousing LLP",
     industry: "Logistics · Gurugram",
     challenge: "62-employee payroll with PF, ESI, TDS and monthly GST spread across four vendors.",
     outcome: "Consolidated payroll, PF, ESI, TDS and GST onto one dashboard. Saved two full-time hires.",
     quote:
       "Four vendors, four spreadsheets, four excuses. RightTeam collapsed all of that into one dashboard and one manager.",
-    person: "Manish Gupta · CFO",
+    person: "Chief Financial Officer",
     reference: "RT/CS/2025/113",
   },
 ];

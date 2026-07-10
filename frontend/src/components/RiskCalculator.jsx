@@ -14,6 +14,16 @@ export const RiskCalculator = ({ inverted = false }) => {
   const [state, setState] = useState("");
   const [employees, setEmployees] = useState("no");
   const [ran, setRan] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const handleCalculate = () => {
+    setLoading(true);
+    setRan(false);
+    setTimeout(() => {
+      setLoading(false);
+      setRan(true);
+    }, 1200);
+  };
 
   const filings = useMemo(
     () => (entity ? filingsFor(entity, employees === "yes") : []),
@@ -85,12 +95,21 @@ export const RiskCalculator = ({ inverted = false }) => {
               </div>
             </div>
             <button
-              onClick={() => setRan(true)}
-              disabled={!entity || !state}
-              className="btn-primary w-full justify-center disabled:opacity-40"
+              onClick={handleCalculate}
+              disabled={!entity || !state || loading}
+              className="btn-primary w-full justify-center disabled:opacity-40 flex items-center gap-2"
               data-testid="risk-run"
             >
-              Show my compliance exposure <ArrowRight size={14} />
+              {loading ? (
+                <>
+                  <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                  Generating register...
+                </>
+              ) : (
+                <>
+                  Show my compliance exposure <ArrowRight size={14} />
+                </>
+              )}
             </button>
           </div>
         </div>
@@ -101,14 +120,26 @@ export const RiskCalculator = ({ inverted = false }) => {
               <div className="mono text-[11px] uppercase tracking-widest text-slate2">
                 Statutory filing register
               </div>
-              {ran && entity && (
+              {ran && entity && !loading && (
                 <div className="mono text-[11px] uppercase tracking-widest text-seal font-semibold flex items-center gap-1">
                   <AlertOctagon size={12} /> {highCount} high-severity filings
                 </div>
               )}
             </div>
 
-            {!ran || !entity ? (
+            {loading ? (
+              <div className="p-10 space-y-6 animate-pulse" data-testid="calculator-loading">
+                {[1, 2, 3].map((n) => (
+                  <div key={n} className="flex gap-4 items-start">
+                    <div className="w-8 h-4 bg-ink/10 rounded-sm" />
+                    <div className="flex-1 space-y-2">
+                      <div className="h-4 bg-ink/10 rounded-sm w-2/3" />
+                      <div className="h-3 bg-ink/10 rounded-sm w-1/3" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : !ran || !entity ? (
               <div className="p-10 text-center">
                 <div className="mono text-[11px] uppercase tracking-widest text-slate2">Awaiting input</div>
                 <p className="text-slate2 mt-3 text-sm prose-narrow mx-auto">

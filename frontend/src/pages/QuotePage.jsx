@@ -3,7 +3,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import axios from "axios";
 import { Layout } from "../components/Layout";
 import { PILLARS, SERVICES, findService } from "../data/services";
-import { ArrowRight, Check, ArrowLeft, ClipboardCheck } from "lucide-react";
+import { ArrowRight, Check, ArrowLeft, ClipboardCheck, AlertOctagon } from "lucide-react";
 import { Seal } from "../components/Seal";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
@@ -31,6 +31,39 @@ export default function QuotePage() {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
   const [result, setResult] = useState(null);
+  const [transitioning, setTransitioning] = useState(false);
+  const [touched, setTouched] = useState({});
+
+  const errors = useMemo(() => {
+    const errs = {};
+    if (touched.full_name && !form.full_name.trim()) {
+      errs.full_name = "Full name is required";
+    }
+    if (touched.email) {
+      if (!form.email.trim()) {
+        errs.email = "Email address is required";
+      } else if (!form.email.includes("@") || !form.email.includes(".")) {
+        errs.email = "Please enter a valid email address";
+      }
+    }
+    if (touched.phone) {
+      if (!form.phone.trim()) {
+        errs.phone = "Phone number is required";
+      } else if (form.phone.replace(/[^0-9]/g, "").length < 10) {
+        errs.phone = "Phone number must be at least 10 digits";
+      }
+    }
+    return errs;
+  }, [form, touched]);
+
+  const handleNextStep = () => {
+    if (!canNext()) return;
+    setTransitioning(true);
+    setTimeout(() => {
+      setStep((s) => s + 1);
+      setTransitioning(false);
+    }, 450);
+  };
 
   const chosen = useMemo(() => findService(form.service_slug), [form.service_slug]);
 
@@ -105,7 +138,15 @@ export default function QuotePage() {
               })}
             </div>
 
-            <div className="p-6 sm:p-8">
+            <div className="p-6 sm:p-8 relative">
+              {transitioning && (
+                <div className="absolute inset-0 bg-white/70 backdrop-blur-sm z-20 flex items-center justify-center" data-testid="quote-loading">
+                  <div className="flex flex-col items-center gap-2">
+                    <span className="w-8 h-8 border-2 border-brand border-t-transparent rounded-full animate-spin" />
+                    <span className="mono text-[10px] uppercase tracking-widest text-slate2">Loading step...</span>
+                  </div>
+                </div>
+              )}
               {step === 0 && (
                 <div>
                   <h2 className="font-display text-2xl text-ink">What are you looking to file?</h2>
@@ -202,9 +243,18 @@ export default function QuotePage() {
                         type="text"
                         value={form.full_name}
                         onChange={(e) => update("full_name", e.target.value)}
-                        className="w-full mt-1 bg-white border border-ink/25 px-3 py-2.5 focus:outline-none focus:border-ink"
+                        onBlur={() => setTouched(t => ({ ...t, full_name: true }))}
+                        className={`w-full mt-1 bg-white border px-3 py-2.5 focus:outline-none focus:border-ink ${
+                          errors.full_name ? "border-seal" : "border-ink/25"
+                        }`}
                         data-testid="quote-name"
                       />
+                      {errors.full_name && (
+                        <div className="flex items-center gap-1.5 mt-1.5 text-xs bg-white border border-seal/30 px-2.5 py-1.5 rounded shadow-sm text-ink w-fit">
+                          <AlertOctagon size={14} className="text-seal shrink-0" />
+                          <span className="font-semibold">{errors.full_name}</span>
+                        </div>
+                      )}
                     </div>
                     <div>
                       <label className="mono text-[11px] uppercase tracking-widest text-slate2">Phone / WhatsApp</label>
@@ -212,10 +262,19 @@ export default function QuotePage() {
                         type="tel"
                         value={form.phone}
                         onChange={(e) => update("phone", e.target.value)}
-                        className="w-full mt-1 bg-white border border-ink/25 px-3 py-2.5 focus:outline-none focus:border-ink"
+                        onBlur={() => setTouched(t => ({ ...t, phone: true }))}
+                        className={`w-full mt-1 bg-white border px-3 py-2.5 focus:outline-none focus:border-ink ${
+                          errors.phone ? "border-seal" : "border-ink/25"
+                        }`}
                         placeholder="+91 99999 99999"
                         data-testid="quote-phone"
                       />
+                      {errors.phone && (
+                        <div className="flex items-center gap-1.5 mt-1.5 text-xs bg-white border border-seal/30 px-2.5 py-1.5 rounded shadow-sm text-ink w-fit">
+                          <AlertOctagon size={14} className="text-seal shrink-0" />
+                          <span className="font-semibold">{errors.phone}</span>
+                        </div>
+                      )}
                     </div>
                     <div className="sm:col-span-2">
                       <label className="mono text-[11px] uppercase tracking-widest text-slate2">Email</label>
@@ -223,9 +282,18 @@ export default function QuotePage() {
                         type="email"
                         value={form.email}
                         onChange={(e) => update("email", e.target.value)}
-                        className="w-full mt-1 bg-white border border-ink/25 px-3 py-2.5 focus:outline-none focus:border-ink"
+                        onBlur={() => setTouched(t => ({ ...t, email: true }))}
+                        className={`w-full mt-1 bg-white border px-3 py-2.5 focus:outline-none focus:border-ink ${
+                          errors.email ? "border-seal" : "border-ink/25"
+                        }`}
                         data-testid="quote-email"
                       />
+                      {errors.email && (
+                        <div className="flex items-center gap-1.5 mt-1.5 text-xs bg-white border border-seal/30 px-2.5 py-1.5 rounded shadow-sm text-ink w-fit">
+                          <AlertOctagon size={14} className="text-seal shrink-0" />
+                          <span className="font-semibold">{errors.email}</span>
+                        </div>
+                      )}
                     </div>
                     <div className="sm:col-span-2">
                       <label className="mono text-[11px] uppercase tracking-widest text-slate2">Anything specific? (optional)</label>
@@ -288,7 +356,7 @@ export default function QuotePage() {
                   </button>
                   {step < 2 ? (
                     <button
-                      onClick={() => canNext() && setStep((s) => s + 1)}
+                      onClick={handleNextStep}
                       disabled={!canNext()}
                       className="btn-primary disabled:opacity-40"
                       data-testid="quote-next"
@@ -298,11 +366,20 @@ export default function QuotePage() {
                   ) : (
                     <button
                       onClick={submit}
-                      disabled={!canNext() || submitting}
-                      className="btn-primary disabled:opacity-40"
+                      disabled={!canNext() || submitting || Object.keys(errors).length > 0}
+                      className="btn-primary disabled:opacity-40 flex items-center gap-2"
                       data-testid="quote-submit"
                     >
-                      {submitting ? "Submitting…" : "Submit quote request"} <ArrowRight size={14} />
+                      {submitting ? (
+                        <>
+                          <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                          Submitting…
+                        </>
+                      ) : (
+                        <>
+                          Submit quote request <ArrowRight size={14} />
+                        </>
+                      )}
                     </button>
                   )}
                 </div>

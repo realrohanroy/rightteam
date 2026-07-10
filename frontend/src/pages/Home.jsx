@@ -176,7 +176,7 @@ export default function Home() {
             </div>
 
             {/* Headline */}
-            <h1 className="font-display text-[2.5rem] sm:text-[3.5rem] lg:text-[4rem] leading-[1.05] mt-6 text-white font-bold tracking-tight">
+            <h1 className="font-display text-2xl sm:text-3xl lg:text-4xl leading-[1.05] mt-6 text-white font-bold tracking-tight">
               The compliance platform to direct your best work
             </h1>
 
@@ -201,29 +201,29 @@ export default function Home() {
             Trusted by 8,400+ Indian businesses — startups, manufacturers &amp; enterprises
           </p>
           <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-14">
-            {/* Tata */}
+            {/* Apex */}
             <svg height="22" viewBox="0 0 80 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-60 hover:opacity-100 transition-opacity">
-              <text x="0" y="22" fontFamily="Georgia, serif" fontSize="24" fontWeight="bold" fill="white">TATA</text>
+              <text x="0" y="22" fontFamily="Georgia, serif" fontSize="22" fontWeight="bold" fill="white">APEX</text>
             </svg>
-            {/* Infosys */}
+            {/* Synergy */}
             <svg height="22" viewBox="0 0 110 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-60 hover:opacity-100 transition-opacity">
-              <text x="0" y="22" fontFamily="Arial, sans-serif" fontSize="20" fontWeight="600" fill="white">Infosys</text>
+              <text x="0" y="22" fontFamily="Arial, sans-serif" fontSize="20" fontWeight="600" fill="white">SYNERGY</text>
             </svg>
-            {/* Wipro */}
+            {/* Acme */}
             <svg height="22" viewBox="0 0 80 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-60 hover:opacity-100 transition-opacity">
-              <text x="0" y="22" fontFamily="Arial, sans-serif" fontSize="20" fontWeight="700" fill="white">Wipro</text>
+              <text x="0" y="22" fontFamily="Arial, sans-serif" fontSize="20" fontWeight="700" fill="white">ACME</text>
             </svg>
-            {/* Zepto */}
+            {/* Vortex */}
             <svg height="22" viewBox="0 0 80 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-60 hover:opacity-100 transition-opacity">
-              <text x="0" y="22" fontFamily="Arial, sans-serif" fontSize="20" fontWeight="700" fill="white">Zepto</text>
+              <text x="0" y="22" fontFamily="Arial, sans-serif" fontSize="20" fontWeight="700" fill="white">VORTEX</text>
             </svg>
-            {/* Razorpay */}
+            {/* Innovate */}
             <svg height="22" viewBox="0 0 110 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-60 hover:opacity-100 transition-opacity">
-              <text x="0" y="22" fontFamily="Arial, sans-serif" fontSize="20" fontWeight="600" fill="white">Razorpay</text>
+              <text x="0" y="22" fontFamily="Arial, sans-serif" fontSize="20" fontWeight="600" fill="white">INNOVATE</text>
             </svg>
-            {/* Meesho */}
+            {/* Horizon */}
             <svg height="22" viewBox="0 0 100 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-60 hover:opacity-100 transition-opacity">
-              <text x="0" y="22" fontFamily="Arial, sans-serif" fontSize="20" fontWeight="600" fill="white">Meesho</text>
+              <text x="0" y="22" fontFamily="Arial, sans-serif" fontSize="20" fontWeight="600" fill="white">HORIZON</text>
             </svg>
           </div>
         </div>
