@@ -119,9 +119,9 @@ const ClientLogoRow = () => (
   </section>
 );
 
-// ─── Pillar tabs preview (unchanged logic) ────────────────────────────────────
-const PillarTabsPreview = () => {
-  const pillar = PILLARS[0];
+// ─── Pillar tabs preview (dynamic logic) ──────────────────────────────────────
+const PillarTabsPreview = ({ activePillarSlug }) => {
+  const pillar = PILLARS.find((p) => p.slug === activePillarSlug) || PILLARS[0];
   const services = SERVICES.filter((s) => s.pillar === pillar.slug).slice(0, 3);
   return (
     <div className="grid md:grid-cols-4 gap-6">
@@ -147,6 +147,7 @@ const PillarTabsPreview = () => {
 export default function Home() {
   const heroRef = useScrollFadeIn({ y: 20 });
   const servicesGridRef = useScrollStagger({ stagger: 0.08 });
+  const [activePillar, setActivePillar] = useState(PILLARS[0].slug);
 
   return (
     <Layout>
@@ -264,9 +265,9 @@ export default function Home() {
         </div>
 
         <div className="mt-10">
-          <FilingTabs activeSlug={PILLARS[0].slug} />
+          <FilingTabs activeSlug={activePillar} onTabChange={setActivePillar} />
           <div className="bg-white border border-t-0 border-ink/60 p-6 sm:p-8 rounded-b-sm">
-            <PillarTabsPreview />
+            <PillarTabsPreview activePillarSlug={activePillar} />
           </div>
         </div>
       </section>

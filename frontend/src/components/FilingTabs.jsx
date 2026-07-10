@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { PILLARS } from "../data/services";
 
 // Category navigation styled as filing folder tabs.
-export const FilingTabs = ({ activeSlug }) => {
+export const FilingTabs = ({ activeSlug, onTabChange }) => {
   const location = useLocation();
   const active = activeSlug || location.pathname.split("/")[1];
 
@@ -19,6 +19,12 @@ export const FilingTabs = ({ activeSlug }) => {
             <Link
               key={p.slug}
               to={`/${p.slug}`}
+              onClick={(e) => {
+                if (onTabChange) {
+                  e.preventDefault();
+                  onTabChange(p.slug);
+                }
+              }}
               data-testid={`filing-tab-${p.slug}`}
               className={`filing-tab whitespace-nowrap ${isActive ? "filing-tab-active" : ""}`}
             >
