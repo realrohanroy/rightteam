@@ -39,12 +39,16 @@ export const RiskCalculator = ({ inverted = false }) => {
               <select
                 value={entity}
                 onChange={(e) => setEntity(e.target.value)}
-                className="w-full mt-1 bg-white border border-ink/25 px-3 py-2.5 focus:outline-none focus:border-ink rounded-sm"
+                className={`w-full mt-1 bg-white border border-ink/25 px-3 py-2.5 focus:outline-none focus:border-ink rounded-sm ${
+                  entity === "" ? "text-slate2" : "text-ink"
+                }`}
                 data-testid="risk-entity"
               >
-                <option value="">Select…</option>
+                <option value="" disabled className="text-slate2">Select entity type…</option>
                 {ENTITY_TYPES.map((et) => (
-                  <option key={et.key} value={et.key}>{et.label}</option>
+                  <option key={et.key} value={et.key} className="text-ink">
+                    {et.label}
+                  </option>
                 ))}
               </select>
             </div>
@@ -54,11 +58,17 @@ export const RiskCalculator = ({ inverted = false }) => {
                 <select
                   value={state}
                   onChange={(e) => setState(e.target.value)}
-                  className="w-full mt-1 bg-white border border-ink/25 px-3 py-2.5 focus:outline-none focus:border-ink rounded-sm"
+                  className={`w-full mt-1 bg-white border border-ink/25 px-3 py-2.5 focus:outline-none focus:border-ink rounded-sm ${
+                    state === "" ? "text-slate2" : "text-ink"
+                  }`}
                   data-testid="risk-state"
                 >
-                  <option value="">Select…</option>
-                  {STATES.map((s) => <option key={s}>{s}</option>)}
+                  <option value="" disabled className="text-slate2">Select state…</option>
+                  {STATES.map((s) => (
+                    <option key={s} value={s} className="text-ink">
+                      {s}
+                    </option>
+                  ))}
                 </select>
               </div>
               <div>
@@ -66,11 +76,11 @@ export const RiskCalculator = ({ inverted = false }) => {
                 <select
                   value={employees}
                   onChange={(e) => setEmployees(e.target.value)}
-                  className="w-full mt-1 bg-white border border-ink/25 px-3 py-2.5 focus:outline-none focus:border-ink rounded-sm"
+                  className="w-full mt-1 bg-white border border-ink/25 px-3 py-2.5 focus:outline-none focus:border-ink rounded-sm text-ink"
                   data-testid="risk-employees"
                 >
-                  <option value="no">No</option>
-                  <option value="yes">Yes (≥ 1)</option>
+                  <option value="no" className="text-ink">No</option>
+                  <option value="yes" className="text-ink">Yes (≥ 1)</option>
                 </select>
               </div>
             </div>
