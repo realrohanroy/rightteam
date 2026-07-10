@@ -1,77 +1,93 @@
 import React from "react";
-import { Check, X, Minus } from "lucide-react";
+import { Check } from "lucide-react";
 import { COMPARISON } from "../data/marketing";
 
-const iconFor = (val) => {
-  const v = String(val).toLowerCase();
-  if (v === "yes") return <Check className="text-approve" size={18} strokeWidth={3} />;
-  if (v === "no" || v.startsWith("no ")) return <X className="text-seal" size={18} strokeWidth={2.5} />;
-  if (v === "n/a" || v.startsWith("outsourced") || v.startsWith("rare") || v.startsWith("sometimes"))
-    return <Minus className="text-slate2" size={18} strokeWidth={2.5} />;
-  return null;
-};
-
 export const ComparisonTable = () => (
-  <section className="section-alt py-28 border-y border-ink/10" data-testid="comparison-table">
+  <section className="section-alt py-24 border-y border-ink/10" data-testid="comparison-table">
     <div className="container-x">
-      <div className="max-w-3xl">
+      {/* Centered Heading with brand-consistent elements */}
+      <div className="text-center mb-12">
         <div className="mono text-[11px] uppercase tracking-[0.22em] text-slate2">
           The alternatives — side by side
         </div>
         <h2 className="font-display text-3xl sm:text-4xl text-ink mt-3 leading-tight">
-          RightTeam vs. DIY vs. Generic CA vs. Portals.
+          RightTeam vs Others
         </h2>
       </div>
 
-      <div className="mt-10 overflow-x-auto">
-        <table className="w-full min-w-[820px] border-collapse bg-white border border-ink/15 text-sm">
+      <div className="mt-10 overflow-x-auto pb-4">
+        <table className="w-full min-w-[820px] border-separate border-spacing-0 bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm text-sm">
           <thead>
-            <tr>
-              <th className="text-left p-4 mono text-[10px] uppercase tracking-widest text-slate2 border-b border-ink/15 w-[38%]">
+            <tr className="bg-ink">
+              <th className="text-left p-4 font-semibold text-white border-r border-white/10 w-[30%]">
                 Criterion
               </th>
-              {COMPARISON.columns.map((c) => (
-                <th
-                  key={c.key}
-                  className={`text-left p-4 border-b border-ink/15 ${
-                    c.highlight ? "bg-ink text-white" : "text-ink"
-                  }`}
-                >
-                  <div className={`font-display text-base ${c.highlight ? "text-white" : "text-ink"}`}>
+              {COMPARISON.columns.map((c) => {
+                const isHighlight = c.highlight;
+                return (
+                  <th
+                    key={c.key}
+                    className={`text-center p-4 font-display text-base text-white border-r border-white/10 last:border-r-0 relative ${
+                      isHighlight
+                        ? "border-t-[3px] border-l-[3px] border-r-[3px] border-purple-600 rounded-t-2xl z-10 shadow-[0_-8px_20px_rgba(139,92,246,0.25),-8px_0_20px_rgba(139,92,246,0.25),8px_0_20px_rgba(139,92,246,0.25)]"
+                        : ""
+                    }`}
+                  >
                     {c.label}
-                  </div>
-                  {c.highlight && (
-                    <div className="mono text-[10px] uppercase tracking-widest text-brand mt-1">
-                      Our approach
-                    </div>
-                  )}
-                </th>
-              ))}
+                  </th>
+                );
+              })}
             </tr>
           </thead>
           <tbody>
-            {COMPARISON.rows.map((r, i) => (
-              <tr key={i} className="border-b border-ink/10 last:border-b-0 hover:bg-brand/[0.02] transition-colors">
-                <td className="p-4 text-ink font-medium">{r.feature}</td>
-                {COMPARISON.columns.map((c) => (
-                  <td
-                    key={c.key}
-                    className={`p-4 align-top ${c.highlight ? "bg-ink/[0.03]" : ""}`}
-                  >
-                    <div className="flex items-start gap-2">
-                      {iconFor(r[c.key])}
-                      <span
-                        className={`text-sm ${
-                          String(r[c.key]).toLowerCase() === "yes" ? "text-ink font-medium" : "text-slate2"
+            {COMPARISON.rows.map((r, rowIndex) => {
+              const isLastRow = rowIndex === COMPARISON.rows.length - 1;
+              return (
+                <tr
+                  key={rowIndex}
+                  className="hover:bg-slate-50/50 transition-colors"
+                >
+                  {/* Criterion Cell */}
+                  <td className="p-4 text-[#0B1E3D] font-medium border-b border-r border-slate-100 last:border-r-0">
+                    {r.feature}
+                  </td>
+                  
+                  {/* Data Cells */}
+                  {COMPARISON.columns.map((c) => {
+                    const isHighlight = c.highlight;
+                    const value = r[c.key];
+
+                    if (isHighlight) {
+                      return (
+                        <td
+                          key={c.key}
+                          className={`p-4 text-center bg-white border-l-[3px] border-r-[3px] border-purple-600 relative z-10 ${
+                            isLastRow
+                              ? "border-b-[3px] rounded-b-2xl shadow-[0_15px_30px_rgba(139,92,246,0.3)]"
+                              : "border-b border-slate-100 shadow-[8px_0_15px_-8px_rgba(139,92,246,0.25),-8px_0_15px_-8px_rgba(139,92,246,0.25)]"
+                          }`}
+                        >
+                          <div className="flex items-center justify-center h-full">
+                            <Check className="text-indigo-600" size={20} strokeWidth={3} />
+                          </div>
+                        </td>
+                      );
+                    }
+
+                    return (
+                      <td
+                        key={c.key}
+                        className={`p-4 text-center text-slate2 font-medium border-b border-r border-slate-100 last:border-r-0 ${
+                          isLastRow ? "border-b-0" : ""
                         }`}
                       >
-                        {r[c.key]}
-                      </span>
-                    </div>
-                  </td>
-                ))}
-              </tr>
-            ))}
+                        {value}
+                      </td>
+                    );
+                  })}
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>

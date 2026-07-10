@@ -140,7 +140,7 @@ export const Footer = () => {
     to: `/${p.slug}`,
   }));
   return (
-    <footer className="mt-20 border-t border-ink/15 bg-ink text-white">
+    <footer className="border-t border-ink/15 bg-ink text-white">
       <div className="container-x py-14 grid grid-cols-1 md:grid-cols-4 gap-10">
         <div>
           <div className="flex items-center gap-3">

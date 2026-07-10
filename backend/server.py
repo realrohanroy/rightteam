@@ -14,9 +14,42 @@ from datetime import datetime, timezone
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
-mongo_url = os.environ['MONGO_URL']
-client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ['DB_NAME']]
+class MockCursor:
+    def __init__(self, data):
+        self.data = data
+    def sort(self, key, direction=-1):
+        self.data = sorted(self.data, key=lambda x: x.get(key, ""), reverse=(direction == -1))
+        return self
+    async def to_list(self, limit):
+        return self.data[:limit]
+
+class MockCollection:
+    def __init__(self):
+        self._docs = []
+    async def insert_one(self, doc):
+        self._docs.append(doc)
+        return doc
+    def find(self, filter_query, projection=None):
+        return MockCursor(list(self._docs))
+
+class MockDB:
+    def __init__(self):
+        self.leads = MockCollection()
+        self.contacts = MockCollection()
+
+class MockClient:
+    def __init__(self, url):
+        pass
+    def close(self):
+        pass
+
+mongo_url = os.environ.get('MONGO_URL')
+if not mongo_url:
+    client = MockClient(None)
+    db = MockDB()
+else:
+    client = AsyncIOMotorClient(mongo_url)
+    db = client[os.environ['DB_NAME']]
 
 app = FastAPI(title="RightTeam API")
 api_router = APIRouter(prefix="/api")

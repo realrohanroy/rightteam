@@ -6,6 +6,7 @@ import { TeamGrid } from "../components/TeamGrid";
 import { CompliancePDFCta } from "../components/CompliancePDFCta";
 import { ArrowRight, Check, ChevronDown } from "lucide-react";
 import * as Accordion from "@radix-ui/react-accordion";
+import { OnTimeRing } from "../components/OnTimeRing";
 
 export default function AboutPage() {
   return (
@@ -35,18 +36,23 @@ export default function AboutPage() {
 
       <section className="container-x py-20">
         <div className="hairline pt-8" />
-        <div className="grid md:grid-cols-4 gap-8">
-          {[
-            { n: "8,400+", l: "Businesses on retainer" },
-            { n: "41,000+", l: "Statutory filings completed" },
-            { n: "24", l: "States and Union Territories" },
-            { n: "0", l: "Fee-refund penalty misses to date" },
-          ].map((s, i) => (
-            <div key={i} className="border-l-2 border-brand pl-5 py-1">
-              <div className="font-display text-3xl font-bold text-ink leading-none">{s.n}</div>
-              <div className="mono text-[11px] uppercase tracking-widest text-slate2 mt-2">{s.l}</div>
-            </div>
-          ))}
+        <div className="grid lg:grid-cols-12 gap-8 items-center">
+          <div className="lg:col-span-9 grid grid-cols-2 md:grid-cols-4 gap-6">
+            {[
+              { n: "8,400+", l: "Businesses on retainer" },
+              { n: "41,000+", l: "Statutory filings completed" },
+              { n: "24", l: "States and Union Territories" },
+              { n: "0", l: "Fee-refund penalty misses" },
+            ].map((s, i) => (
+              <div key={i} className="border-l-2 border-brand pl-5 py-1">
+                <div className="font-display text-3xl font-bold text-ink leading-none">{s.n}</div>
+                <div className="mono text-[11px] uppercase tracking-widest text-slate2 mt-2 leading-tight">{s.l}</div>
+              </div>
+            ))}
+          </div>
+          <div className="lg:col-span-3 flex justify-center lg:justify-end">
+            <OnTimeRing percentage={99.8} label="On-time filing rate" />
+          </div>
         </div>
       </section>
 

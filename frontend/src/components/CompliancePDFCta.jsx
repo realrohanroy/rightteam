@@ -46,106 +46,106 @@ export const CompliancePDFCta = ({ variant = "default" }) => {
 
   return (
     <section
-      className={`${variant === "dark" ? "bg-ink text-white" : "bg-white text-ink border border-ink/15"} rounded-sm p-8 sm:p-10 grid md:grid-cols-5 gap-8 items-center`}
+      className={`relative overflow-hidden w-full py-16 ${
+        variant === "dark" ? "bg-ink text-white" : "bg-[#EDEFF5] text-ink"
+      }`}
       data-testid="compliance-pdf-cta"
     >
-      <div className="md:col-span-3">
-        <div className="flex items-center gap-3">
-          <div
-            className={`w-10 h-10 border flex items-center justify-center ${
-              variant === "dark" ? "border-white/40 text-white" : "border-ink/40 text-ink"
-            }`}
-          >
-            <Download size={18} />
-          </div>
-          <div className={`mono text-[11px] uppercase tracking-[0.22em] ${variant === "dark" ? "text-brand" : "text-brand"} font-semibold`}>
-            Free · PDF · 24 pages
-          </div>
+      <div className="container-x grid grid-cols-1 md:grid-cols-5 gap-6 md:gap-8 items-center">
+        {/* Left Column: 3D Calendar illustration */}
+        <div className="hidden md:flex justify-center items-center md:col-span-1">
+          <img
+            src="/calendar_3d.png"
+            alt="2026 India Compliance Calendar Illustration"
+            className="w-full max-h-[160px] object-contain drop-shadow-md select-none transform hover:scale-105 transition-transform duration-300"
+          />
         </div>
-        <h3
-          className={`font-display text-2xl sm:text-3xl mt-4 leading-tight ${
-            variant === "dark" ? "text-white" : "text-ink"
-          }`}
-        >
-          The 2026 India Compliance Calendar.
-        </h3>
-        <div className="mt-4 flex items-center gap-4">
-          <CornerSeal color={variant === "dark" ? "#FFFFFF" : "#0B1E3D"} size={26} />
-          <div className={`mono text-[10px] uppercase tracking-widest ${variant === "dark" ? "text-white/60" : "text-slate2"}`}>
-            Prepared by ICAI members · Updated Jan 2026
-          </div>
-        </div>
-      </div>
 
-      <div className="md:col-span-2">
-        {state !== "done" ? (
-          <form onSubmit={submit} noValidate className="flex flex-col gap-3">
-            <label className={`mono text-[11px] uppercase tracking-widest ${variant === "dark" ? "text-white/70" : "text-slate2"}`}>
-              Work email
-            </label>
-            <input
-              type="email"
-              placeholder="you@company.in"
-              value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-                if (emailError) setEmailError("");
-              }}
-              className={`px-3 py-3 focus:outline-none rounded-sm border ${
-                emailError
-                  ? "border-seal focus:border-seal"
-                  : variant === "dark"
-                  ? "bg-white/10 text-white placeholder-white/50 border-white/20 focus:border-white"
-                  : "bg-white text-ink border-ink/25 focus:border-ink"
-              }`}
-              data-testid="pdf-email"
-            />
-            {emailError && (
-              <div className="flex items-center gap-1.5 mt-0.5 text-xs bg-white border border-seal/30 px-2.5 py-1.5 rounded shadow-sm text-ink w-fit">
-                <AlertOctagon size={14} className="text-seal shrink-0" />
-                <span className="font-semibold">{emailError}</span>
+        {/* Center Column: Form & Heading */}
+        <div className="col-span-1 md:col-span-3 flex flex-col justify-center items-center text-center">
+          <h3 className="font-display text-2xl sm:text-3xl font-bold tracking-tight text-ink">
+            The 2026 India Compliance Calendar.
+          </h3>
+          <p className="mt-3 text-xs sm:text-sm text-ink/80 max-w-md leading-relaxed font-medium">
+            The 2026 India Compliance Calendar. for a systematic commitment to ease filing and reduce compliance penalties.
+          </p>
+
+          {state !== "done" ? (
+            <form onSubmit={submit} noValidate className="mt-6 flex flex-col gap-3 w-full max-w-md">
+              <div className="relative flex items-center bg-white border border-ink/20 rounded-full p-1 focus-within:border-ink focus-within:ring-2 focus-within:ring-ink/10 transition-all shadow-sm">
+                <input
+                  type="email"
+                  placeholder="Work Email"
+                  value={email}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    if (emailError) setEmailError("");
+                  }}
+                  className="flex-1 bg-transparent px-4 py-2 text-sm text-ink placeholder-ink/40 focus:outline-none rounded-full"
+                  data-testid="pdf-email"
+                />
+                <button
+                  type="submit"
+                  disabled={state === "submitting"}
+                  className="bg-gradient-to-r from-[#4F46E5] to-[#9333EA] hover:from-[#4338CA] hover:to-[#805AD5] text-white text-xs sm:text-sm font-semibold px-5 py-2.5 rounded-full flex items-center gap-1.5 transition-all shadow-md active:scale-95 disabled:opacity-50 shrink-0"
+                  data-testid="pdf-submit"
+                >
+                  {state === "submitting" ? (
+                    <>
+                      <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                      <span>Sending…</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>Email me the calendar</span>
+                      <ArrowRight size={14} />
+                    </>
+                  )}
+                </button>
               </div>
-            )}
-            <button
-              type="submit"
-              disabled={state === "submitting"}
-              className={`${variant === "dark" ? "bg-white text-ink" : "bg-ink text-white"} px-5 py-3 text-sm font-medium rounded-sm hover:animate-stamp-down flex items-center justify-center gap-2 disabled:opacity-40`}
-              data-testid="pdf-submit"
-            >
-              {state === "submitting" ? (
-                <>
-                  <span className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
-                  Sending link…
-                </>
-              ) : (
-                <>
-                  Email me the calendar <ArrowRight size={14} />
-                </>
+              
+              {emailError && (
+                <div className="flex items-center gap-1.5 mt-1 text-xs bg-white border border-red-200 px-3.5 py-1.5 rounded-full shadow-sm text-red-600 w-fit mx-auto">
+                  <AlertOctagon size={13} className="shrink-0 text-red-500" />
+                  <span className="font-semibold">{emailError}</span>
+                </div>
               )}
-            </button>
-            {state === "error" && (
-              <div className="text-xs text-seal">Something went wrong. Please try again.</div>
-            )}
-            <div className={`mono text-[10px] uppercase tracking-widest ${variant === "dark" ? "text-white/50" : "text-slate2"}`}>
-              No spam · Unsubscribe with one click
-            </div>
-          </form>
-        ) : (
-          <div
-            className={`border ${variant === "dark" ? "border-white/30 bg-white/10" : "border-approve/30 bg-approve/[0.06]"} p-5 rounded-sm`}
-            data-testid="pdf-success"
-          >
-            <div className="flex items-center gap-2">
-              <Check size={18} className={variant === "dark" ? "text-white" : "text-approve"} strokeWidth={3} />
-              <div className={`mono text-[11px] uppercase tracking-widest ${variant === "dark" ? "text-white" : "text-approve"} font-semibold`}>
-                Sent to {email}
+              {state === "error" && (
+                <div className="text-xs text-red-500 mt-1 font-semibold">Something went wrong. Please try again.</div>
+              )}
+            </form>
+          ) : (
+            <div className="mt-6 w-full max-w-md" data-testid="pdf-success">
+              <div className="bg-white border border-green-600/30 px-5 py-3 rounded-full flex items-center justify-between gap-4 shadow-sm animate-stamp-in">
+                <div className="flex items-center gap-2.5 text-left">
+                  <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-600 shrink-0">
+                    <Check size={16} strokeWidth={3} />
+                  </div>
+                  <div>
+                    <div className="text-xs sm:text-sm font-bold text-ink">Sent to {email}</div>
+                    <div className="text-[10px] mono uppercase tracking-wider text-ink/60">Ref: {reference}</div>
+                  </div>
+                </div>
+                <span className="text-[10px] sm:text-xs text-green-600 font-bold bg-green-50 px-2.5 py-1 rounded-full border border-green-100">
+                  Check Inbox
+                </span>
               </div>
             </div>
-            <div className={`mono text-[10px] uppercase tracking-widest mt-3 ${variant === "dark" ? "text-white/60" : "text-slate2"}`}>
-              Reference · {reference}
-            </div>
+          )}
+
+          <div className="mt-6 text-[10px] sm:text-xs font-mono uppercase tracking-widest text-ink/60">
+            PDF - 34 PAGES. PREPARED BY 20+ IIM/ISB MEMBERS.
           </div>
-        )}
+        </div>
+
+        {/* Right Column: 3D Compliance Documents stack */}
+        <div className="hidden md:flex justify-center items-center md:col-span-1">
+          <img
+            src="/compliance_doc_3d.png"
+            alt="Compliance Checklist Illustration"
+            className="w-full max-h-[160px] object-contain drop-shadow-md select-none transform hover:scale-105 transition-transform duration-300"
+          />
+        </div>
       </div>
     </section>
   );

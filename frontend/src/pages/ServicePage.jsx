@@ -9,6 +9,7 @@ import { findService, findPillar, servicesByPillar } from "../data/services";
 import { ArrowRight, Check, Phone, ChevronDown } from "lucide-react";
 import * as Accordion from "@radix-ui/react-accordion";
 import NotFoundPage from "./NotFoundPage";
+import { DocStateTransition } from "../components/DocStateTransition";
 
 export default function ServicePage() {
   const { slug } = useParams();
@@ -43,23 +44,29 @@ export default function ServicePage() {
             {service.heroSummary}
           </p>
 
-          <div className="mt-8 flex flex-wrap items-center gap-6">
-            <div>
-              <div className="mono text-[11px] uppercase tracking-widest text-slate2">
-                Starting at
+          <div className="mt-8 flex flex-col md:flex-row md:items-center gap-8">
+            <div className="flex flex-wrap items-center gap-6">
+              <div>
+                <div className="mono text-[11px] uppercase tracking-widest text-slate2">
+                  Starting at
+                </div>
+                <div className="font-display text-4xl text-ink font-black leading-none mt-1">
+                  {service.startingPrice}
+                </div>
+                <div className="mono text-[10px] uppercase tracking-widest text-slate2 mt-1">
+                  Fixed fee · Government fees included
+                </div>
               </div>
-              <div className="font-display text-4xl text-ink font-black leading-none mt-1">
-                {service.startingPrice}
-              </div>
-              <div className="mono text-[10px] uppercase tracking-widest text-slate2 mt-1">
-                Fixed fee · Government fees included
+              <div className="h-14 w-px bg-ink/20 hidden sm:block" />
+              <div>
+                <div className="mono text-[11px] uppercase tracking-widest text-slate2">Turnaround</div>
+                <div className="font-semibold text-ink text-lg">7–14 working days</div>
+                <div className="mono text-[10px] uppercase tracking-widest text-slate2 mt-1">Government processing dependent</div>
               </div>
             </div>
-            <div className="h-14 w-px bg-ink/20 hidden sm:block" />
-            <div>
-              <div className="mono text-[11px] uppercase tracking-widest text-slate2">Turnaround</div>
-              <div className="font-semibold text-ink text-lg">7–14 working days</div>
-              <div className="mono text-[10px] uppercase tracking-widest text-slate2 mt-1">Government processing dependent</div>
+            
+            <div className="md:ml-auto">
+              <DocStateTransition />
             </div>
           </div>
 

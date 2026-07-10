@@ -11,10 +11,12 @@ import { TeamGrid } from "../components/TeamGrid";
 import { ComparisonTable } from "../components/ComparisonTable";
 import { CaseStudies } from "../components/CaseStudies";
 import { CompliancePDFCta } from "../components/CompliancePDFCta";
+import { ResourcesAndCta } from "../components/ResourcesAndCta";
 import { CredibilityBar } from "../components/CredibilityBar";
 import { TestimonialsSection } from "../components/TestimonialsSection";
-import { ResourceCards } from "../components/ResourceCards";
 import { CalculatorIllustrationPlaceholder, ProcessIllustrationPlaceholder } from "../components/HeroIllustrationPlaceholder";
+import { PenaltyChart } from "../components/PenaltyChart";
+import { DocStateTransition } from "../components/DocStateTransition";
 import { PILLARS, SERVICES } from "../data/services";
 import { CLIENT_LOGOS } from "../data/marketing";
 import { ArrowRight, Check, Calendar } from "lucide-react";
@@ -319,121 +321,12 @@ export default function Home() {
 
         {/* ── TESTIMONIALS ───────────────────────────────────────────────────── */}
         <TestimonialsSection />
-
-        {/* ── PROCESS / ENGAGEMENT WORKFLOW (BENTO GRID) ───────────────────── */}
-        <section className="container-x py-28 relative">
-          <div className="max-w-3xl mb-16 relative z-10">
-            <div className="mono text-[11px] uppercase tracking-[0.22em] text-brand">
-              Engagement workflow
-            </div>
-            <h2 className="font-display text-4xl sm:text-5xl text-white mt-4 leading-tight">
-              One manager. Four documented stages.
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-5 relative z-10">
-            {/* Step 1 - Spans 2 cols */}
-            <div className="md:col-span-2 relative group rounded-[20px] overflow-hidden bg-white/[0.02] border border-white/5 p-8 sm:p-12 hover:bg-white/[0.04] transition-colors duration-500">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-brand/20 blur-[100px] rounded-full pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-              <div className="mono text-brand font-bold text-lg mb-6 tracking-widest">01</div>
-              <h3 className="font-display text-2xl sm:text-3xl text-white mb-3">Scope confirmed</h3>
-              <p className="text-white/60 text-lg">Fixed-fee quote issued, engagement letter signed.</p>
-            </div>
-            
-            {/* Step 2 - Spans 1 col */}
-            <div className="md:col-span-1 relative group rounded-[20px] overflow-hidden bg-white/[0.02] border border-white/5 p-8 sm:p-12 hover:bg-white/[0.04] transition-colors duration-500">
-              <div className="absolute bottom-0 right-0 w-48 h-48 bg-brand/20 blur-[80px] rounded-full pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-              <div className="mono text-brand font-bold text-lg mb-6 tracking-widest">02</div>
-              <h3 className="font-display text-2xl text-white mb-3">Manager assigned</h3>
-              <p className="text-white/60 text-lg">Specialist allocated, single WhatsApp thread opened.</p>
-            </div>
-
-            {/* Step 3 - Spans 1 col */}
-            <div className="md:col-span-1 relative group rounded-[20px] overflow-hidden bg-white/[0.02] border border-white/5 p-8 sm:p-12 hover:bg-white/[0.04] transition-colors duration-500">
-              <div className="absolute top-0 left-0 w-48 h-48 bg-brand/20 blur-[80px] rounded-full pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-              <div className="mono text-brand font-bold text-lg mb-6 tracking-widest">03</div>
-              <h3 className="font-display text-2xl text-white mb-3">Prepared and reviewed</h3>
-              <p className="text-white/60 text-lg">Forms drafted, documents collected, filing reviewed.</p>
-            </div>
-
-            {/* Step 4 - Spans 2 cols */}
-            <div className="md:col-span-2 relative group rounded-[20px] overflow-hidden bg-white/[0.02] border border-white/5 p-8 sm:p-12 hover:bg-white/[0.04] transition-colors duration-500">
-              <div className="absolute bottom-0 right-0 w-72 h-72 bg-[#1E5631]/30 blur-[120px] rounded-full pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-              <div className="mono text-brand font-bold text-lg mb-6 tracking-widest">04</div>
-              <h3 className="font-display text-2xl sm:text-3xl text-white mb-3">Filed and acknowledged</h3>
-              <p className="text-white/60 text-lg">Return filed, acknowledgement delivered same day.</p>
-            </div>
-          </div>
-        </section>
-
-        {/* ── RESOURCE CARDS ─────────────────────────────────────────────────── */}
-        <ResourceCards />
       </div>
-
-      {/* ── PENALTY CALLOUT — seal red tint ─────────────────────────────────── */}
-      <section className="container-x py-28">
-        <div className="border-l-4 border-seal bg-seal/[0.04] p-8 sm:p-10 grid md:grid-cols-3 gap-8 items-center border border-seal/25">
-          <div className="md:col-span-2">
-            <div className="mono text-[11px] uppercase tracking-[0.22em] text-seal font-semibold">
-              Penalty exposure notice
-            </div>
-            <h3 className="font-display text-2xl sm:text-3xl text-ink mt-2 leading-tight">
-              An unfiled GST return compounds to a five-figure penalty inside a quarter.
-            </h3>
-          </div>
-          <div className="flex flex-col gap-3">
-            <Link
-              to="/quote"
-              className="btn-urgent justify-center"
-              data-testid="urgent-cta"
-            >
-              Regularise a lapsed filing
-            </Link>
-            <Link to="/tax-compliance" className="btn-outline justify-center">
-              Review compliance calendar
-            </Link>
-          </div>
-        </div>
-      </section>
+      <ResourcesAndCta />
 
       {/* ── COMPLIANCE PDF CTA ───────────────────────────────────────────────── */}
-      <section className="container-x pb-8">
-        <CompliancePDFCta variant="default" />
-      </section>
+      <CompliancePDFCta variant="default" />
 
-      {/* ── FINAL CTA — brand gradient spotlight ─────────────────────────────── */}
-      <section className="container-x pt-8 pb-14">
-        <div
-          className="rounded-sm p-8 sm:p-12 flex flex-col md:flex-row items-center gap-8 justify-between overflow-hidden relative"
-          style={{ background: "linear-gradient(135deg, #E8522B 0%, #C14410 100%)" }}
-        >
-          <div className="absolute inset-0 pointer-events-none" aria-hidden>
-            <div className="absolute -top-20 -right-20 w-72 h-72 rounded-full bg-white opacity-[0.07]" />
-            <div className="absolute -bottom-10 -left-10 w-52 h-52 rounded-full bg-white opacity-[0.04]" />
-          </div>
-          <div className="max-w-2xl relative z-10">
-            <div className="mono text-[11px] uppercase tracking-[0.22em] text-white/70">
-              New engagement · Manager assigned same day
-            </div>
-            <h3 className="font-display text-2xl sm:text-3xl mt-2 leading-tight text-white">
-              Send the details. Fixed-fee quote within 15 minutes.
-            </h3>
-          </div>
-          <div className="flex flex-col gap-2 w-full md:w-auto relative z-10">
-            <Link
-              to="/quote"
-              className="inline-flex items-center gap-2 bg-white px-6 py-3.5 font-semibold transition-colors hover:bg-[#FFF1EB] rounded-sm justify-center shadow-lg"
-              style={{ color: "#C14410" }}
-              data-testid="footer-primary-cta"
-            >
-              Get started <ArrowRight size={16} />
-            </Link>
-            <a href="tel:+919999999999" className="mono text-sm text-white/70 text-center">
-              or call +91 99999 99999
-            </a>
-          </div>
-        </div>
-      </section>
     </Layout>
   );
 }

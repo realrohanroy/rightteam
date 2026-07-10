@@ -69,6 +69,11 @@ export const CASE_STUDIES = [
       "RightTeam sorted three years of ROC neglect in six weeks. They handled the compounding negotiation themselves — I never met the registrar.",
     person: "Finance Director",
     reference: "RT/CS/2025/041",
+    timeline: [
+      { date: "Week 1", title: "Document Audit", desc: "Three years of missing ROC filings mapped." },
+      { date: "Week 3", title: "Petition Filed", desc: "Compounding application submitted to MCA." },
+      { date: "Week 6", title: "Clean Registry", desc: "All backlogs resolved; penalty capped 47% lower." },
+    ]
   },
   {
     company: "F&B Manufacturing Exporter",
@@ -79,6 +84,11 @@ export const CASE_STUDIES = [
       "We had a container waiting at Chennai port. RightTeam ran GST, FSSAI and IEC in parallel. Officer queries were answered same day.",
     person: "Managing Director",
     reference: "RT/CS/2025/078",
+    timeline: [
+      { date: "Day 1", title: "Submissions", desc: "GST, FSSAI & IEC applications filed in parallel." },
+      { date: "Day 5", title: "GSTIN Issued", desc: "Officer queries cleared within 4 hours." },
+      { date: "Day 12", title: "Licenses Live", desc: "FSSAI & IEC active; container successfully released." },
+    ]
   },
   {
     company: "Regional Logistics & Warehousing LLP",
@@ -89,6 +99,11 @@ export const CASE_STUDIES = [
       "Four vendors, four spreadsheets, four excuses. RightTeam collapsed all of that into one dashboard and one manager.",
     person: "Chief Financial Officer",
     reference: "RT/CS/2025/113",
+    timeline: [
+      { date: "Month 1", title: "Consolidation", desc: "Transferred records from four different agencies." },
+      { date: "Month 2", title: "Automation", desc: "Configured direct integration for PF, ESI & TDS." },
+      { date: "Ongoing", title: "Optimised", desc: "Dashboard live with single account manager accountability." },
+    ]
   },
 ];
 
@@ -98,16 +113,16 @@ export const COMPARISON = {
     { key: "rt", label: "RightTeam", highlight: true },
     { key: "diy", label: "DIY" },
     { key: "ca", label: "Generic CA" },
-    { key: "portal", label: "Other portals" },
+    { key: "portal", label: "Other Portals" },
   ],
   rows: [
-    { feature: "Turnaround for GST registration", rt: "5–7 working days", diy: "14–20 days", ca: "10–15 days", portal: "10–14 days" },
-    { feature: "Dedicated manager (single point of contact)", rt: "Yes", diy: "N/A", ca: "Sometimes", portal: "No — call centre" },
-    { feature: "Fixed-fee pricing (no hourly billing)", rt: "Yes", diy: "N/A", ca: "No — hourly", portal: "Yes — but hidden add-ons" },
-    { feature: "On-time filing guarantee (fee refunded)", rt: "Yes", diy: "No", ca: "No", portal: "No" },
-    { feature: "Government fees disclosed upfront", rt: "Yes", diy: "Yes", ca: "No", portal: "No — bundled" },
-    { feature: "In-house CA, CS and IP attorneys", rt: "Yes", diy: "N/A", ca: "Only CA", portal: "Outsourced" },
-    { feature: "WhatsApp updates on filing status", rt: "Yes", diy: "N/A", ca: "Rare", portal: "Email only" },
+    { feature: "Turnaround for GST registration", rt: "yes", diy: "14-20 days", ca: "14-20 days", portal: "N/A" },
+    { feature: "Dedicated manager", rt: "yes", diy: "No / N/A", ca: "No / N/A", portal: "No / N/A" },
+    { feature: "Fixed-fee pricing", rt: "yes", diy: "No / N/A", ca: "Sometimes", portal: "Only CA" },
+    { feature: "On-time filing guarantee", rt: "yes", diy: "Sometimes", ca: "No - hourly", portal: "No" },
+    { feature: "Government fees disclosed upfront", rt: "yes", diy: "No", ca: "No", portal: "No" },
+    { feature: "In-house CA, CS and IP attorneys", rt: "yes", diy: "No", ca: "Often No", portal: "Rare" },
+    { feature: "WhatsApp updates on filing status", rt: "yes", diy: "Often No", ca: "Only CA", portal: "Rare" },
   ],
 };
 
