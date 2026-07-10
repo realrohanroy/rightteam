@@ -33,7 +33,7 @@ export const Header = () => {
   return (
     <>
       {/* ── Top announcement bar ────────────────────────────────────────────── */}
-      <div className="hidden md:block bg-white border-b border-ink/10 mb-6">
+      <div className="hidden md:block bg-white border-b border-ink/10">
         <div className="container-x py-2 flex items-center justify-between text-sm">
           {/* Left — urgency + curiosity hook */}
           <p className="text-ink/75 font-medium">
@@ -62,9 +62,8 @@ export const Header = () => {
         </div>
       </div>
 
-      {/* ── Main sticky navbar ──────────────────────────────────────────────── */}
       <header className={headerClass}>
-        <div className="container-x flex items-center justify-between py-10">
+        <div className="container-x flex items-center justify-between py-12">
           <Link to="/" className="flex items-center gap-3" data-testid="brand-home-link">
             <div className="leading-none">
               <div className="font-display text-[28px] font-bold tracking-tight">
