@@ -1,48 +1,41 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
+
+const prefersReducedMotion = () =>
+  typeof window !== "undefined" &&
+  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 /**
- * useCountUp — animates a number from 0 to `target` when the element
- * scrolls into view. Returns [displayValue, ref] where ref is attached
- * to the element you want to trigger the animation on.
- *
- * @param {number} target    - Final number to count up to
- * @param {number} duration  - Animation duration in ms (default 1800)
- * @param {number} threshold - IntersectionObserver threshold (default 0.4)
+ * useCountUp
+ * Triggers a numeric count-up animation immediately upon component mount (page load).
+ * Respects user prefers-reduced-motion settings.
  */
-export const useCountUp = (target, duration = 1800, threshold = 0.4) => {
-  const [count, setCount] = useState(0);
+export const useCountUp = (target, duration = 2000) => {
   const ref = useRef(null);
-  const started = useRef(false);
+  const valueRef = useRef({ val: 0 });
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
+    if (!target) return;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !started.current) {
-          started.current = true;
-          const startTime = performance.now();
+    if (prefersReducedMotion()) {
+      setCount(target);
+      return;
+    }
 
-          const tick = (now) => {
-            const elapsed = now - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            // Ease-out cubic: decelerates as it approaches the target
-            const eased = 1 - Math.pow(1 - progress, 3);
-            setCount(Math.round(eased * target));
-            if (progress < 1) requestAnimationFrame(tick);
-          };
+    valueRef.current.val = 0;
 
-          requestAnimationFrame(tick);
-          observer.disconnect();
-        }
+    const tween = gsap.to(valueRef.current, {
+      val: target,
+      duration: duration / 1000,
+      ease: "power2.out",
+      onUpdate: () => {
+        setCount(Math.round(valueRef.current.val));
       },
-      { threshold }
-    );
+    });
 
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [target, duration, threshold]);
+    return () => tween.kill();
+  }, [target, duration]);
 
   return [count, ref];
 };

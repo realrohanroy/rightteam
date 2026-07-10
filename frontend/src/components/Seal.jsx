@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
+import { useStampAnimation } from "../hooks/useScrollAnimation";
 
 /**
  * A small circular credential-badge seal — approximately the size of a
@@ -13,25 +14,7 @@ export const Seal = ({
   center,
   animateIn = true,
 }) => {
-  const ref = useRef(null);
-  const [visible, setVisible] = useState(!animateIn);
-
-  useEffect(() => {
-    if (!animateIn) return;
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          obs.disconnect();
-        }
-      },
-      { threshold: 0.3 }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, [animateIn]);
+  const ref = useStampAnimation();
 
   const r = size / 2;
   const textRadius = r - 9;
@@ -39,8 +22,8 @@ export const Seal = ({
 
   return (
     <div
-      ref={ref}
-      className={`inline-block align-middle ${visible ? "animate-stamp-in" : "opacity-0"}`}
+      ref={animateIn ? ref : null}
+      className="inline-block align-middle"
       style={{ width: size, height: size }}
       data-testid={`seal-${label.toLowerCase().replace(/[^a-z0-9]+/g, "-").slice(0, 40)}`}
     >

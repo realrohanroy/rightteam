@@ -1,96 +1,139 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X, Phone, Mail, ChevronDown } from "lucide-react";
 import { PILLARS } from "../data/services";
 import { CornerSeal } from "./Seal";
 
 const NAV = [
-  ...PILLARS.map((p) => ({ label: p.label, to: `/${p.slug}` })),
-  { label: "About", to: "/about" },
-  { label: "Reviews", to: "/reviews" },
-  { label: "Contact", to: "/contact" },
+  { label: "Home", to: "/" },
+  { label: "About Us", to: "/about" },
+  { label: "Services", to: "/services", hasDropdown: true },
+  { label: "Blogs", to: "/blogs" },
+  { label: "Career", to: "/career" },
+  { label: "Contact Us", to: "/contact" },
 ];
 
 export const Header = () => {
   const [open, setOpen] = useState(false);
+  const loc = useLocation();
+  const isHome = loc.pathname === "/";
+  
+  // Dynamic classes for merging with the dark hero image
+  const headerClass = isHome 
+    ? "absolute top-0 left-0 right-0 z-40 bg-transparent border-transparent"
+    : "sticky top-0 z-40 bg-white shadow-sm border-b border-ink/10";
+    
+  const textColor = isHome ? "text-white/90 hover:text-white" : "text-[#0B1E3D] hover:text-brand";
+  const logoTeamColor = isHome ? "text-white" : "text-[#0B1E3D]";
+  const chevronColor = isHome ? "text-white/80" : "text-[#0B1E3D]";
+  const buttonClass = isHome 
+    ? "bg-white text-[#0B1E3D] hover:bg-white/90"
+    : "bg-[#0B1E3D] text-white hover:bg-[#08162e]";
+
   return (
-    <header className="sticky top-0 z-40 bg-paper/95 backdrop-blur border-b border-ink/15">
-      <div className="container-x flex items-center justify-between py-4">
-        <Link to="/" className="flex items-center gap-3" data-testid="brand-home-link">
-          <CornerSeal color="#0B1E3D" size={28} />
-          <div className="leading-none">
-            <div className="font-display text-lg font-bold tracking-tight text-ink">
-              RightTeam<span className="text-gold">.in</span>
-            </div>
-            <div className="mono text-[10px] uppercase tracking-[0.22em] text-slate2 mt-1">
-              Compliance Practice · Est. 2019
-            </div>
-          </div>
-        </Link>
-
-        <nav className="hidden lg:flex items-center gap-6">
-          {NAV.slice(0, 5).map((n) => (
-            <Link
-              key={n.to}
-              to={n.to}
-              className="text-sm text-ink/80 hover:text-ink relative py-1 hover:after:absolute hover:after:left-0 hover:after:right-0 hover:after:-bottom-0.5 hover:after:h-[2px] hover:after:bg-gold"
-              data-testid={`nav-${n.to.slice(1)}`}
-            >
-              {n.label}
+    <>
+      {/* ── Top announcement bar ────────────────────────────────────────────── */}
+      <div className="hidden md:block bg-white border-b border-ink/10">
+        <div className="container-x py-2 flex items-center justify-between text-sm">
+          {/* Left — urgency + curiosity hook */}
+          <p className="text-ink/75 font-medium">
+            Don't let a missed deadline cost you a penalty.{" "}
+            <Link to="/quote" className="text-brand font-semibold hover:underline underline-offset-2 transition-colors">
+              Get a free compliance check →
             </Link>
-          ))}
-        </nav>
-
-        <div className="hidden lg:flex items-center gap-3">
-          <a
-            href="tel:+919999999999"
-            className="mono text-xs text-slate2 hover:text-ink inline-flex items-center gap-1"
-          >
-            <Phone size={13} /> +91 99999 99999
-          </a>
-          <Link to="/quote" className="btn-primary" data-testid="header-quote-btn">
-            Get a Quote
-          </Link>
+          </p>
+          {/* Right — direct contact reassurance */}
+          <div className="flex items-center gap-6 text-ink/75 font-medium">
+            <a
+              href="mailto:hello@rightteam.in"
+              className="flex items-center gap-1.5 hover:text-brand transition-colors"
+            >
+              <Mail size={14} className="text-brand" />
+              hello@rightteam.in
+            </a>
+            <a
+              href="tel:18004103090"
+              className="flex items-center gap-1.5 hover:text-brand transition-colors"
+            >
+              <Phone size={14} className="text-brand" />
+              1800 410 3090
+            </a>
+          </div>
         </div>
-
-        <button
-          className="lg:hidden text-ink"
-          onClick={() => setOpen(!open)}
-          data-testid="mobile-menu-toggle"
-          aria-label="Menu"
-        >
-          {open ? <X size={24} /> : <Menu size={24} />}
-        </button>
       </div>
 
-      {open && (
-        <div className="lg:hidden border-t border-ink/15 bg-paper">
-          <div className="container-x py-4 flex flex-col gap-1">
+      {/* ── Main sticky navbar ──────────────────────────────────────────────── */}
+      <header className={headerClass}>
+        <div className="container-x flex items-center justify-between py-10">
+          <Link to="/" className="flex items-center gap-3" data-testid="brand-home-link">
+            <div className="leading-none">
+              <div className="font-display text-[28px] font-bold tracking-tight">
+                <span className="text-brand">Right</span><span className={logoTeamColor}>Team</span>
+              </div>
+            </div>
+          </Link>
+
+          <nav className="hidden lg:flex items-center gap-8">
             {NAV.map((n) => (
               <Link
-                key={n.to}
+                key={n.label}
                 to={n.to}
-                onClick={() => setOpen(false)}
-                className="py-2 text-ink/85 border-b border-ink/10"
-                data-testid={`mobile-nav-${n.to.slice(1)}`}
+                className={`text-[15px] flex items-center gap-1 font-semibold transition-colors ${n.label === "Home" && !isHome ? "text-ink" : textColor}`}
               >
                 {n.label}
+                {n.hasDropdown && <ChevronDown size={16} className={chevronColor} />}
               </Link>
             ))}
+          </nav>
+
+          <div className="hidden lg:flex items-center gap-6">
             <Link
-              to="/quote"
-              onClick={() => setOpen(false)}
-              className="btn-primary justify-center mt-3"
-              data-testid="mobile-quote-btn"
+              to="/contact"
+              className={`text-[15px] font-semibold px-6 py-2.5 rounded transition-colors ${buttonClass}`}
             >
-              Get a Quote
+              Book a Meeting
             </Link>
           </div>
+
+          <button
+            className={`lg:hidden ${isHome ? "text-white" : "text-[#0B1E3D]"}`}
+            onClick={() => setOpen(!open)}
+            data-testid="mobile-menu-toggle"
+            aria-label="Menu"
+          >
+            {open ? <X size={28} /> : <Menu size={28} />}
+          </button>
         </div>
-      )}
-    </header>
+
+        {open && (
+          <div className={`lg:hidden border-t absolute top-full left-0 w-full shadow-lg ${isHome ? "bg-black/95 border-white/10" : "bg-white border-ink/10"}`}>
+            <div className="container-x py-4 flex flex-col gap-1">
+              {NAV.map((n) => (
+                <Link
+                  key={n.label}
+                  to={n.to}
+                  onClick={() => setOpen(false)}
+                  className={`py-3 border-b font-semibold flex items-center justify-between ${isHome ? "border-white/5 text-white/90" : "border-ink/5 text-[#0B1E3D]"}`}
+                >
+                  {n.label}
+                  {n.hasDropdown && <ChevronDown size={16} />}
+                </Link>
+              ))}
+              <Link
+                to="/contact"
+                onClick={() => setOpen(false)}
+                className={`text-center py-3 rounded mt-4 font-semibold ${buttonClass}`}
+              >
+                Book a Meeting
+              </Link>
+            </div>
+          </div>
+        )}
+      </header>
+    </>
   );
 };
+
 
 export const Footer = () => {
   const groups = PILLARS.map((p) => ({
@@ -105,7 +148,7 @@ export const Footer = () => {
             <CornerSeal color="#FFFFFF" size={28} />
             <div>
               <div className="font-display text-lg font-bold">
-                RightTeam<span className="text-gold">.in</span>
+                <span className="text-brand">Right</span><span className="text-white">Team</span><span className="text-brand">.in</span>
               </div>
               <div className="mono text-[10px] uppercase tracking-widest text-white/60 mt-1">
                 CIN · [TO BE CONFIRMED]
@@ -113,7 +156,7 @@ export const Footer = () => {
             </div>
           </div>
           <p className="text-sm text-white/70 mt-4 leading-relaxed">
-            An Indian compliance and registration practice — chartered accountants, company secretaries and IP attorneys, in-house.
+            Indian compliance and registration practice — chartered accountants, company secretaries and IP attorneys, in-house.
           </p>
           <div className="mono text-xs text-white/60 mt-6 space-y-1">
             <div>hello@rightteam.in</div>
@@ -127,7 +170,7 @@ export const Footer = () => {
           <ul className="space-y-2 text-sm">
             {groups.map((g) => (
               <li key={g.to}>
-                <Link to={g.to} className="hover:text-gold">{g.title}</Link>
+                <Link to={g.to} className="hover:text-brand">{g.title}</Link>
               </li>
             ))}
           </ul>
@@ -136,10 +179,10 @@ export const Footer = () => {
         <div>
           <div className="mono text-[11px] uppercase tracking-widest text-white/50 mb-4">Firm</div>
           <ul className="space-y-2 text-sm">
-            <li><Link to="/about" className="hover:text-gold">About the practice</Link></li>
-            <li><Link to="/reviews" className="hover:text-gold">Client references</Link></li>
-            <li><Link to="/contact" className="hover:text-gold">Contact</Link></li>
-            <li><Link to="/quote" className="hover:text-gold">Request a quote</Link></li>
+            <li><Link to="/about" className="hover:text-brand">About the practice</Link></li>
+            <li><Link to="/reviews" className="hover:text-brand">Client references</Link></li>
+            <li><Link to="/contact" className="hover:text-brand">Contact</Link></li>
+            <li><Link to="/quote" className="hover:text-brand">Request a quote</Link></li>
           </ul>
         </div>
 
@@ -169,7 +212,6 @@ export const Footer = () => {
 };
 
 export const Layout = ({ children, activePillar }) => {
-  const loc = useLocation();
   return (
     <div className="min-h-screen flex flex-col">
       <Header />

@@ -12,8 +12,8 @@ const Star = ({ filled }) => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>
     <path
       d="M8 1.5L9.8 6.1H14.8L10.8 9L12.2 13.6L8 10.9L3.8 13.6L5.2 9L1.2 6.1H6.2L8 1.5Z"
-      fill={filled ? "#8A6D1F" : "none"}
-      stroke="#8A6D1F"
+      fill={filled ? "#E8522B" : "none"}
+      stroke="#E8522B"
       strokeWidth="1.2"
     />
   </svg>
@@ -53,10 +53,10 @@ export const TestimonialsSection = () => {
   if (!TESTIMONIALS.length) return null;
 
   return (
-    <section className="section-navy py-20" data-testid="testimonials">
+    <section className="py-28 bg-transparent" data-testid="testimonials">
       <div className="container-x">
         <div className="max-w-3xl mb-10">
-          <div className="mono text-[11px] uppercase tracking-[0.22em] text-gold">
+          <div className="mono text-[11px] uppercase tracking-[0.22em] text-brand">
             Client references
           </div>
           <h2 className="font-display text-3xl sm:text-4xl text-white mt-3 leading-tight">

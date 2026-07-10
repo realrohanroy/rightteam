@@ -1,81 +1,123 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { gsap } from "gsap";
 import { Layout } from "../components/Layout";
 import { FilingTabs } from "../components/FilingTabs";
 import { CredentialRow } from "../components/Seal";
-import { TrustStrip } from "../components/TrustStrip";
 import { ServiceCard } from "../components/ServiceCard";
 import { RiskCalculator } from "../components/RiskCalculator";
 import { TeamGrid } from "../components/TeamGrid";
 import { ComparisonTable } from "../components/ComparisonTable";
 import { CaseStudies } from "../components/CaseStudies";
-import { LogoWall } from "../components/LogoWall";
 import { CompliancePDFCta } from "../components/CompliancePDFCta";
-import { QuickNavChips } from "../components/QuickNavChips";
 import { CredibilityBar } from "../components/CredibilityBar";
 import { TestimonialsSection } from "../components/TestimonialsSection";
-import { SegmentedLogoWall } from "../components/SegmentedLogoWall";
 import { ResourceCards } from "../components/ResourceCards";
-import { FounderDeskIllustration, HowItWorksIllustration, CalculatorIllustration } from "../components/HeroIllustration";
+import { CalculatorIllustrationPlaceholder, ProcessIllustrationPlaceholder } from "../components/HeroIllustrationPlaceholder";
 import { PILLARS, SERVICES } from "../data/services";
-import { ArrowRight, Check } from "lucide-react";
+import { CLIENT_LOGOS } from "../data/marketing";
+import { ArrowRight, Check, Calendar } from "lucide-react";
+import { useScrollFadeIn, useScrollStagger } from "../hooks/useScrollAnimation";
 
-// ─── Hero Quote Widget (kept in hero as primary conversion mechanic) ──────────
-const HeroQuoteWidget = () => {
-  const [service, setService] = React.useState("");
+// ─── Hero Service List — true infinite cycler (no snap) ───────────────────────
+const HERO_SERVICES = [
+  "Register your company",
+  "File your GST returns",
+  "Protect your trademark",
+  "Run payroll and PF",
+  "Close a company",
+  "Get ISO certified",
+  "File your income tax",
+];
+
+const ITEM_H = 72;
+const N = HERO_SERVICES.length;
+const RANGE = 4; // items rendered above and below center (keeps pipeline full)
+
+const HeroServiceList = () => {
+  // virtualIndex grows forever — no reset ever needed
+  const [virtualIndex, setVirtualIndex] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => setVirtualIndex((v) => v + 1), 2000);
+    return () => clearInterval(id);
+  }, []);
+
+  // Render positions virtualIndex - RANGE … virtualIndex + RANGE
+  const positions = Array.from({ length: RANGE * 2 + 1 }, (_, k) => virtualIndex - RANGE + k);
+
   return (
-    <div className="paper-card p-6" data-testid="hero-quote-widget">
-      <div className="flex items-center justify-between">
-        <div className="mono text-[11px] uppercase tracking-[0.2em] text-slate2">
-          Instant micro-quote
-        </div>
-        <div className="mono text-[11px] uppercase tracking-widest text-approve">
-          Step 1 of 3
-        </div>
+    <div
+      className="relative h-[360px] w-full max-w-[420px] overflow-hidden"
+      data-testid="hero-service-marquee"
+      style={{
+        maskImage: "linear-gradient(to bottom, transparent 0%, black 25%, black 75%, transparent 100%)",
+        WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 25%, black 75%, transparent 100%)",
+      }}
+    >
+      {/* Fixed arrow — stays at vertical center */}
+      <div className="absolute left-0 top-1/2 -translate-y-1/2 z-10 text-[#E72061] text-[16px] pointer-events-none select-none">
+        ▶
       </div>
-      <h3 className="font-display text-xl text-ink mt-2 leading-tight">
-        Which filing do you need?
-      </h3>
-      <div className="mt-4 relative">
-        <select
-          className="w-full appearance-none bg-white border border-ink/25 px-4 py-3 text-ink focus:outline-none focus:border-ink rounded-sm"
-          value={service}
-          onChange={(e) => setService(e.target.value)}
-          data-testid="hero-service-select"
-        >
-          <option value="">Select a service…</option>
-          {PILLARS.map((p) => (
-            <optgroup key={p.slug} label={p.label}>
-              {SERVICES.filter((s) => s.pillar === p.slug).map((s) => (
-                <option key={s.slug} value={s.slug}>
-                  {s.name}
-                </option>
-              ))}
-            </optgroup>
-          ))}
-        </select>
-      </div>
-      <Link
-        to={service ? `/quote?service=${service}` : "/quote"}
-        className="btn-primary w-full justify-center mt-4"
-        data-testid="hero-quote-continue"
-      >
-        Get started <ArrowRight size={16} />
-      </Link>
-      <div className="mt-4 pt-4 border-t border-ink/10 flex flex-wrap items-center gap-4 mono text-[11px] uppercase tracking-widest text-slate2">
-        <span className="inline-flex items-center gap-1 text-approve">
-          <Check size={12} strokeWidth={3} /> Fixed fee
-        </span>
-        <span className="inline-flex items-center gap-1 text-approve">
-          <Check size={12} strokeWidth={3} /> Dedicated manager
-        </span>
-        <span className="inline-flex items-center gap-1 text-approve">
-          <Check size={12} strokeWidth={3} /> Refund guarantee
-        </span>
-      </div>
+
+      {/* Absolutely-positioned items — each slides to its own computed Y */}
+      {positions.map((pos) => {
+        const dist = pos - virtualIndex;       // distance from active (-RANGE … +RANGE)
+        const absDist = Math.abs(dist);
+        const active = absDist === 0;
+        // center of container = 180px; active item center at 180px
+        const yCenter = 180 + dist * ITEM_H - ITEM_H / 2;
+        // label wraps cyclically; handle negative modulo correctly
+        const label = HERO_SERVICES[((pos % N) + N) % N];
+
+        return (
+          <div
+            key={pos}
+            className="absolute left-0 w-full pl-10 font-display flex items-center text-white"
+            style={{
+              height: `${ITEM_H}px`,
+              top: 0,
+              transform: `translateY(${yCenter}px)`,
+              fontSize: active ? "1.75rem" : "1.35rem",
+              fontWeight: active ? 700 : 400,
+              opacity: active ? 1 : absDist === 1 ? 0.45 : absDist === 2 ? 0.2 : 0,
+              transformOrigin: "left center",
+              scale: active ? 1 : 0.88,
+              transition: "transform 0.55s cubic-bezier(0.4,0,0.2,1), opacity 0.45s ease, font-size 0.45s ease, scale 0.45s ease",
+            }}
+          >
+            {label}
+          </div>
+        );
+      })}
     </div>
   );
 };
+
+
+// ─── Client Logo Row ──────────────────────────────────────────────────────────
+const ClientLogoRow = () => (
+  <section className="bg-white border-b border-ink/10 py-10" data-testid="client-logo-row">
+    <div className="container-x text-center">
+      <div className="mono text-[11px] uppercase tracking-[0.22em] text-slate2">
+        Trusted by 8,400+ Indian businesses — startups, manufacturers, and retailers.
+      </div>
+      {CLIENT_LOGOS && CLIENT_LOGOS.length > 0 && (
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-12 sm:gap-16">
+          {CLIENT_LOGOS.map((logo, i) => (
+            <img
+              key={i}
+              src={logo.src}
+              alt={logo.alt || "Client Logo"}
+              className="h-8 object-contain opacity-50 grayscale transition-all duration-300 hover:grayscale-0 hover:opacity-100"
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+);
 
 // ─── Pillar tabs preview (unchanged logic) ────────────────────────────────────
 const PillarTabsPreview = () => {
@@ -85,10 +127,9 @@ const PillarTabsPreview = () => {
     <div className="grid md:grid-cols-4 gap-6">
       <div className="md:col-span-1">
         <div className="font-display text-xl text-ink leading-tight">{pillar.label}</div>
-        <p className="text-sm text-slate2 mt-2 leading-relaxed">{pillar.intro}</p>
         <Link
           to={`/${pillar.slug}`}
-          className="mt-4 inline-flex items-center gap-1 text-sm text-ink underline underline-offset-4 decoration-gold decoration-2"
+          className="mt-4 inline-flex items-center gap-1 text-sm text-ink underline underline-offset-4 decoration-brand decoration-2"
         >
           Open practice area →
         </Link>
@@ -104,93 +145,101 @@ const PillarTabsPreview = () => {
 
 // ─── Home Page ────────────────────────────────────────────────────────────────
 export default function Home() {
+  const heroRef = useScrollFadeIn({ y: 20 });
+  const servicesGridRef = useScrollStagger({ stagger: 0.08 });
+
   return (
     <Layout>
+      <section className="relative bg-[#050B14] overflow-hidden min-h-[85vh] flex flex-col justify-center pt-24 pb-16" data-testid="hero-section">
+        {/* Background Image — Surreal/Dramatic Abstract */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop" 
+            alt="Dramatic abstract surreal landscape"
+            className="w-full h-full object-cover opacity-80"
+          />
+          {/* Subtle gradient overlays to ensure text legibility while keeping it dark */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#050B14] via-transparent to-black/30" />
+        </div>
 
-      {/* ── HERO — white bg ─────────────────────────────────────────────────── */}
-      <section className="bg-white" data-testid="hero-section">
-        <div className="container-x pt-12 pb-14 grid lg:grid-cols-12 gap-10 items-start">
-
+        <div className="container-x relative z-10 w-full grid lg:grid-cols-12 gap-16 lg:gap-12 items-center flex-1">
+          
           {/* Left: headline + CTA */}
-          <div className="lg:col-span-7">
-            {/* Overline */}
-            <div className="mono text-[11px] uppercase tracking-[0.25em] text-slate2 flex items-center gap-3">
-              <span className="w-8 h-px bg-ink/40" />
-              RightTeam Consultancy Pvt. Ltd. · CIN [TO BE CONFIRMED]
+          <div className="lg:col-span-7" ref={heroRef}>
+            {/* Pill overline */}
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-white/10 backdrop-blur-md border border-white/10 text-xs font-semibold text-white/90">
+              <span className="text-white">Ranked #1 Compliance platform</span> 
+              <span className="text-white/60 mx-1">|</span>
+              <a href="#" className="hover:text-white transition-colors flex items-center gap-1">Read report <ArrowRight size={12} /></a>
             </div>
 
-            {/* New headline — warm, direct, ≤8 words */}
-            <h1 className="font-display text-[2rem] sm:text-[2.5rem] lg:text-[3.25rem] leading-[1.05] mt-4 text-ink">
-              We handle the paperwork.{" "}
-              <span className="text-gold">You run the business.</span>
+            {/* Headline */}
+            <h1 className="font-display text-[2.5rem] sm:text-[3.5rem] lg:text-[4rem] leading-[1.05] mt-6 text-white font-bold tracking-tight">
+              The compliance platform to direct your best work
             </h1>
 
-            {/* Subhead — specific, not stiff */}
-            <p className="text-lg text-ink/75 mt-5 max-w-xl leading-relaxed">
-              8,400 Indian businesses. One dedicated manager each. Filed by the
-              due date, or the fee is refunded.
+            {/* Subhead */}
+            <p className="text-lg text-white/80 mt-6 max-w-xl leading-relaxed">
+              Every statutory filing for tax, MCA. Intelligent workflows for professional control and collaboration. On-brand production at any scale.
             </p>
 
-            {/* CTA — short label, supporting microcopy below */}
-            <div className="mt-8 flex flex-wrap gap-3 items-center">
-              <Link
-                to="/quote"
-                className="btn-primary text-base px-6 py-3.5"
-                data-testid="hero-primary-cta"
-              >
-                Get started <ArrowRight size={16} />
-              </Link>
-              <Link
-                to="/about"
-                className="btn-outline text-base px-6 py-3.5"
-                data-testid="hero-secondary-cta"
-              >
-                Meet the practice
-              </Link>
-            </div>
 
-            {/* Credentials — moved below CTA as proof, not opener */}
-            <div className="mt-6">
-              <CredentialRow
-                items={[
-                  { label: "ICAI Member Firm" },
-                  { label: "ICSI Registered" },
-                  { label: "GST Practitioner", color: "#8A6D1F" },
-                  { label: "IPO Registered Patent Agent" },
-                ]}
-              />
-            </div>
           </div>
 
-          {/* Right: quote widget — kept in hero as primary conversion mechanic */}
-          <div className="lg:col-span-5 lg:sticky lg:top-24">
-            <HeroQuoteWidget />
+          {/* Right: auto-looping service marquee */}
+          <div className="lg:col-span-5 flex justify-end">
+             {/* The list itself aligns to the right side of its container */}
+            <HeroServiceList />
           </div>
         </div>
 
-        {/* Illustration band — directly below hero content, above quick-nav */}
-        <div className="border-t border-ink/10 section-warm py-8 overflow-hidden">
-          <div className="container-x flex justify-center">
-            <FounderDeskIllustration width={520} className="max-w-full" />
+        {/* ── Trusted-by strip — pinned to bottom of hero ─────────────────── */}
+        <div className="absolute bottom-0 left-0 right-0 z-10 border-t border-white/10 bg-gradient-to-t from-black/60 to-transparent py-6 px-6 lg:px-16">
+          <p className="text-center text-[11px] tracking-widest text-white/60 uppercase font-semibold mb-5">
+            Trusted by 8,400+ Indian businesses — startups, manufacturers &amp; enterprises
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-14">
+            {/* Tata */}
+            <svg height="22" viewBox="0 0 80 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-60 hover:opacity-100 transition-opacity">
+              <text x="0" y="22" fontFamily="Georgia, serif" fontSize="24" fontWeight="bold" fill="white">TATA</text>
+            </svg>
+            {/* Infosys */}
+            <svg height="22" viewBox="0 0 110 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-60 hover:opacity-100 transition-opacity">
+              <text x="0" y="22" fontFamily="Arial, sans-serif" fontSize="20" fontWeight="600" fill="white">Infosys</text>
+            </svg>
+            {/* Wipro */}
+            <svg height="22" viewBox="0 0 80 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-60 hover:opacity-100 transition-opacity">
+              <text x="0" y="22" fontFamily="Arial, sans-serif" fontSize="20" fontWeight="700" fill="white">Wipro</text>
+            </svg>
+            {/* Zepto */}
+            <svg height="22" viewBox="0 0 80 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-60 hover:opacity-100 transition-opacity">
+              <text x="0" y="22" fontFamily="Arial, sans-serif" fontSize="20" fontWeight="700" fill="white">Zepto</text>
+            </svg>
+            {/* Razorpay */}
+            <svg height="22" viewBox="0 0 110 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-60 hover:opacity-100 transition-opacity">
+              <text x="0" y="22" fontFamily="Arial, sans-serif" fontSize="20" fontWeight="600" fill="white">Razorpay</text>
+            </svg>
+            {/* Meesho */}
+            <svg height="22" viewBox="0 0 100 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-60 hover:opacity-100 transition-opacity">
+              <text x="0" y="22" fontFamily="Arial, sans-serif" fontSize="20" fontWeight="600" fill="white">Meesho</text>
+            </svg>
           </div>
         </div>
       </section>
 
-      {/* ── QUICK-NAV CHIPS — warm bg ────────────────────────────────────────── */}
-      <QuickNavChips />
 
-      {/* ── TRUST STRIP — white ─────────────────────────────────────────────── */}
-      <TrustStrip />
-
-      {/* ── CREDIBILITY BAR — white ─────────────────────────────────────────── */}
+      {/* ── CREDIBILITY BAR — stat strip ──────────────────────────────────── */}
       <CredibilityBar />
 
       {/* ── COMPLIANCE CALCULATOR — navy bg ─────────────────────────────────── */}
-      <section className="section-navy py-20 border-y border-white/10" data-testid="calculator-wrapper">
-        <div className="container-x mb-10 flex items-center gap-6">
-          <CalculatorIllustration size={80} className="shrink-0 opacity-90" />
+      <section className="section-navy py-28 border-y border-white/10" data-testid="calculator-wrapper">
+        <div className="container-x mb-12 flex items-center gap-6">
+          <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-brand shrink-0 shadow-inner">
+            <Calendar size={32} strokeWidth={1.5} />
+          </div>
           <div>
-            <div className="mono text-[11px] uppercase tracking-[0.22em] text-gold">
+            <div className="mono text-[11px] uppercase tracking-[0.22em] text-brand">
               Compliance exposure · Interactive
             </div>
             <h2 className="font-display text-2xl sm:text-3xl text-white mt-2 leading-tight">
@@ -198,14 +247,13 @@ export default function Home() {
             </h2>
           </div>
         </div>
-        {/* RiskCalculator rendered inverted — override inner bg */}
         <div className="[&_.container-x]:!pt-0">
           <RiskCalculator inverted />
         </div>
       </section>
 
       {/* ── PRACTICE AREAS / FILING TABS — white ────────────────────────────── */}
-      <section className="bg-white container-x pt-20">
+      <section className="bg-white container-x py-28">
         <div className="max-w-3xl">
           <div className="mono text-[11px] uppercase tracking-[0.22em] text-slate2">
             Practice areas
@@ -213,14 +261,9 @@ export default function Home() {
           <h2 className="font-display text-3xl sm:text-4xl text-ink mt-3 leading-tight">
             Five practice areas. Thirty regulated filings.
           </h2>
-          <p className="text-ink/70 mt-3 max-w-2xl">
-            Each practice area covers a body of statutory work with its own
-            registrations, due dates and penalties. Select one to explore the
-            services inside.
-          </p>
         </div>
 
-        <div className="mt-8">
+        <div className="mt-10">
           <FilingTabs activeSlug={PILLARS[0].slug} />
           <div className="bg-white border border-t-0 border-ink/60 p-6 sm:p-8 rounded-b-sm">
             <PillarTabsPreview />
@@ -231,11 +274,8 @@ export default function Home() {
       {/* ── COMPARISON TABLE — alt bg ────────────────────────────────────────── */}
       <ComparisonTable />
 
-      {/* ── TEAM — white ────────────────────────────────────────────────────── */}
-      <TeamGrid />
-
       {/* ── POPULAR SERVICES — warm bg ──────────────────────────────────────── */}
-      <section className="section-warm border-y border-ink/10 py-20 mt-20">
+      <section className="section-warm border-y border-ink/10 py-28">
         <div className="container-x">
           <div className="flex items-end justify-between gap-6 flex-wrap">
             <div className="max-w-2xl">
@@ -248,13 +288,13 @@ export default function Home() {
             </div>
             <Link
               to="/quote"
-              className="link-coral text-sm"
+              className="link-brand text-sm"
             >
               View full catalog →
             </Link>
           </div>
 
-          <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5" ref={servicesGridRef}>
             {[
               "private-limited-company",
               "gst-registration",
@@ -270,98 +310,75 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── CASE STUDIES — white ────────────────────────────────────────────── */}
-      <CaseStudies />
+      {/* ── MAGNIFIC-INSPIRED DARK BREAKAWAY SECTION ──────────────────────── */}
+      <div className="bg-[#050B14] text-white overflow-hidden">
+        
+        {/* ── CASE STUDIES ───────────────────────────────────────────────────── */}
+        <CaseStudies />
 
-      {/* ── TESTIMONIALS — navy bg (renders null until real content added) ──── */}
-      <TestimonialsSection />
+        {/* ── TESTIMONIALS ───────────────────────────────────────────────────── */}
+        <TestimonialsSection />
 
-      {/* ── PROCESS / HOW IT WORKS — warm bg ────────────────────────────────── */}
-      <section className="section-warm border-y border-ink/10 py-20 mt-20">
-        <div className="container-x grid lg:grid-cols-12 gap-10 items-start">
-          {/* Left: illustration + copy */}
-          <div className="lg:col-span-5">
-            <div className="mono text-[11px] uppercase tracking-[0.22em] text-slate2">
+        {/* ── PROCESS / ENGAGEMENT WORKFLOW (BENTO GRID) ───────────────────── */}
+        <section className="container-x py-28 relative">
+          <div className="max-w-3xl mb-16 relative z-10">
+            <div className="mono text-[11px] uppercase tracking-[0.22em] text-brand">
               Engagement workflow
             </div>
-            <h2 className="font-display text-3xl sm:text-4xl text-ink mt-3 leading-tight">
+            <h2 className="font-display text-4xl sm:text-5xl text-white mt-4 leading-tight">
               One manager. Four documented stages.
             </h2>
-            <p className="text-ink/70 mt-3">
-              Every engagement follows the same checklist. Your dedicated
-              manager owns the workflow end-to-end — you approve, we file.
-            </p>
-            <div className="mt-8">
-              <HowItWorksIllustration width={380} className="max-w-full" />
-            </div>
           </div>
 
-          {/* Right: step list */}
-          <div className="lg:col-span-7">
-            <div className="border border-ink/15 bg-white rounded-sm">
-              {[
-                {
-                  title: "Scope confirmed",
-                  body: "Service defined, fixed-fee quote issued and engagement letter signed.",
-                },
-                {
-                  title: "Manager assigned",
-                  body: "Specialist (CA / CS / IP attorney) allocated. Single WhatsApp thread opened.",
-                },
-                {
-                  title: "Prepared and reviewed",
-                  body: "Forms drafted, documents collected, filing reviewed with you before submission.",
-                },
-                {
-                  title: "Filed and acknowledged",
-                  body: "Return filed with the authority. Acknowledgement, challan and certificate delivered on the same day.",
-                },
-              ].map((step, i, arr) => (
-                <div
-                  key={i}
-                  className={`flex gap-5 py-5 px-6 ${
-                    i !== arr.length - 1 ? "border-b border-ink/10" : ""
-                  }`}
-                >
-                  <div className="mono text-[11px] uppercase tracking-widest text-slate2 w-12 shrink-0 pt-1">
-                    {String(i + 1).padStart(2, "0")}
-                  </div>
-                  <div className="w-6 h-6 border border-approve bg-approve text-white flex items-center justify-center shrink-0 rounded-sm">
-                    <Check size={14} strokeWidth={3} />
-                  </div>
-                  <div>
-                    <div className="font-semibold text-ink">{step.title}</div>
-                    <div className="text-sm text-slate2 mt-1">{step.body}</div>
-                  </div>
-                </div>
-              ))}
+          <div className="grid md:grid-cols-3 gap-5 relative z-10">
+            {/* Step 1 - Spans 2 cols */}
+            <div className="md:col-span-2 relative group rounded-[20px] overflow-hidden bg-white/[0.02] border border-white/5 p-8 sm:p-12 hover:bg-white/[0.04] transition-colors duration-500">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-brand/20 blur-[100px] rounded-full pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+              <div className="mono text-brand font-bold text-lg mb-6 tracking-widest">01</div>
+              <h3 className="font-display text-2xl sm:text-3xl text-white mb-3">Scope confirmed</h3>
+              <p className="text-white/60 text-lg">Fixed-fee quote issued, engagement letter signed.</p>
+            </div>
+            
+            {/* Step 2 - Spans 1 col */}
+            <div className="md:col-span-1 relative group rounded-[20px] overflow-hidden bg-white/[0.02] border border-white/5 p-8 sm:p-12 hover:bg-white/[0.04] transition-colors duration-500">
+              <div className="absolute bottom-0 right-0 w-48 h-48 bg-brand/20 blur-[80px] rounded-full pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+              <div className="mono text-brand font-bold text-lg mb-6 tracking-widest">02</div>
+              <h3 className="font-display text-2xl text-white mb-3">Manager assigned</h3>
+              <p className="text-white/60 text-lg">Specialist allocated, single WhatsApp thread opened.</p>
+            </div>
+
+            {/* Step 3 - Spans 1 col */}
+            <div className="md:col-span-1 relative group rounded-[20px] overflow-hidden bg-white/[0.02] border border-white/5 p-8 sm:p-12 hover:bg-white/[0.04] transition-colors duration-500">
+              <div className="absolute top-0 left-0 w-48 h-48 bg-brand/20 blur-[80px] rounded-full pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+              <div className="mono text-brand font-bold text-lg mb-6 tracking-widest">03</div>
+              <h3 className="font-display text-2xl text-white mb-3">Prepared and reviewed</h3>
+              <p className="text-white/60 text-lg">Forms drafted, documents collected, filing reviewed.</p>
+            </div>
+
+            {/* Step 4 - Spans 2 cols */}
+            <div className="md:col-span-2 relative group rounded-[20px] overflow-hidden bg-white/[0.02] border border-white/5 p-8 sm:p-12 hover:bg-white/[0.04] transition-colors duration-500">
+              <div className="absolute bottom-0 right-0 w-72 h-72 bg-[#1E5631]/30 blur-[120px] rounded-full pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+              <div className="mono text-brand font-bold text-lg mb-6 tracking-widest">04</div>
+              <h3 className="font-display text-2xl sm:text-3xl text-white mb-3">Filed and acknowledged</h3>
+              <p className="text-white/60 text-lg">Return filed, acknowledgement delivered same day.</p>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ── SEGMENTED LOGO WALL — alt bg (hidden until real logos provided) ──── */}
-      <SegmentedLogoWall />
-
-      {/* ── RESOURCE CARDS — white ──────────────────────────────────────────── */}
-      <ResourceCards />
+        {/* ── RESOURCE CARDS ─────────────────────────────────────────────────── */}
+        <ResourceCards />
+      </div>
 
       {/* ── PENALTY CALLOUT — seal red tint ─────────────────────────────────── */}
-      <section className="container-x pt-20">
+      <section className="container-x py-28">
         <div className="border-l-4 border-seal bg-seal/[0.04] p-8 sm:p-10 grid md:grid-cols-3 gap-8 items-center border border-seal/25">
           <div className="md:col-span-2">
             <div className="mono text-[11px] uppercase tracking-[0.22em] text-seal font-semibold">
               Penalty exposure notice
             </div>
             <h3 className="font-display text-2xl sm:text-3xl text-ink mt-2 leading-tight">
-              An unfiled GST return today compounds to a five-figure penalty
-              inside a quarter.
+              An unfiled GST return compounds to a five-figure penalty inside a quarter.
             </h3>
-            <p className="text-ink/75 mt-3 max-w-2xl text-sm sm:text-base">
-              GST late fee: ₹50 per day. TDS late return: ₹200 per day. ROC
-              AOC-4 delay: ₹100 per day per form, with no upper cap. Interest
-              accrues in parallel at 12–18% per annum.
-            </p>
           </div>
           <div className="flex flex-col gap-3">
             <Link
@@ -379,15 +396,15 @@ export default function Home() {
       </section>
 
       {/* ── COMPLIANCE PDF CTA ───────────────────────────────────────────────── */}
-      <section className="container-x pt-4">
+      <section className="container-x pb-8">
         <CompliancePDFCta variant="default" />
       </section>
 
-      {/* ── FINAL CTA — coral gradient spotlight ─────────────────────────────── */}
-      <section className="container-x pt-14 pb-14">
+      {/* ── FINAL CTA — brand gradient spotlight ─────────────────────────────── */}
+      <section className="container-x pt-8 pb-14">
         <div
           className="rounded-sm p-8 sm:p-12 flex flex-col md:flex-row items-center gap-8 justify-between overflow-hidden relative"
-          style={{ background: "linear-gradient(135deg, #E8632A 0%, #C1450E 100%)" }}
+          style={{ background: "linear-gradient(135deg, #E8522B 0%, #C14410 100%)" }}
         >
           <div className="absolute inset-0 pointer-events-none" aria-hidden>
             <div className="absolute -top-20 -right-20 w-72 h-72 rounded-full bg-white opacity-[0.07]" />
@@ -400,15 +417,12 @@ export default function Home() {
             <h3 className="font-display text-2xl sm:text-3xl mt-2 leading-tight text-white">
               Send the details. Fixed-fee quote within 15 minutes.
             </h3>
-            <p className="text-white/80 mt-2 text-sm sm:text-base">
-              Fixed fee. Dedicated manager. Filed by due date or fee refunded.
-            </p>
           </div>
           <div className="flex flex-col gap-2 w-full md:w-auto relative z-10">
             <Link
               to="/quote"
               className="inline-flex items-center gap-2 bg-white px-6 py-3.5 font-semibold transition-colors hover:bg-[#FFF1EB] rounded-sm justify-center shadow-lg"
-              style={{ color: "#C1450E" }}
+              style={{ color: "#C14410" }}
               data-testid="footer-primary-cta"
             >
               Get started <ArrowRight size={16} />

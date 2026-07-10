@@ -49,7 +49,7 @@ export const CompliancePDFCta = ({ variant = "default" }) => {
           >
             <Download size={18} />
           </div>
-          <div className={`mono text-[11px] uppercase tracking-[0.22em] ${variant === "dark" ? "text-gold" : "text-seal"} font-semibold`}>
+          <div className={`mono text-[11px] uppercase tracking-[0.22em] ${variant === "dark" ? "text-brand" : "text-brand"} font-semibold`}>
             Free · PDF · 24 pages
           </div>
         </div>
@@ -60,9 +60,6 @@ export const CompliancePDFCta = ({ variant = "default" }) => {
         >
           The 2026 India Compliance Calendar.
         </h3>
-        <p className={`mt-3 text-sm sm:text-base ${variant === "dark" ? "text-white/80" : "text-ink/75"} max-w-lg`}>
-          Every statutory due date — GST, TDS, ROC, PF, ESI, ITR — for the financial year, printed as a wall chart your team can pin above the desk.
-        </p>
         <div className="mt-4 flex items-center gap-4">
           <CornerSeal color={variant === "dark" ? "#FFFFFF" : "#0B1E3D"} size={26} />
           <div className={`mono text-[10px] uppercase tracking-widest ${variant === "dark" ? "text-white/60" : "text-slate2"}`}>

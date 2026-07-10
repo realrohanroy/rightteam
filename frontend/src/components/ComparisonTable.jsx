@@ -12,7 +12,7 @@ const iconFor = (val) => {
 };
 
 export const ComparisonTable = () => (
-  <section className="section-alt py-20 mt-20 border-y border-ink/10" data-testid="comparison-table">
+  <section className="section-alt py-28 border-y border-ink/10" data-testid="comparison-table">
     <div className="container-x">
       <div className="max-w-3xl">
         <div className="mono text-[11px] uppercase tracking-[0.22em] text-slate2">
@@ -21,9 +21,6 @@ export const ComparisonTable = () => (
         <h2 className="font-display text-3xl sm:text-4xl text-ink mt-3 leading-tight">
           RightTeam vs. DIY vs. Generic CA vs. Portals.
         </h2>
-        <p className="text-ink/70 mt-3">
-          Compared on turnaround, dedicated ownership, pricing transparency and the guarantees each option actually stands behind.
-        </p>
       </div>
 
       <div className="mt-10 overflow-x-auto">
@@ -44,7 +41,7 @@ export const ComparisonTable = () => (
                     {c.label}
                   </div>
                   {c.highlight && (
-                    <div className="mono text-[10px] uppercase tracking-widest text-gold mt-1">
+                    <div className="mono text-[10px] uppercase tracking-widest text-brand mt-1">
                       Our approach
                     </div>
                   )}

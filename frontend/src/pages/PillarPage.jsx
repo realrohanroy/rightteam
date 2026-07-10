@@ -35,8 +35,7 @@ export default function PillarPage() {
                 <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl text-ink mt-3 leading-[1.05]">
                   {pillar.label}
                 </h1>
-                <p className="text-lg text-ink/80 mt-4 max-w-2xl">{pillar.tagline}</p>
-                <p className="text-ink/70 mt-3 max-w-2xl leading-relaxed">{pillar.intro}</p>
+                <p className="text-lg text-ink/80 mt-4 prose-narrow">{pillar.tagline}</p>
               </div>
               <div className="md:col-span-4">
                 <div className="paper-card p-5">
@@ -59,7 +58,7 @@ export default function PillarPage() {
         </div>
       </section>
 
-      <section className="container-x pt-14">
+      <section className="container-x py-20">
         <div className="mono text-[11px] uppercase tracking-[0.22em] text-slate2">
           Services in this practice area
         </div>
@@ -73,11 +72,11 @@ export default function PillarPage() {
       </section>
 
       {/* Exit CTA — compliance PDF */}
-      <section className="container-x pt-16">
+      <section className="container-x pb-8">
         <CompliancePDFCta />
       </section>
 
-      <section className="container-x pt-14 pb-6">
+      <section className="container-x pb-6">
         <div className="hairline pt-6" />
         <div className="grid md:grid-cols-2 gap-8 items-start">
           <div>

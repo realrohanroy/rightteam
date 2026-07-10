@@ -9,9 +9,11 @@ module.exports = {
         paper: "#FFFFFF",
         warm: "#F7F4EC",
         alt: "#F5F6F8",
-        coral: "#E8632A",
+        brand: "#E8522B",
+        "brand-light": "#FEE6DB",
+        "brand-dark": "#C14410",
         seal: "#C1272D",
-        gold: "#8A6D1F",
+        caution: "#D97706",
         approve: "#1E5631",
         slate2: "#5B6472",
         // shadcn variables kept for library components

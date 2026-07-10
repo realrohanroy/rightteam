@@ -7,6 +7,7 @@ import { PenaltyCallout } from "../components/PenaltyCallout";
 import { Seal, CornerSeal } from "../components/Seal";
 import { findService, findPillar, servicesByPillar } from "../data/services";
 import { ArrowRight, Check, Phone, ChevronDown } from "lucide-react";
+import * as Accordion from "@radix-ui/react-accordion";
 
 export default function ServicePage() {
   const { slug } = useParams();
@@ -29,7 +30,7 @@ export default function ServicePage() {
       </section>
 
       {/* Hero + sidebar quote */}
-      <section className="container-x pt-6 grid lg:grid-cols-12 gap-10 items-start">
+      <section className="container-x pt-6 pb-8 grid lg:grid-cols-12 gap-10 items-start">
         <div className="lg:col-span-8">
           <div className={`mono text-[11px] uppercase tracking-[0.25em] font-semibold flex items-center gap-2 ${isLoss ? "text-seal" : "text-approve"}`}>
             RT/SVC/{service.slug.toUpperCase()}
@@ -37,11 +38,11 @@ export default function ServicePage() {
           <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl text-ink mt-3 leading-[1.05]">
             {service.name}
           </h1>
-          <p className="text-base sm:text-lg text-ink/75 mt-4 leading-relaxed max-w-2xl">
+          <p className="text-base sm:text-lg text-ink/75 mt-4 leading-relaxed prose-narrow">
             {service.heroSummary}
           </p>
 
-          <div className="mt-6 flex flex-wrap items-center gap-6">
+          <div className="mt-8 flex flex-wrap items-center gap-6">
             <div>
               <div className="mono text-[11px] uppercase tracking-widest text-slate2">
                 Starting at
@@ -61,16 +62,20 @@ export default function ServicePage() {
             </div>
           </div>
 
-          {/* What you need */}
-          <div className="mt-10 border border-ink/15 bg-white p-6 sm:p-8">
-            <div className="flex items-center justify-between">
-              <h3 className="font-display text-2xl text-ink">What you need to send us</h3>
-              <CornerSeal color="#12203D" />
-            </div>
-            <div className="mt-4">
-              <NeedsList items={service.whatYouNeed} />
-            </div>
-          </div>
+          {/* Details — collapsed by default for lighter first scroll */}
+          <Accordion.Root type="multiple" className="mt-10 space-y-3">
+            <Accordion.Item value="needs" className="border border-ink/15 bg-white">
+              <Accordion.Header>
+                <Accordion.Trigger className="w-full flex items-center justify-between p-6 text-left group">
+                  <h3 className="font-display text-xl text-ink">What you need to send us</h3>
+                  <ChevronDown size={18} className="text-ink transition-transform group-data-[state=open]:rotate-180" />
+                </Accordion.Trigger>
+              </Accordion.Header>
+              <Accordion.Content className="px-6 pb-6">
+                <NeedsList items={service.whatYouNeed} />
+              </Accordion.Content>
+            </Accordion.Item>
+          </Accordion.Root>
 
           {isLoss && service.penalty && (
             <div className="mt-8">
@@ -90,19 +95,16 @@ export default function ServicePage() {
       </section>
 
       {/* Filing tabs contextual */}
-      <section className="container-x pt-16">
+      <section className="container-x py-20">
         <FilingTabs activeSlug={service.pillar} />
         <div className="bg-white border border-t-0 border-ink/70 p-8 sm:p-12 grid lg:grid-cols-12 gap-10">
           <div className="lg:col-span-6">
             <div className="mono text-[11px] uppercase tracking-[0.25em] text-slate2">
-              Section 02 · Process
+              Process
             </div>
             <h2 className="font-display text-3xl sm:text-4xl text-ink mt-2 leading-tight">
               How we file {service.name}.
             </h2>
-            <p className="text-ink/70 mt-3">
-              Every step ticks off in your dashboard. You always know where the filing stands.
-            </p>
 
             <div className="mt-6 flex items-center gap-3 border border-ink/15 bg-alt p-4">
               <div className="w-10 h-10 rounded-full bg-approve/10 flex items-center justify-center text-approve">
@@ -122,12 +124,12 @@ export default function ServicePage() {
 
       {/* FAQ */}
       {service.faqs?.length > 0 && (
-        <section className="container-x pt-16">
+        <section className="container-x pb-16">
           <div className="mono text-[11px] uppercase tracking-[0.25em] text-slate2">
-            Section 03 · Frequently Asked
+            Frequently asked
           </div>
           <h2 className="font-display text-3xl sm:text-4xl text-ink mt-2">
-            Questions we answer daily on WhatsApp.
+            Questions we answer daily.
           </h2>
 
           <div className="mt-8 border border-ink/15 bg-white divide-y divide-ink/10">
@@ -140,7 +142,7 @@ export default function ServicePage() {
 
       {/* Related */}
       {related.length > 0 && (
-        <section className="container-x pt-20">
+        <section className="container-x py-20">
           <div className="mono text-[11px] uppercase tracking-[0.25em] text-slate2">
             Related filings in {pillar.label}
           </div>
@@ -173,10 +175,10 @@ export default function ServicePage() {
       )}
 
       {/* Final CTA */}
-      <section className="container-x pt-16 pb-6">
+      <section className="container-x pb-6">
         <div className="border border-ink bg-ink text-white p-8 sm:p-10 flex flex-col md:flex-row items-center gap-8 justify-between rounded-sm">
           <div>
-            <div className="mono text-[11px] uppercase tracking-[0.22em] text-gold">
+            <div className="mono text-[11px] uppercase tracking-[0.22em] text-brand">
               Engagement letter issued same day
             </div>
             <h3 className="font-display text-2xl sm:text-3xl mt-2 leading-tight max-w-xl">
@@ -221,7 +223,7 @@ const FAQItem = ({ q, a, idx }) => {
           className={`text-ink shrink-0 transition-transform ${open ? "rotate-180" : ""}`}
         />
       </button>
-      {open && <p className="text-slate2 text-sm mt-3 pl-16 leading-relaxed">{a}</p>}
+      {open && <p className="text-slate2 text-sm mt-3 pl-16 leading-relaxed prose-narrow">{a}</p>}
     </div>
   );
 };

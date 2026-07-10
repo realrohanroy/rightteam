@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const severityStyles = {
   high: "border-l-seal bg-seal/[0.04]",
-  medium: "border-l-gold bg-gold/[0.05]",
+  medium: "border-l-caution bg-caution/[0.05]",
   low: "border-l-approve bg-approve/[0.04]",
 };
 
@@ -32,11 +32,6 @@ export const RiskCalculator = ({ inverted = false }) => {
           <div className={`mono text-[11px] uppercase tracking-[0.22em] ${label}`}>
             Enter your details below
           </div>
-          <p className={`${body} mt-3 leading-relaxed`}>
-            Select your entity type and state. We list every statutory filing
-            that applies, its due date, and the penalty exposure per day of
-            delay.
-          </p>
 
           <div className="mt-6 space-y-4">
             <div>
@@ -106,8 +101,8 @@ export const RiskCalculator = ({ inverted = false }) => {
             {!ran || !entity ? (
               <div className="p-10 text-center">
                 <div className="mono text-[11px] uppercase tracking-widest text-slate2">Awaiting input</div>
-                <p className="text-slate2 mt-3 text-sm">
-                  Pick an entity type and state on the left to generate your personalised filing register.
+                <p className="text-slate2 mt-3 text-sm prose-narrow mx-auto">
+                  Pick an entity type and state to generate your filing register.
                 </p>
               </div>
             ) : (
@@ -137,7 +132,7 @@ export const RiskCalculator = ({ inverted = false }) => {
                       <div className="text-right">
                         <div
                           className={`mono text-[10px] uppercase tracking-widest font-semibold ${
-                            f.severity === "high" ? "text-seal" : f.severity === "medium" ? "text-gold" : "text-approve"
+                            f.severity === "high" ? "text-seal" : f.severity === "medium" ? "text-caution" : "text-approve"
                           }`}
                         >
                           {f.severity}

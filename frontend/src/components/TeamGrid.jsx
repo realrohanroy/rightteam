@@ -2,18 +2,15 @@ import React from "react";
 import { TEAM } from "../data/marketing";
 
 export const TeamGrid = ({ withHeading = true }) => (
-  <section className="container-x pt-20" data-testid="team-grid">
+  <section className="container-x py-28" data-testid="team-grid">
     {withHeading && (
       <div className="max-w-3xl">
         <div className="mono text-[11px] uppercase tracking-[0.22em] text-slate2">
-          The professionals filing your paperwork
+          The team
         </div>
         <h2 className="font-display text-3xl sm:text-4xl text-ink mt-3 leading-tight">
-          Chartered accountants, company secretaries and IP attorneys. In-house.
+          In-house CAs, company secretaries and IP attorneys.
         </h2>
-        <p className="text-ink/70 mt-3">
-          Every filing is signed off by a member with an active statutory registration. No outsourcing, no interns.
-        </p>
       </div>
     )}
 

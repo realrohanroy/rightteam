@@ -30,7 +30,7 @@ export default function ReviewsPage() {
             The reviews below are verified against the corresponding filing reference number. Names and firms are used with client permission.
           </p>
           <div className="mt-6 flex items-center gap-6">
-            <div className="flex items-center gap-1 text-gold">
+            <div className="flex items-center gap-1 text-brand">
               {Array.from({ length: 5 }).map((_, i) => (
                 <Star key={i} size={18} fill="currentColor" stroke="currentColor" />
               ))}
@@ -44,7 +44,7 @@ export default function ReviewsPage() {
         <div className="lg:col-span-4 flex justify-start lg:justify-end items-start">
           <Seal
             size={110}
-            color="#8A6D1F"
+            color="#E8522B"
             label="1,200 Reviews"
             outerText="· 1,200 REVIEWS · GOOGLE · JUSTDIAL ·"
             center={
@@ -64,7 +64,7 @@ export default function ReviewsPage() {
             <figure key={i} className="paper-card p-6" data-testid={`review-${i}`}>
               <div className="flex items-start justify-between">
                 <div>
-                  <div className="flex items-center gap-0.5 text-gold">
+                  <div className="flex items-center gap-0.5 text-brand">
                     {Array.from({ length: r.r }).map((_, k) => (
                       <Star key={k} size={16} fill="currentColor" stroke="currentColor" />
                     ))}
@@ -89,7 +89,7 @@ export default function ReviewsPage() {
       <section className="container-x pt-24 pb-8">
         <div className="border border-ink bg-ink text-white p-10 flex flex-col md:flex-row items-center gap-6 justify-between rounded-sm">
           <div>
-            <div className="mono text-[11px] uppercase tracking-[0.22em] text-gold">Your engagement, next.</div>
+            <div className="mono text-[11px] uppercase tracking-[0.22em] text-brand">Your engagement, next.</div>
             <h3 className="font-display text-2xl sm:text-3xl mt-2 leading-tight">Request a fixed-fee quote.</h3>
           </div>
           <Link to="/quote" className="inline-flex items-center gap-2 bg-white text-ink px-6 py-3 font-medium hover:animate-stamp-down rounded-sm">

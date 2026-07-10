@@ -8,6 +8,12 @@ import QuotePage from "@/pages/QuotePage";
 import AboutPage from "@/pages/AboutPage";
 import ReviewsPage from "@/pages/ReviewsPage";
 import ContactPage from "@/pages/ContactPage";
+import { useSmoothScroll } from "@/hooks/useSmoothScroll";
+
+/* Register GSAP plugins globally */
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -17,20 +23,31 @@ const ScrollToTop = () => {
   return null;
 };
 
+function AppInner() {
+  /* Initialize Lenis smooth scroll */
+  useSmoothScroll();
+
+  return (
+    <>
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/quote" element={<QuotePage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/reviews" element={<ReviewsPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/service/:slug" element={<ServicePage />} />
+        <Route path="/:pillar" element={<PillarPage />} />
+      </Routes>
+    </>
+  );
+}
+
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <ScrollToTop />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/quote" element={<QuotePage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/reviews" element={<ReviewsPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/service/:slug" element={<ServicePage />} />
-          <Route path="/:pillar" element={<PillarPage />} />
-        </Routes>
+        <AppInner />
       </BrowserRouter>
     </div>
   );
