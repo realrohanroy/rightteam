@@ -33,7 +33,7 @@ export const Header = () => {
   return (
     <>
       {/* ── Top announcement bar ────────────────────────────────────────────── */}
-      <div className="hidden md:block bg-white border-b border-ink/10">
+      <div className="hidden md:block bg-white border-b border-ink/10 mb-6">
         <div className="container-x py-2 flex items-center justify-between text-sm">
           {/* Left — urgency + curiosity hook */}
           <p className="text-ink/75 font-medium">
