@@ -15,21 +15,21 @@ export const ComparisonTable = () => (
         </h2>
       </div>
 
-      <div className="mt-10 overflow-x-auto pb-4">
-        <table className="w-full min-w-[820px] border-separate border-spacing-0 bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm text-sm">
+      <div className="mt-10 overflow-x-visible">
+        <table className="w-full min-w-0 border-separate border-spacing-0 bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm text-xs sm:text-sm table-fixed">
           <thead>
             <tr className="bg-ink">
-              <th className="text-left p-4 font-semibold text-white border-r border-white/10 w-[30%]">
-                Criterion
+              <th className="text-left p-3 sm:p-4 font-semibold text-white border-r border-white/10 w-[46%] sm:w-[40%]">
+                Feature vs Benefit
               </th>
               {COMPARISON.columns.map((c) => {
                 const isHighlight = c.highlight;
                 return (
                   <th
                     key={c.key}
-                    className={`text-center p-4 font-display text-base text-white border-r border-white/10 last:border-r-0 relative ${
+                    className={`text-center p-2 sm:p-4 font-display text-xs sm:text-base text-white border-r border-white/10 last:border-r-0 relative ${
                       isHighlight
-                        ? "border-t-[3px] border-l-[3px] border-r-[3px] border-purple-600 rounded-t-2xl z-10 shadow-[0_-8px_20px_rgba(139,92,246,0.25),-8px_0_20px_rgba(139,92,246,0.25),8px_0_20px_rgba(139,92,246,0.25)]"
+                        ? "border-t-4 border-l-4 border-r-4 border-[#A855F7] rounded-t-2xl z-10 shadow-[0_-6px_15px_rgba(168,85,247,0.35),-6px_0_15px_rgba(168,85,247,0.35),6px_0_15px_rgba(168,85,247,0.35)]"
                         : ""
                     }`}
                   >
@@ -48,7 +48,7 @@ export const ComparisonTable = () => (
                   className="hover:bg-slate-50/50 transition-colors"
                 >
                   {/* Criterion Cell */}
-                  <td className="p-4 text-[#0B1E3D] font-medium border-b border-r border-slate-100 last:border-r-0">
+                  <td className="p-2 sm:p-4 text-[#0B1E3D] font-medium border-b border-r border-slate-100 last:border-r-0">
                     {r.feature}
                   </td>
                   
@@ -56,28 +56,28 @@ export const ComparisonTable = () => (
                   {COMPARISON.columns.map((c) => {
                     const isHighlight = c.highlight;
                     const value = r[c.key];
-
+ 
                     if (isHighlight) {
                       return (
                         <td
                           key={c.key}
-                          className={`p-4 text-center bg-white border-l-[3px] border-r-[3px] border-purple-600 relative z-10 ${
+                          className={`p-2 sm:p-4 text-center bg-white border-l-4 border-r-4 border-[#A855F7] relative z-10 ${
                             isLastRow
-                              ? "border-b-[3px] rounded-b-2xl shadow-[0_15px_30px_rgba(139,92,246,0.3)]"
-                              : "border-b border-slate-100 shadow-[8px_0_15px_-8px_rgba(139,92,246,0.25),-8px_0_15px_-8px_rgba(139,92,246,0.25)]"
+                              ? "border-b-4 rounded-b-2xl shadow-[0_8px_20px_rgba(168,85,247,0.4),-6px_0_15px_rgba(168,85,247,0.3),6px_0_15px_rgba(168,85,247,0.3)]"
+                              : "border-b border-slate-100 shadow-[-6px_0_15px_rgba(168,85,247,0.3),6px_0_15px_rgba(168,85,247,0.3)]"
                           }`}
                         >
                           <div className="flex items-center justify-center h-full">
-                            <Check className="text-indigo-600" size={20} strokeWidth={3} />
+                            <Check className="text-[#A855F7] w-4 h-4 sm:w-5 sm:h-5" strokeWidth={3} />
                           </div>
                         </td>
                       );
                     }
-
+ 
                     return (
                       <td
                         key={c.key}
-                        className={`p-4 text-center text-slate2 font-medium border-b border-r border-slate-100 last:border-r-0 ${
+                        className={`p-2 sm:p-4 text-center text-slate2 font-medium border-b border-r border-slate-100 last:border-r-0 ${
                           isLastRow ? "border-b-0" : ""
                         }`}
                       >

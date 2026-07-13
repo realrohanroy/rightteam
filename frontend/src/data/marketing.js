@@ -111,18 +111,16 @@ export const CASE_STUDIES = [
 export const COMPARISON = {
   columns: [
     { key: "rt", label: "RightTeam", highlight: true },
-    { key: "diy", label: "DIY" },
-    { key: "ca", label: "Generic CA" },
-    { key: "portal", label: "Other Portals" },
+    { key: "others", label: "Others" },
   ],
   rows: [
-    { feature: "Turnaround for GST registration", rt: "yes", diy: "14-20 days", ca: "14-20 days", portal: "N/A" },
-    { feature: "Dedicated manager", rt: "yes", diy: "No / N/A", ca: "No / N/A", portal: "No / N/A" },
-    { feature: "Fixed-fee pricing", rt: "yes", diy: "No / N/A", ca: "Sometimes", portal: "Only CA" },
-    { feature: "On-time filing guarantee", rt: "yes", diy: "Sometimes", ca: "No - hourly", portal: "No" },
-    { feature: "Government fees disclosed upfront", rt: "yes", diy: "No", ca: "No", portal: "No" },
-    { feature: "In-house CA, CS and IP attorneys", rt: "yes", diy: "No", ca: "Often No", portal: "Rare" },
-    { feature: "WhatsApp updates on filing status", rt: "yes", diy: "Often No", ca: "Only CA", portal: "Rare" },
+    { feature: "Turnaround for GST registration", rt: "yes", others: "14-20 days" },
+    { feature: "Dedicated manager", rt: "yes", others: "No" },
+    { feature: "Fixed-fee pricing", rt: "yes", others: "Varies / No" },
+    { feature: "On-time filing guarantee", rt: "yes", others: "No" },
+    { feature: "Government fees disclosed upfront", rt: "yes", others: "No" },
+    { feature: "In-house CA, CS and IP attorneys", rt: "yes", others: "No / Rare" },
+    { feature: "WhatsApp updates on filing status", rt: "yes", others: "No / Rare" },
   ],
 };
 
