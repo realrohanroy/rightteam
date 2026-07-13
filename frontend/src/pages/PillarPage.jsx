@@ -21,7 +21,7 @@ export default function PillarPage() {
     <Layout>
       <section className="container-x pt-10">
         <div className="mono text-[11px] uppercase tracking-[0.22em] text-slate2">
-          Home / <span className="text-ink">Practice area {String(idx + 1).padStart(2, "0")}</span>
+          Home / Our Services / <span className="text-ink">{pillar.label}</span>
         </div>
 
         <div className="mt-5">
@@ -41,10 +41,10 @@ export default function PillarPage() {
               <div className="md:col-span-4">
                 <div className="paper-card p-5">
                   <div className="mono text-[11px] uppercase tracking-widest text-slate2">
-                    Practice area · {String(idx + 1).padStart(2, "0")} of {PILLARS.length}
+                  Service category · {String(idx + 1).padStart(2, "0")} of {PILLARS.length}
                   </div>
                   <div className="font-display text-xl text-ink mt-2 leading-tight">
-                    {services.length} services under this practice
+                    {services.length} services in this category
                   </div>
                   <Link to="/quote" className="btn-primary w-full justify-center mt-4" data-testid="pillar-cta">
                     Request a quote
@@ -61,7 +61,7 @@ export default function PillarPage() {
 
       <section className="container-x py-20">
         <div className="mono text-[11px] uppercase tracking-[0.22em] text-slate2">
-          Services in this practice area
+          Services in this category
         </div>
         <h2 className="font-display text-2xl sm:text-3xl text-ink mt-2">All {pillar.label} services</h2>
 
@@ -82,7 +82,7 @@ export default function PillarPage() {
         <div className="grid md:grid-cols-2 gap-8 items-start">
           <div>
             <div className="mono text-[11px] uppercase tracking-[0.22em] text-slate2">
-              Next practice area
+              Next service category
             </div>
             <h3 className="font-display text-2xl text-ink mt-2">
               {PILLARS[(idx + 1) % PILLARS.length].label}
@@ -93,7 +93,7 @@ export default function PillarPage() {
               to={`/${PILLARS[(idx + 1) % PILLARS.length].slug}`}
               className="btn-outline"
             >
-              Open next practice area →
+              View next category →
             </Link>
           </div>
         </div>

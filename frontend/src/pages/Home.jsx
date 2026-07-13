@@ -19,7 +19,7 @@ import { PenaltyChart } from "../components/PenaltyChart";
 import { DocStateTransition } from "../components/DocStateTransition";
 import { PILLARS, SERVICES } from "../data/services";
 import { CLIENT_LOGOS } from "../data/marketing";
-import { ArrowRight, Check, Calendar, Play } from "lucide-react";
+import { ArrowRight, Check, Calendar, Play, ChevronDown } from "lucide-react";
 import { useScrollFadeIn, useScrollStagger } from "../hooks/useScrollAnimation";
 
 // ─── Hero Service List — true infinite cycler (no snap) ───────────────────────
@@ -103,7 +103,7 @@ const ClientLogoRow = () => (
   <section className="bg-white border-b border-ink/10 py-10" data-testid="client-logo-row">
     <div className="container-x text-center">
       <div className="mono text-[11px] uppercase tracking-[0.22em] text-slate2">
-        Trusted by 8,400+ Indian businesses — startups, manufacturers, and retailers.
+        Trusted by 500+ Indian businesses — startups, manufacturers, and retailers.
       </div>
       {CLIENT_LOGOS && CLIENT_LOGOS.length > 0 && (
         <div className="mt-8 flex flex-wrap items-center justify-center gap-12 sm:gap-16">
@@ -133,7 +133,7 @@ const PillarTabsPreview = ({ activePillarSlug }) => {
           to={`/${pillar.slug}`}
           className="mt-4 inline-flex items-center gap-1 text-sm text-ink underline underline-offset-4 decoration-brand decoration-2"
         >
-          Open practice area →
+          View all services →
         </Link>
       </div>
       <div className="md:col-span-3 grid sm:grid-cols-3 gap-4">
@@ -141,6 +141,70 @@ const PillarTabsPreview = ({ activePillarSlug }) => {
           <ServiceCard key={s.slug} service={s} />
         ))}
       </div>
+    </div>
+  );
+};
+
+// ─── Mobile Pillar Accordion ──────────────────────────────────────────────────
+const MobilePillarAccordion = () => {
+  const [openSlug, setOpenSlug] = useState(PILLARS[0].slug);
+  return (
+    <div className="divide-y divide-ink/10 border border-ink/15 rounded-sm overflow-hidden">
+      {PILLARS.map((p, idx) => {
+        const isOpen = openSlug === p.slug;
+        const services = SERVICES.filter((s) => s.pillar === p.slug).slice(0, 3);
+        return (
+          <div key={p.slug}>
+            {/* Accordion Header */}
+            <button
+              onClick={() => setOpenSlug(isOpen ? null : p.slug)}
+              className={`w-full flex items-center justify-between px-4 py-4 text-left transition-colors ${
+                isOpen ? "bg-ink text-white" : "bg-white text-ink hover:bg-alt"
+              }`}
+            >
+              <div>
+                <div className={`mono text-[10px] uppercase tracking-widest ${ isOpen ? "text-white/50" : "text-slate2"}` }>
+                  Pillar {idx + 1}
+                </div>
+                <div className="font-display text-base font-semibold mt-0.5">{p.label}</div>
+              </div>
+              <ChevronDown
+                size={18}
+                className={`shrink-0 transition-transform duration-300 ${
+                  isOpen ? "rotate-180 text-white" : "text-ink/40"
+                }`}
+              />
+            </button>
+
+            {/* Accordion Body */}
+            {isOpen && (
+              <div className="bg-white px-4 pb-4 pt-3 space-y-3">
+                {services.map((s) => (
+                  <Link
+                    key={s.slug}
+                    to={`/service/${s.slug}`}
+                    className="flex items-start gap-3 p-3 border border-ink/10 rounded-sm hover:border-ink/25 hover:bg-alt transition-colors"
+                  >
+                    <div className="flex-1 min-w-0">
+                      <div className="font-semibold text-sm text-ink leading-snug">{s.name}</div>
+                      <div className="text-xs text-slate2 mt-0.5 line-clamp-2">{s.oneLine}</div>
+                    </div>
+                    <div className="shrink-0 mono text-[10px] text-brand font-semibold mt-0.5 whitespace-nowrap">
+                      {s.startingPrice}
+                    </div>
+                  </Link>
+                ))}
+                <Link
+                  to={`/${p.slug}`}
+                  className="inline-flex items-center gap-1 text-sm text-ink underline underline-offset-4 decoration-brand decoration-2 mt-1"
+                >
+                  View all services →
+                </Link>
+              </div>
+            )}
+          </div>
+        );
+      })}
     </div>
   );
 };
@@ -293,21 +357,28 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── PRACTICE AREAS / FILING TABS — white ────────────────────────────── */}
+          {/* ── OUR SERVICES / FILING TABS — white ────────────────────────────── */}
       <section className="bg-white container-x py-28">
         <div className="max-w-3xl">
           <div className="mono text-[11px] uppercase tracking-[0.22em] text-slate2">
-            Practice areas
+            Our Services
           </div>
           <h2 className="font-display text-3xl sm:text-4xl text-ink mt-3 leading-tight">
-            Five practice areas. Thirty regulated filings.
+            Everything your business needs. From Registration to Compliance.
           </h2>
         </div>
 
         <div className="mt-10">
-          <FilingTabs activeSlug={activePillar} onTabChange={setActivePillar} />
-          <div className="bg-white border border-t-0 border-ink/60 p-6 sm:p-8 rounded-b-sm">
-            <PillarTabsPreview activePillarSlug={activePillar} />
+          {/* Mobile: Accordion */}
+          <div className="lg:hidden">
+            <MobilePillarAccordion />
+          </div>
+          {/* Desktop: Original tab+preview layout */}
+          <div className="hidden lg:block">
+            <FilingTabs activeSlug={activePillar} onTabChange={setActivePillar} />
+            <div className="bg-white border border-t-0 border-ink/60 p-6 sm:p-8 rounded-b-sm">
+              <PillarTabsPreview activePillarSlug={activePillar} />
+            </div>
           </div>
         </div>
       </section>

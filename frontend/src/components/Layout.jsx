@@ -206,9 +206,7 @@ export const Footer = () => {
               <div className="font-display text-lg font-bold">
                 <span className="text-brand">Right</span><span className="text-white">Team</span><span className="text-brand">.in</span>
               </div>
-              <div className="mono text-[10px] uppercase tracking-widest text-white/60 mt-1">
-                CIN · [TO BE CONFIRMED]
-              </div>
+              
             </div>
           </div>
           <p className="text-sm text-white/70 mt-4 leading-relaxed">
@@ -217,12 +215,12 @@ export const Footer = () => {
           <div className="mono text-xs text-white/60 mt-6 space-y-1">
             <div>hello@rightteam.in</div>
             <div>+91 99999 99999</div>
-            <div>4th Floor, Nariman Chambers, Nariman Point, Mumbai 400021</div>
+            <div>Palladium Building, B1-505, Corporate Rd, near Vodafone House, Prahlad Nagar, Ahmedabad, Gujarat 380015</div>
           </div>
         </div>
 
         <div>
-          <div className="mono text-[11px] uppercase tracking-widest text-white/50 mb-4">Practice areas</div>
+          <div className="mono text-[11px] uppercase tracking-widest text-white/50 mb-4">Our Services</div>
           <ul className="space-y-2 text-sm">
             {groups.map((g) => (
               <li key={g.to}>
@@ -255,7 +253,7 @@ export const Footer = () => {
       <div className="border-t border-white/15">
         <div className="container-x py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="mono text-[11px] tracking-widest text-white/50 uppercase">
-            © {new Date().getFullYear()} RightTeam Consultancy Pvt. Ltd. · CIN [TO BE CONFIRMED]
+            © {new Date().getFullYear()} RightTeam Pvt.Ltd.
             Filings subject to government processing timelines.
           </div>
           <div className="mono text-[11px] tracking-widest text-white/50 uppercase">
