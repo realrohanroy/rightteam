@@ -19,7 +19,7 @@ import { PenaltyChart } from "../components/PenaltyChart";
 import { DocStateTransition } from "../components/DocStateTransition";
 import { PILLARS, SERVICES } from "../data/services";
 import { CLIENT_LOGOS } from "../data/marketing";
-import { ArrowRight, Check, Calendar } from "lucide-react";
+import { ArrowRight, Check, Calendar, Play } from "lucide-react";
 import { useScrollFadeIn, useScrollStagger } from "../hooks/useScrollAnimation";
 
 // ─── Hero Service List — true infinite cycler (no snap) ───────────────────────
@@ -171,7 +171,7 @@ export default function Home() {
           {/* Left: headline + CTA */}
           <div className="lg:col-span-7" ref={heroRef}>
             {/* Pill overline */}
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-white/10 backdrop-blur-md border border-white/10 text-xs font-semibold text-white/90">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/10 text-xs font-semibold text-white/90">
               <span className="text-white">Ranked #1 Compliance platform</span> 
               <span className="text-white/60 mx-1">|</span>
               <a href="#" className="hover:text-white transition-colors flex items-center gap-1">Read report <ArrowRight size={12} /></a>
@@ -187,46 +187,84 @@ export default function Home() {
               Every statutory filing for tax, MCA. Intelligent workflows for professional control and collaboration. On-brand production at any scale.
             </p>
 
-
+            {/* CTA Buttons */}
+            <div className="mt-8 flex flex-wrap items-center gap-4">
+              <Link
+                to="/quote"
+                className="inline-flex items-center justify-center bg-white text-[#050B14] px-8 py-3.5 text-sm font-bold tracking-wide rounded-xl hover:bg-white/90 active:scale-95 transition-all shadow-md"
+                data-testid="hero-get-started"
+              >
+                Get Started Now
+              </Link>
+              <Link
+                to="/contact"
+                className="inline-flex items-center justify-center gap-2 border border-white text-white hover:bg-white/10 px-8 py-3.5 text-sm font-bold tracking-wide rounded-xl active:scale-95 transition-all"
+                data-testid="hero-book-meeting"
+              >
+                <Play size={14} fill="currentColor" />
+                <span>Why RightTeam?</span>
+              </Link>
+            </div>
           </div>
 
-          {/* Right: auto-looping service marquee */}
-          <div className="lg:col-span-5 flex justify-end">
+          {/* Right: auto-looping service marquee — hidden on mobile/smaller screens */}
+          <div className="hidden lg:flex lg:col-span-5 justify-end">
              {/* The list itself aligns to the right side of its container */}
             <HeroServiceList />
           </div>
         </div>
 
-        {/* ── Trusted-by strip — pinned to bottom of hero ─────────────────── */}
-        <div className="absolute bottom-0 left-0 right-0 z-10 border-t border-white/10 bg-gradient-to-t from-black/60 to-transparent py-6 px-6 lg:px-16">
-          <p className="text-center text-[11px] tracking-widest text-white/60 uppercase font-semibold mb-5">
+        {/* ── Trusted-by strip — transparent backdrop, overlays the hero background, infinite horizontal marquee on mobile/desktop ── */}
+        <div className="lg:absolute relative bottom-0 left-0 right-0 z-10 border-t border-white/10 bg-transparent py-6 overflow-hidden">
+          <p className="text-center text-[11px] tracking-widest text-white uppercase font-semibold mb-5 px-6">
             Trusted by 8,400+ Indian businesses — startups, manufacturers &amp; enterprises
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-14">
-            {/* Apex */}
-            <svg height="22" viewBox="0 0 80 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-60 hover:opacity-100 transition-opacity">
-              <text x="0" y="22" fontFamily="Georgia, serif" fontSize="22" fontWeight="bold" fill="white">APEX</text>
-            </svg>
-            {/* Synergy */}
-            <svg height="22" viewBox="0 0 110 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-60 hover:opacity-100 transition-opacity">
-              <text x="0" y="22" fontFamily="Arial, sans-serif" fontSize="20" fontWeight="600" fill="white">SYNERGY</text>
-            </svg>
-            {/* Acme */}
-            <svg height="22" viewBox="0 0 80 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-60 hover:opacity-100 transition-opacity">
-              <text x="0" y="22" fontFamily="Arial, sans-serif" fontSize="20" fontWeight="700" fill="white">ACME</text>
-            </svg>
-            {/* Vortex */}
-            <svg height="22" viewBox="0 0 80 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-60 hover:opacity-100 transition-opacity">
-              <text x="0" y="22" fontFamily="Arial, sans-serif" fontSize="20" fontWeight="700" fill="white">VORTEX</text>
-            </svg>
-            {/* Innovate */}
-            <svg height="22" viewBox="0 0 110 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-60 hover:opacity-100 transition-opacity">
-              <text x="0" y="22" fontFamily="Arial, sans-serif" fontSize="20" fontWeight="600" fill="white">INNOVATE</text>
-            </svg>
-            {/* Horizon */}
-            <svg height="22" viewBox="0 0 100 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-60 hover:opacity-100 transition-opacity">
-              <text x="0" y="22" fontFamily="Arial, sans-serif" fontSize="20" fontWeight="600" fill="white">HORIZON</text>
-            </svg>
+          <div className="relative w-full overflow-hidden">
+            <div className="animate-marquee-left lg:!animate-none lg:justify-center flex gap-12 sm:gap-16 items-center w-max lg:w-full hover:[animation-play-state:paused] lg:hover:[animation-play-state:running] cursor-pointer">
+              {/* First set of logos */}
+              <div className="flex shrink-0 items-center gap-12 sm:gap-16 lg:justify-center lg:w-full">
+                <svg height="22" viewBox="0 0 80 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-60 hover:opacity-100 transition-opacity shrink-0">
+                  <text x="0" y="22" fontFamily="Georgia, serif" fontSize="22" fontWeight="bold" fill="white">APEX</text>
+                </svg>
+                <svg height="22" viewBox="0 0 110 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-60 hover:opacity-100 transition-opacity shrink-0">
+                  <text x="0" y="22" fontFamily="Arial, sans-serif" fontSize="20" fontWeight="600" fill="white">SYNERGY</text>
+                </svg>
+                <svg height="22" viewBox="0 0 80 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-60 hover:opacity-100 transition-opacity shrink-0">
+                  <text x="0" y="22" fontFamily="Arial, sans-serif" fontSize="20" fontWeight="700" fill="white">ACME</text>
+                </svg>
+                <svg height="22" viewBox="0 0 80 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-60 hover:opacity-100 transition-opacity shrink-0">
+                  <text x="0" y="22" fontFamily="Arial, sans-serif" fontSize="20" fontWeight="700" fill="white">VORTEX</text>
+                </svg>
+                <svg height="22" viewBox="0 0 110 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-60 hover:opacity-100 transition-opacity shrink-0">
+                  <text x="0" y="22" fontFamily="Arial, sans-serif" fontSize="20" fontWeight="600" fill="white">INNOVATE</text>
+                </svg>
+                <svg height="22" viewBox="0 0 100 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-60 hover:opacity-100 transition-opacity shrink-0">
+                  <text x="0" y="22" fontFamily="Arial, sans-serif" fontSize="20" fontWeight="600" fill="white">HORIZON</text>
+                </svg>
+              </div>
+              
+              {/* Second identical set of logos for seamless infinite loop */}
+              <div className="flex lg:hidden shrink-0 items-center gap-12 sm:gap-16" aria-hidden="true">
+                <svg height="22" viewBox="0 0 80 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-60 hover:opacity-100 transition-opacity shrink-0">
+                  <text x="0" y="22" fontFamily="Georgia, serif" fontSize="22" fontWeight="bold" fill="white">APEX</text>
+                </svg>
+                <svg height="22" viewBox="0 0 110 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-60 hover:opacity-100 transition-opacity shrink-0">
+                  <text x="0" y="22" fontFamily="Arial, sans-serif" fontSize="20" fontWeight="600" fill="white">SYNERGY</text>
+                </svg>
+                <svg height="22" viewBox="0 0 80 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-60 hover:opacity-100 transition-opacity shrink-0">
+                  <text x="0" y="22" fontFamily="Arial, sans-serif" fontSize="20" fontWeight="700" fill="white">ACME</text>
+                </svg>
+                <svg height="22" viewBox="0 0 80 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-60 hover:opacity-100 transition-opacity shrink-0">
+                  <text x="0" y="22" fontFamily="Arial, sans-serif" fontSize="20" fontWeight="700" fill="white">VORTEX</text>
+                </svg>
+                <svg height="22" viewBox="0 0 110 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-60 hover:opacity-100 transition-opacity shrink-0">
+                  <text x="0" y="22" fontFamily="Arial, sans-serif" fontSize="20" fontWeight="600" fill="white">INNOVATE</text>
+                </svg>
+                <svg height="22" viewBox="0 0 100 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-60 hover:opacity-100 transition-opacity shrink-0">
+                  <text x="0" y="22" fontFamily="Arial, sans-serif" fontSize="20" fontWeight="600" fill="white">HORIZON</text>
+                </svg>
+              </div>
+            </div>
           </div>
         </div>
       </section>

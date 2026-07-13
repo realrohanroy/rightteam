@@ -9,7 +9,10 @@ import AboutPage from "@/pages/AboutPage";
 import ReviewsPage from "@/pages/ReviewsPage";
 import ContactPage from "@/pages/ContactPage";
 import NotFoundPage from "@/pages/NotFoundPage";
+import ComplianceHubPage from "@/pages/ComplianceHubPage";
+import EntityCompliancePage from "@/pages/EntityCompliancePage";
 import { useSmoothScroll } from "@/hooks/useSmoothScroll";
+import { HelmetProvider } from "react-helmet-async";
 
 /* Register GSAP plugins globally */
 import { gsap } from "gsap";
@@ -37,6 +40,8 @@ function AppInner() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/reviews" element={<ReviewsPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/compliance-calendar" element={<ComplianceHubPage />} />
+        <Route path="/compliance-calendar/:entity" element={<EntityCompliancePage />} />
         <Route path="/service/:slug" element={<ServicePage />} />
         <Route path="/:pillar" element={<PillarPage />} />
         <Route path="*" element={<NotFoundPage />} />
@@ -47,11 +52,13 @@ function AppInner() {
 
 function App() {
   return (
-    <div className="App">
-      <BrowserRouter>
-        <AppInner />
-      </BrowserRouter>
-    </div>
+    <HelmetProvider>
+      <div className="App">
+        <BrowserRouter>
+          <AppInner />
+        </BrowserRouter>
+      </div>
+    </HelmetProvider>
   );
 }
 

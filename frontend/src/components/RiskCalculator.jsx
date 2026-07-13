@@ -9,12 +9,19 @@ const severityStyles = {
   low: "border-l-approve bg-approve/[0.04]",
 };
 
-export const RiskCalculator = ({ inverted = false }) => {
-  const [entity, setEntity] = useState("");
+export const RiskCalculator = ({ inverted = false, defaultEntity = "" }) => {
+  const [entity, setEntity] = useState(defaultEntity);
   const [state, setState] = useState("");
   const [employees, setEmployees] = useState("no");
   const [ran, setRan] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  // If defaultEntity changes from outside (e.g., navigating between entities), update the state
+  React.useEffect(() => {
+    if (defaultEntity) {
+      setEntity(defaultEntity);
+    }
+  }, [defaultEntity]);
 
   const handleCalculate = () => {
     setLoading(true);
@@ -182,12 +189,12 @@ export const RiskCalculator = ({ inverted = false }) => {
                     </li>
                   ))}
                 </ol>
-                <div className="px-5 py-4 border-t border-ink/10 flex items-center justify-between bg-alt">
-                  <div className="mono text-[10px] uppercase tracking-widest text-slate2 flex items-center gap-1.5">
-                    <Check size={12} className="text-approve" strokeWidth={3} />
-                    Handled end-to-end by a dedicated manager
+                <div className="px-5 py-4 border-t border-ink/10 flex flex-col sm:flex-row items-center justify-between gap-4 bg-alt">
+                  <div className="mono text-[10px] uppercase tracking-widest text-slate2 flex items-center gap-1.5 text-center sm:text-left">
+                    <Check size={12} className="text-approve shrink-0" strokeWidth={3} />
+                    <span>Handled end-to-end by a dedicated manager</span>
                   </div>
-                  <Link to="/quote" className="btn-primary" data-testid="risk-cta">
+                  <Link to="/quote" className="btn-primary w-full sm:w-auto justify-center" data-testid="risk-cta">
                     Get a fixed quote <ArrowRight size={14} />
                   </Link>
                 </div>

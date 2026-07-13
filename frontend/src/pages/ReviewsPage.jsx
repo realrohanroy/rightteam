@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import { Layout } from "../components/Layout";
 import { Seal, CornerSeal } from "../components/Seal";
 import { Star, ArrowRight } from "lucide-react";
+import { RatingIllustration } from "../components/Illustrations";
+
+const getInitials = (name) => name.split(' ').map(n => n[0]).join('').substring(0, 2);
 
 const REVIEWS = [
   { n: "Priya Ranganathan", c: "Founder, Kaira Foods · Bengaluru", r: 5, s: "GST Registration + Monthly Filing", q: "Registered in five working days. Officer query answered same day. I've never opened the GST portal myself." },
@@ -41,7 +44,10 @@ export default function ReviewsPage() {
             </div>
           </div>
         </div>
-        <div className="lg:col-span-4 flex justify-start lg:justify-end items-start">
+        <div className="lg:col-span-4 flex justify-start lg:justify-end items-start relative">
+          <div className="absolute -z-10 w-full h-[120%] -top-10 opacity-30 pointer-events-none">
+            <RatingIllustration />
+          </div>
           <Seal
             size={110}
             color="#E8522B"
@@ -74,11 +80,16 @@ export default function ReviewsPage() {
                 <CornerSeal color="#1E5631" />
               </div>
               <blockquote className="text-ink leading-relaxed mt-4">"{r.q}"</blockquote>
-              <figcaption className="mt-5 pt-4 border-t border-ink/10">
-                <div className="font-semibold text-ink">{r.n}</div>
-                <div className="text-sm text-slate2">{r.c}</div>
-                <div className="mono text-[10px] uppercase tracking-widest text-slate2 mt-2">
-                  Filing ref · RT/Q/2025/{String(1000 + i).padStart(5, "0")}
+              <figcaption className="mt-5 pt-4 border-t border-ink/10 flex gap-4">
+                <div className="shrink-0 w-12 h-12 bg-alt border border-ink/20 flex items-center justify-center font-display text-ink font-bold text-lg rounded-sm" aria-hidden>
+                  {getInitials(r.n)}
+                </div>
+                <div>
+                  <div className="font-semibold text-ink">{r.n}</div>
+                  <div className="text-sm text-slate2">{r.c}</div>
+                  <div className="mono text-[10px] uppercase tracking-widest text-slate2 mt-2">
+                    Filing ref · RT/Q/2025/{String(1000 + i).padStart(5, "0")}
+                  </div>
                 </div>
               </figcaption>
             </figure>
@@ -88,7 +99,7 @@ export default function ReviewsPage() {
 
       <section className="container-x pt-24 pb-8">
         <div className="border border-ink bg-ink text-white p-10 flex flex-col md:flex-row items-center gap-6 justify-between rounded-sm">
-          <div>
+          <div className="text-center md:text-left">
             <div className="mono text-[11px] uppercase tracking-[0.22em] text-brand">Your engagement, next.</div>
             <h3 className="font-display text-2xl sm:text-3xl mt-2 leading-tight">Request a fixed-fee quote.</h3>
           </div>

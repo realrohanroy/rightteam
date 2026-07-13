@@ -185,7 +185,7 @@ export default function ServicePage() {
       {/* Final CTA */}
       <section className="container-x pb-6">
         <div className="border border-ink bg-ink text-white p-8 sm:p-10 flex flex-col md:flex-row items-center gap-8 justify-between rounded-sm">
-          <div>
+          <div className="text-center md:text-left">
             <div className="mono text-[11px] uppercase tracking-[0.22em] text-brand">
               Engagement letter issued same day
             </div>

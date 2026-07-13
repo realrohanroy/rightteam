@@ -3,6 +3,7 @@ import axios from "axios";
 import { Layout } from "../components/Layout";
 import { Seal } from "../components/Seal";
 import { Mail, Phone, MapPin, ArrowRight, Check } from "lucide-react";
+import { DuotoneImage } from "../components/DuotoneImage";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -84,6 +85,13 @@ export default function ContactPage() {
                   <div className="mono text-[8px] tracking-[0.15em] uppercase mt-0.5 font-semibold">Reply SLA</div>
                 </div>
               }
+            />
+          </div>
+
+          <div className="mt-12 h-[240px] w-full rounded-sm overflow-hidden">
+            <DuotoneImage 
+              src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=1200&auto=format&fit=crop" 
+              alt="RightTeam office reception" 
             />
           </div>
         </div>

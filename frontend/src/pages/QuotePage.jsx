@@ -5,6 +5,7 @@ import { Layout } from "../components/Layout";
 import { PILLARS, SERVICES, findService } from "../data/services";
 import { ArrowRight, Check, ArrowLeft, ClipboardCheck, AlertOctagon } from "lucide-react";
 import { Seal } from "../components/Seal";
+import { DocumentReviewIllustration } from "../components/Illustrations";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -114,20 +115,20 @@ export default function QuotePage() {
                 return (
                   <div
                     key={label}
-                    className={`flex-1 py-4 px-4 border-r last:border-r-0 border-ink/10 flex items-center gap-3 ${current ? "bg-alt" : ""}`}
+                    className={`flex-1 py-3 px-2 sm:py-4 sm:px-4 border-r last:border-r-0 border-ink/10 flex items-center justify-center sm:justify-start gap-2 sm:gap-3 ${current ? "bg-alt" : ""}`}
                   >
                     <span
-                      className={`w-6 h-6 border flex items-center justify-center shrink-0 ${
+                      className={`w-6 h-6 border flex items-center justify-center shrink-0 rounded-full text-xs font-semibold ${
                         done
                           ? "bg-approve border-approve text-paper"
                           : current
-                          ? "bg-white border-ink text-ink"
-                          : "bg-white border-ink/30 text-transparent"
+                          ? "bg-ink border-ink text-white"
+                          : "bg-white border-ink/30 text-ink/40"
                       }`}
                     >
-                      {done ? <Check size={14} strokeWidth={3} /> : ""}
+                      {done ? <Check size={12} strokeWidth={3} /> : i + 1}
                     </span>
-                    <div>
+                    <div className="hidden sm:block">
                       <div className="mono text-[10px] uppercase tracking-widest text-slate2 leading-none">
                         Step {String(i + 1).padStart(2, "0")}
                       </div>
@@ -389,6 +390,11 @@ export default function QuotePage() {
         </div>
 
         <aside className="lg:col-span-4 lg:sticky lg:top-24 space-y-6">
+          <div className="flex justify-center mb-2 px-10">
+            <div className="w-full opacity-60">
+              <DocumentReviewIllustration />
+            </div>
+          </div>
           <div className="paper-card p-6">
             <div className="mono text-[11px] uppercase tracking-widest text-slate2">Why 8,400+ businesses trust us</div>
             <ul className="mt-3 space-y-3 text-sm text-ink">

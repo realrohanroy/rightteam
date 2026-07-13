@@ -7,11 +7,12 @@ import { CompliancePDFCta } from "../components/CompliancePDFCta";
 import { ArrowRight, Check, ChevronDown } from "lucide-react";
 import * as Accordion from "@radix-ui/react-accordion";
 import { OnTimeRing } from "../components/OnTimeRing";
+import { DuotoneImage } from "../components/DuotoneImage";
 
 export default function AboutPage() {
   return (
     <Layout>
-      <section className="container-x pt-10">
+      <section className="container-x pt-10 relative">
         <div className="mono text-[11px] uppercase tracking-[0.22em] text-slate2">Home / About the practice</div>
         <div className="mt-4 max-w-4xl">
           <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl text-ink leading-[1.05]">
@@ -21,7 +22,14 @@ export default function AboutPage() {
             Incorporated in Mumbai in 2019, RightTeam now services 8,400+ businesses across 24 states with in-house CAs, CS and IP attorneys.
           </p>
 
-          <div className="mt-6">
+          <div className="mt-8 relative h-[300px] sm:h-[400px] w-full lg:hidden rounded-sm overflow-hidden mb-10">
+            <DuotoneImage 
+              src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1469&auto=format&fit=crop" 
+              alt="Professional Indian office setting"
+            />
+          </div>
+
+          <div className="mt-6 lg:mt-10">
             <CredentialRow
               items={[
                 { label: "ICAI Member Firm" },
@@ -31,6 +39,13 @@ export default function AboutPage() {
               ]}
             />
           </div>
+        </div>
+        <div className="hidden lg:block absolute top-0 right-0 w-5/12 h-full">
+          <DuotoneImage 
+            src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1469&auto=format&fit=crop" 
+            alt="Professional Indian office setting"
+            className="w-full h-full"
+          />
         </div>
       </section>
 
@@ -100,7 +115,7 @@ export default function AboutPage() {
 
       <section className="container-x pb-6">
         <div className="border border-ink bg-ink text-white p-8 sm:p-10 flex flex-col md:flex-row items-center gap-6 justify-between rounded-sm">
-          <div>
+          <div className="text-center md:text-left">
             <div className="mono text-[11px] uppercase tracking-[0.22em] text-brand">Engage the practice</div>
             <h3 className="font-display text-2xl sm:text-3xl mt-2 leading-tight">Request a fixed-fee quote.</h3>
           </div>

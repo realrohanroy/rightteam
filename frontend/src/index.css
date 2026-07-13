@@ -25,7 +25,7 @@
     --border: 216 12% 88%;
     --input: 216 12% 88%;
     --ring: 8 79% 54%; /* brand focus ring */
-    --radius: 0.25rem;
+    --radius: 1rem;
     /* Brand orange-red */
     --brand: #E8522B;
     --brand-light: #FEE6DB;
@@ -215,6 +215,16 @@
   0%   { transform: translateY(0); }
   100% { transform: translateY(-504px); }
 }
+
+@keyframes marquee-left {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee-left {
+  animation: marquee-left 25s linear infinite;
+}
+
 
 /* ── Custom scrollbar site-wide ─────────────────────────────────────── */
 ::-webkit-scrollbar {

@@ -72,7 +72,7 @@ export const CompliancePDFCta = ({ variant = "default" }) => {
 
           {state !== "done" ? (
             <form onSubmit={submit} noValidate className="mt-6 flex flex-col gap-3 w-full max-w-md">
-              <div className="relative flex items-center bg-white border border-ink/20 rounded-full p-1 focus-within:border-ink focus-within:ring-2 focus-within:ring-ink/10 transition-all shadow-sm">
+              <div className="relative flex flex-col sm:flex-row items-stretch sm:items-center bg-transparent sm:bg-white border-0 sm:border border-ink/20 rounded-2xl sm:rounded-full p-0 sm:p-1 gap-2 sm:gap-0 transition-all">
                 <input
                   type="email"
                   placeholder="Work Email"
@@ -81,13 +81,13 @@ export const CompliancePDFCta = ({ variant = "default" }) => {
                     setEmail(e.target.value);
                     if (emailError) setEmailError("");
                   }}
-                  className="flex-1 bg-transparent px-4 py-2 text-sm text-ink placeholder-ink/40 focus:outline-none rounded-full"
+                  className="flex-1 bg-white sm:bg-transparent border border-ink/20 sm:border-0 rounded-full px-4 py-3 sm:py-2 text-sm text-ink placeholder-ink/40 focus:outline-none focus:border-ink sm:focus:border-0 focus:ring-2 focus:ring-ink/10 sm:focus:ring-0 shadow-sm sm:shadow-none"
                   data-testid="pdf-email"
                 />
                 <button
                   type="submit"
                   disabled={state === "submitting"}
-                  className="bg-gradient-to-r from-[#4F46E5] to-[#9333EA] hover:from-[#4338CA] hover:to-[#805AD5] text-white text-xs sm:text-sm font-semibold px-5 py-2.5 rounded-full flex items-center gap-1.5 transition-all shadow-md active:scale-95 disabled:opacity-50 shrink-0"
+                  className="bg-gradient-to-r from-[#4F46E5] to-[#9333EA] hover:from-[#4338CA] hover:to-[#805AD5] text-white text-xs sm:text-sm font-semibold px-5 py-3 sm:py-2.5 rounded-full flex items-center justify-center gap-1.5 transition-all shadow-md active:scale-95 disabled:opacity-50 shrink-0"
                   data-testid="pdf-submit"
                 >
                   {state === "submitting" ? (

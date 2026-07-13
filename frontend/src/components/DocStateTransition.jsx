@@ -9,6 +9,7 @@ export const DocStateTransition = ({ className = "" }) => {
       className={`relative w-full max-w-[280px] h-[150px] bg-paper border border-ink/15 rounded-sm p-5 shadow-sm cursor-pointer select-none transition-all duration-300 ${className}`}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
+      onClick={() => setHovered(!hovered)}
       data-testid="doc-transition"
     >
       {/* Background paper lines */}

@@ -7,27 +7,28 @@ import {
   Mountain, 
   CircleDot, 
   Globe, 
-  ChevronUp, 
-  ArrowRight 
+  ChevronUp,
+  ArrowRight
 } from "lucide-react";
+import { DuotoneImage } from "./DuotoneImage";
 
 const ARTICLES = [
   {
-    image: "/resource_tax.png",
+    image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=1200&auto=format&fit=crop",
     category: "Tax Law",
     categoryColor: "bg-[#2563EB]", // Royal Blue
     title: "Maximizing Deductions: A Guide for Small Businesses",
     href: "/resources/maximizing-deductions",
   },
   {
-    image: "/resource_gst.png",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop",
     category: "GST",
     categoryColor: "bg-[#10B981]", // Emerald Green
     title: "Understanding the Latest GST Compliance Changes",
     href: "/resources/gst-compliance-changes",
   },
   {
-    image: "/resource_audit.png",
+    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1200&auto=format&fit=crop",
     category: "Audit Prep",
     categoryColor: "bg-[#F97316]", // Vivid Orange
     title: "Preparing for Your Next Financial Audit",
@@ -64,11 +65,11 @@ export const ResourcesAndCta = () => {
               return (
                 <div key={index} className="flex flex-col group">
                   {/* Image container */}
-                  <div className="overflow-hidden rounded-xl aspect-[16/10] bg-slate-100 relative shadow-sm">
-                    <img
+                  <div className="overflow-hidden rounded-xl aspect-[16/10] bg-[#050B14] relative shadow-sm">
+                    <DuotoneImage 
                       src={article.image}
                       alt={article.title}
-                      className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500 select-none"
+                      className="w-full h-full transform group-hover:scale-105 transition-transform duration-500"
                     />
                   </div>
 
