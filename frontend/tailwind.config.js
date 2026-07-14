@@ -2,6 +2,11 @@
 module.exports = {
   darkMode: ["class"],
   content: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
+  safelist: [
+    "border-l-seal", "border-l-caution", "border-l-approve",
+    "border-l-red-500", "border-l-amber-400", "border-l-green-500",
+    "bg-red-500", "bg-amber-400", "bg-green-500",
+  ],
   theme: {
     extend: {
       colors: {
@@ -42,12 +47,12 @@ module.exports = {
         "5xl": "49px",
       },
       spacing: {
-        3: "8px",   // maps 12px -> 8px
-        5: "24px",  // maps 20px -> 24px
-        10: "32px", // maps 40px -> 32px
-        14: "64px", // maps 56px -> 64px
-        20: "96px", // maps 80px -> 96px
-        28: "96px", // maps 112px -> 96px
+        3: "8px",
+        5: "24px",
+        10: "32px",
+        14: "64px",
+        20: "96px",
+        28: "96px",
       },
       fontFamily: {
         display: ['"Fraunces"', "Georgia", "serif"],
