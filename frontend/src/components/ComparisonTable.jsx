@@ -1,6 +1,20 @@
 import React from "react";
-import { Check } from "lucide-react";
+import { Check, X } from "lucide-react";
 import { COMPARISON } from "../data/marketing";
+
+// Renders the value in the "others" column with appropriate styling
+const OthersCell = ({ value }) => {
+  if (value === "No") {
+    return (
+      <div className="flex items-center justify-center h-full">
+        <X className="text-red-400 w-4 h-4 sm:w-5 sm:h-5" strokeWidth={3} />
+      </div>
+    );
+  }
+  return (
+    <span className="text-slate-500 font-medium text-xs sm:text-sm">{value}</span>
+  );
+};
 
 export const ComparisonTable = () => (
   <section className="section-alt py-24 border-y border-ink/10" data-testid="comparison-table">
@@ -20,7 +34,7 @@ export const ComparisonTable = () => (
           <thead>
             <tr className="bg-ink">
               <th className="text-left p-3 sm:p-4 font-semibold text-white border-r border-white/10 w-[46%] sm:w-[40%]">
-                Feature vs Benefit
+                Feature
               </th>
               {COMPARISON.columns.map((c) => {
                 const isHighlight = c.highlight;
@@ -81,7 +95,7 @@ export const ComparisonTable = () => (
                           isLastRow ? "border-b-0" : ""
                         }`}
                       >
-                        {value}
+                        <OthersCell value={value} />
                       </td>
                     );
                   })}
@@ -94,3 +108,5 @@ export const ComparisonTable = () => (
     </div>
   </section>
 );
+
+

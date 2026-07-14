@@ -44,48 +44,39 @@ import {
 // ── Master lookup by slug ─────────────────────────────────────────────────────
 
 const ICON_MAP = {
-  // Start a Business
+  // Start Your Business
   "private-limited-company": Building2,
-  "one-person-company": ShieldCheck,
   "llp-registration": Handshake,
-  "section-8-ngo": Heart,
-  "public-limited-company": Landmark,
+  "one-person-company": ShieldCheck,
   "partnership-firm": Users,
-  "startup-india-recognition": Rocket,
-  "company-name-search": Search,
-  "digital-signature-certificate": KeyRound,
-  "import-export-code": Globe,
+  "section-8-ngo": Heart,
 
-  // Protect Your Brand
-  "trademark-filing": Shield,
-  "trademark-objection-reply": ShieldAlert,
-  "trademark-renewal": RefreshCw,
-  "trademark-assignment": ArrowLeftRight,
-  "copyright-registration": Copyright,
-  "patent-filing": Lightbulb,
+  // Licences & Registrations
+  "gst-registration": Receipt,
+  "msme-udyam": Factory,
+  "startup-india-recognition": Rocket,
+  "import-export-code": Globe,
+  "fssai-registration": UtensilsCrossed,
+  "gem-registration": Store,
 
   // Tax & Compliance
-  "gst-registration": Receipt,
+  "roc-annual-filing": FileText,
+  "annual-filing": CalendarCheck,
   "gst-monthly-filing": CalendarCheck,
   "income-tax-return": Calculator,
   "tds-return-filing": BarChart3,
-  "roc-annual-filing": FileText,
-  "dir-3-kyc": UserCheck,
-  "director-share-changes": GitBranch,
-  "company-closure": DoorClosed,
-
-  // People & Money
-  "payroll-management": Wallet,
-  "pf-registration-filing": ShieldPlus,
-  "esi-registration-filing": HeartPulse,
   "accounting-bookkeeping": BookOpen,
-  "virtual-cfo": TrendingUp,
 
-  // Grow & Certify
+  // Protect Your Brand
+  "trademark-filing": Shield,
+  "copyright-registration": Copyright,
+  "patent-filing": Lightbulb,
+
+  // Grow Your Business
   "iso-certification": BadgeCheck,
-  "msme-udyam": Factory,
-  "fssai-registration": UtensilsCrossed,
-  "business-licenses": Store,
+  "nsic-registration": BadgeCheck,
+  "apeda-registration": Globe,
+  "business-advisory": TrendingUp,
 };
 
 /**

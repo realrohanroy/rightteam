@@ -39,23 +39,23 @@ export const CredibilityBar = () => (
     <div className="container-x">
       <div className="grid grid-cols-2 md:grid-cols-4">
         <StaticStat
-          figure="Est. 2019"
-          label="Operating for 7+ years"
-          sublabel="Founded in Mumbai"
+          figure="Est. 2026"
+          label="Trusted Since Day One"
+          sublabel="FOUNDED IN AHMEDABAD"
           className="border-r border-b md:border-b-0 border-ink/10"
         />
         <AnimatedStat
-          target={8400}
+          target={500}
           suffix="+"
           label="Businesses served"
-          sublabel="Across 24 states"
+          sublabel="ACROSS INDIA"
           className="border-b md:border-r md:border-b-0 border-ink/10"
         />
         <AnimatedStat
-          target={41000}
+          target={50}
           suffix="+"
-          label="Filings on record"
-          sublabel="And counting"
+          label="Compliance & Legal SOlutions"
+          sublabel="FOR STARTUPS & MSMEs"
           className="border-r border-ink/10"
         />
         <StaticStat

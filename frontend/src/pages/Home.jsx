@@ -27,9 +27,9 @@ const HERO_SERVICES = [
   "Register your company",
   "File your GST returns",
   "Protect your trademark",
-  "Run payroll and PF",
-  "Close a company",
   "Get ISO certified",
+  "Register on GeM portal",
+  "Apply for FSSAI licence",
   "File your income tax",
 ];
 
@@ -345,10 +345,10 @@ export default function Home() {
           </div>
           <div>
             <div className="mono text-[11px] uppercase tracking-[0.22em] text-brand">
-              Compliance exposure · Interactive
+              FREE COMPLIANCE CHECK • ONLINE
             </div>
             <h2 className="font-display text-2xl sm:text-3xl text-white mt-2 leading-tight">
-              See every filing your entity owes this year.
+              Check Your Business Compliance in Just 30 Seconds.
             </h2>
           </div>
         </div>
@@ -412,7 +412,7 @@ export default function Home() {
               "gst-registration",
               "trademark-filing",
               "income-tax-return",
-              "msme-udyam",
+              "gem-registration",
               "iso-certification",
             ].map((slug) => {
               const s = SERVICES.find((x) => x.slug === slug);

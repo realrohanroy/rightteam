@@ -111,16 +111,16 @@ export const CASE_STUDIES = [
 export const COMPARISON = {
   columns: [
     { key: "rt", label: "RightTeam", highlight: true },
-    { key: "others", label: "Others" },
+    { key: "others", label: "Other Portals" },
   ],
   rows: [
-    { feature: "Turnaround for GST registration", rt: "yes", others: "14-20 days" },
-    { feature: "Dedicated manager", rt: "yes", others: "No" },
-    { feature: "Fixed-fee pricing", rt: "yes", others: "Varies / No" },
-    { feature: "On-time filing guarantee", rt: "yes", others: "No" },
-    { feature: "Government fees disclosed upfront", rt: "yes", others: "No" },
-    { feature: "In-house CA, CS and IP attorneys", rt: "yes", others: "No / Rare" },
-    { feature: "WhatsApp updates on filing status", rt: "yes", others: "No / Rare" },
+    { feature: "Dedicated Relationship Manager",   rt: "yes", others: "No" },
+    { feature: "Transparent Pricing",              rt: "yes", others: "Varies" },
+    { feature: "In-house CA, CS & IP Experts",     rt: "yes", others: "Limited" },
+    { feature: "End-to-End Documentation Support", rt: "yes", others: "Partial" },
+    { feature: "WhatsApp Progress Updates",        rt: "yes", others: "Limited" },
+    { feature: "Compliance Reminder Support",      rt: "yes", others: "No" },
+    { feature: "Expert Consultation Included",     rt: "yes", others: "Limited" },
   ],
 };
 

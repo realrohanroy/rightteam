@@ -51,23 +51,15 @@ export const CompliancePDFCta = ({ variant = "default" }) => {
       }`}
       data-testid="compliance-pdf-cta"
     >
-      <div className="container-x grid grid-cols-1 md:grid-cols-5 gap-6 md:gap-8 items-center">
-        {/* Left Column: 3D Calendar illustration */}
-        <div className="hidden md:flex justify-center items-center md:col-span-1">
-          <img
-            src="/calendar_3d.png"
-            alt="2026 India Compliance Calendar Illustration"
-            className="w-full max-h-[160px] object-contain drop-shadow-md select-none transform hover:scale-105 transition-transform duration-300"
-          />
-        </div>
+      <div className="container-x flex justify-center">
 
         {/* Center Column: Form & Heading */}
-        <div className="col-span-1 md:col-span-3 flex flex-col justify-center items-center text-center">
+        <div className="flex flex-col justify-center items-center text-center w-full max-w-xl mx-auto">
           <h3 className="font-display text-2xl sm:text-3xl font-bold tracking-tight text-ink">
-            The 2026 India Compliance Calendar.
+            Never Miss an Important Business Update
           </h3>
           <p className="mt-3 text-xs sm:text-sm text-ink/80 max-w-md leading-relaxed font-medium">
-            The 2026 India Compliance Calendar. for a systematic commitment to ease filing and reduce compliance penalties.
+            Receive timely updates on company registrations, GST, ROC compliance, trademark registrations, and government policy changes.
           </p>
 
           {state !== "done" ? (
@@ -75,7 +67,7 @@ export const CompliancePDFCta = ({ variant = "default" }) => {
               <div className="relative flex flex-col sm:flex-row items-stretch sm:items-center bg-transparent sm:bg-white border-0 sm:border border-ink/20 rounded-2xl sm:rounded-full p-0 sm:p-1 gap-2 sm:gap-0 transition-all">
                 <input
                   type="email"
-                  placeholder="Work Email"
+                  placeholder="Your Work Email"
                   value={email}
                   onChange={(e) => {
                     setEmail(e.target.value);
@@ -97,7 +89,7 @@ export const CompliancePDFCta = ({ variant = "default" }) => {
                     </>
                   ) : (
                     <>
-                      <span>Email me the calendar</span>
+                      <span>Join Free</span>
                       <ArrowRight size={14} />
                     </>
                   )}
@@ -134,18 +126,10 @@ export const CompliancePDFCta = ({ variant = "default" }) => {
           )}
 
           <div className="mt-6 text-[10px] sm:text-xs font-mono uppercase tracking-widest text-ink/60">
-            PDF - 34 PAGES. PREPARED BY 20+ IIM/ISB MEMBERS.
+            ✓ Weekly Business Updates • Compliance Alerts • Expert Insights
           </div>
         </div>
 
-        {/* Right Column: 3D Compliance Documents stack */}
-        <div className="hidden md:flex justify-center items-center md:col-span-1">
-          <img
-            src="/compliance_doc_3d.png"
-            alt="Compliance Checklist Illustration"
-            className="w-full max-h-[160px] object-contain drop-shadow-md select-none transform hover:scale-105 transition-transform duration-300"
-          />
-        </div>
       </div>
     </section>
   );
