@@ -24,13 +24,13 @@ import { useScrollFadeIn, useScrollStagger } from "../hooks/useScrollAnimation";
 
 // ─── Hero Service List — true infinite cycler (no snap) ───────────────────────
 const HERO_SERVICES = [
-  "Register your company",
-  "File your GST returns",
-  "Protect your trademark",
-  "Get ISO certified",
-  "Register on GeM portal",
-  "Apply for FSSAI licence",
-  "File your income tax",
+  "REGISTER YOUR COMPANY",
+  "GST FILINGS DONE RIGHT",
+  "PROTECT YOUR BRAND",
+  "GET ISO CERTIFIED",
+  "REGISTER ON GeM PORTAL",
+  "APPLY FOR FSSAI LICENCE",
+  "FILE YOUR INCOME TAX",
 ];
 
 const ITEM_H = 72;
@@ -51,7 +51,7 @@ const HeroServiceList = () => {
 
   return (
     <div
-      className="relative h-[360px] w-full max-w-[420px] overflow-hidden"
+      className="relative h-[360px] w-full max-w-[450px] overflow-hidden"
       data-testid="hero-service-marquee"
       style={{
         maskImage: "linear-gradient(to bottom, transparent 0%, black 25%, black 75%, transparent 100%)",
@@ -357,8 +357,8 @@ export default function Home() {
         </div>
       </section>
 
-          {/* ── OUR SERVICES / FILING TABS — white ────────────────────────────── */}
-      <section className="bg-white container-x py-28">
+      {/* ── OUR SERVICES / FILING TABS — white ────────────────────────────── */}
+      <section id="services" className="bg-white container-x py-28">
         <div className="max-w-3xl">
           <div className="mono text-[11px] uppercase tracking-[0.22em] text-slate2">
             Our Services
