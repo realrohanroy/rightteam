@@ -10,6 +10,7 @@ import ReviewsPage from "@/pages/ReviewsPage";
 import ContactPage from "@/pages/ContactPage";
 import NotFoundPage from "@/pages/NotFoundPage";
 import ComplianceHubPage from "@/pages/ComplianceHubPage";
+import CareerPage from "@/pages/CareerPage";
 import EntityCompliancePage from "@/pages/EntityCompliancePage";
 import { useSmoothScroll } from "@/hooks/useSmoothScroll";
 import { HelmetProvider } from "react-helmet-async";
@@ -41,6 +42,7 @@ function AppInner() {
         <Route path="/reviews" element={<ReviewsPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/compliance-calendar" element={<ComplianceHubPage />} />
+        <Route path="/careers" element={<CareerPage />} />
         <Route path="/compliance-calendar/:entity" element={<EntityCompliancePage />} />
         <Route path="/service/:slug" element={<ServicePage />} />
         <Route path="/:pillar" element={<PillarPage />} />

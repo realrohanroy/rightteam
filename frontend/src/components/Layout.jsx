@@ -9,6 +9,7 @@ const NAV = [
   { label: "About Us", to: "/about" },
   { label: "Services", to: "/services", hasDropdown: true },
   { label: "Blogs", to: "/blogs" },
+  { label: "Careers", to: "/careers" },
   { label: "Contact Us", to: "/contact" },
 ];
 
