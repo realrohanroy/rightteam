@@ -19,7 +19,7 @@ export default function AboutPage() {
             A statutory compliance practice run by chartered accountants and company secretaries.
           </h1>
           <p className="text-base sm:text-lg text-ink/75 mt-5 leading-relaxed prose-narrow">
-            Incorporated in Mumbai in 2019, RightTeam now services 8,400+ businesses across 24 states with in-house CAs, CS and IP attorneys.
+            Incorporated in Ahmedabar in 2026, RightTeam now services 500+ businesses across 24 states with in-house CAs, CS and IP attorneys.
           </p>
 
           <div className="mt-8 relative h-[300px] sm:h-[400px] w-full lg:hidden rounded-sm overflow-hidden mb-10">
@@ -40,13 +40,7 @@ export default function AboutPage() {
             />
           </div>
         </div>
-        <div className="hidden lg:block absolute top-0 right-0 w-5/12 h-full">
-          <DuotoneImage 
-            src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1469&auto=format&fit=crop" 
-            alt="Professional Indian office setting"
-            className="w-full h-full"
-          />
-        </div>
+        
       </section>
 
       <section className="container-x py-20">
@@ -54,8 +48,8 @@ export default function AboutPage() {
         <div className="grid lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-9 grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
-              { n: "8,400+", l: "Businesses on retainer" },
-              { n: "41,000+", l: "Statutory filings completed" },
+              { n: "500+", l: "Businesses on retainer" },
+              { n: "50+", l: "Compliance & Legal Solutions" },
               { n: "24", l: "States and Union Territories" },
               { n: "0", l: "Fee-refund penalty misses" },
             ].map((s, i) => (
@@ -116,7 +110,6 @@ export default function AboutPage() {
       <section className="container-x pb-6">
         <div className="border border-ink bg-ink text-white p-8 sm:p-10 flex flex-col md:flex-row items-center gap-6 justify-between rounded-sm">
           <div className="text-center md:text-left">
-            <div className="mono text-[11px] uppercase tracking-[0.22em] text-brand">Engage the practice</div>
             <h3 className="font-display text-2xl sm:text-3xl mt-2 leading-tight">Request a fixed-fee quote.</h3>
           </div>
           <Link to="/quote" className="inline-flex items-center gap-2 bg-white text-ink px-6 py-3 font-medium hover:animate-stamp-down rounded-sm">
