@@ -97,7 +97,7 @@ export default function QuotePage() {
       <section className="container-x pt-10 grid lg:grid-cols-12 gap-10 items-start">
         <div className="lg:col-span-8">
           <div className="mono text-[11px] uppercase tracking-[0.22em] text-slate2 font-semibold">
-            RT/QUOTE/2026 · Fixed-fee estimate
+            Fixed-fee estimate
           </div>
           <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl text-ink mt-3 leading-[1.05]">
             Request a fixed-fee quote in three steps.
@@ -396,14 +396,13 @@ export default function QuotePage() {
             </div>
           </div>
           <div className="paper-card p-6">
-            <div className="mono text-[11px] uppercase tracking-widest text-slate2">Why 8,400+ businesses trust us</div>
+            <div className="mono text-[11px] uppercase tracking-widest text-slate2">Why 500+ businesses trust us</div>
             <ul className="mt-3 space-y-3 text-sm text-ink">
               {[
                 "Fixed-fee quotes — no hourly surprises",
                 "One dedicated manager per filing",
                 "Filed by due date or fee refunded",
                 "Chartered Accountants, CS and IP attorneys in-house",
-                "4.8 / 5 on Google · 1,200 verified reviews",
               ].map((it, i) => (
                 <li key={i} className="flex items-start gap-3">
                   <span className="mt-0.5 w-5 h-5 border border-approve bg-approve text-paper flex items-center justify-center shrink-0">

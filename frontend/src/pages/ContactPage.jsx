@@ -68,32 +68,11 @@ export default function ContactPage() {
               </div>
               <div>
                 <div className="mono text-[11px] uppercase tracking-widest text-slate2">Office</div>
-                <div className="text-ink">4th Floor, Nariman Chambers,<br />Nariman Point, Mumbai 400021</div>
+                <div className="text-ink">Palladium Building, B1-505, Corporate Rd, near Vodafone House, Prahlad Nagar, Ahmedabad, Gujarat 380015</div>
               </div>
             </div>
           </div>
 
-          <div className="mt-10 flex flex-wrap gap-6 items-center">
-            <Seal
-              size={100}
-              color="#1E5631"
-              label="15 min reply"
-              outerText="· 15 MIN REPLY · BUSINESS HOURS ·"
-              center={
-                <div>
-                  <div className="text-base font-black leading-none">15m</div>
-                  <div className="mono text-[8px] tracking-[0.15em] uppercase mt-0.5 font-semibold">Reply SLA</div>
-                </div>
-              }
-            />
-          </div>
-
-          <div className="mt-12 h-[240px] w-full rounded-sm overflow-hidden">
-            <DuotoneImage 
-              src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=1200&auto=format&fit=crop" 
-              alt="RightTeam office reception" 
-            />
-          </div>
         </div>
 
         <div className="lg:col-span-6">
@@ -101,7 +80,7 @@ export default function ContactPage() {
             {!result && (
               <form onSubmit={submit} data-testid="contact-form">
                 <div className="mono text-[11px] uppercase tracking-[0.2em] text-slate2">
-                  Contact form · RT/CONTACT/2026
+                  Contact Us
                 </div>
                 <h2 className="font-display text-2xl text-ink mt-2">Send us a message</h2>
 
