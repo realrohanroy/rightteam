@@ -398,10 +398,10 @@ export const RiskCalculator = ({ inverted = false, defaultEntity = "" }) => {
 
   return (
     <section className="container-x pt-0 w-full max-w-full overflow-x-hidden" data-testid="risk-calculator">
-      <div className="grid lg:grid-cols-12 gap-10 items-start w-full max-w-full overflow-x-hidden">
+      <div className="flex flex-col items-center gap-10 w-full max-w-3xl mx-auto">
 
-        {/* ── LEFT: Inputs ── */}
-        <div className="lg:col-span-5 w-full max-w-full overflow-x-hidden">
+        {/* ── Inputs ── */}
+        <div className="w-full flex flex-col items-center text-center">
           <div className={`mono text-[11px] uppercase tracking-[0.22em] ${label}`}>
             Enter your details below
           </div>
@@ -412,7 +412,7 @@ export const RiskCalculator = ({ inverted = false, defaultEntity = "" }) => {
               <label className={`mono text-[11px] uppercase tracking-widest ${label} mb-2 block`}>
                 Entity type
               </label>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 w-full max-w-full" data-testid="risk-entity-tiles">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-2 w-full max-w-full" data-testid="risk-entity-tiles">
                 {ENTITY_TYPES.map((et) => {
                   const cfg     = ENTITY_ICONS[et.key] || { icon: Building2, color: "#0B1E3D" };
                   const Icon    = cfg.icon;
@@ -452,7 +452,7 @@ export const RiskCalculator = ({ inverted = false, defaultEntity = "" }) => {
             {/* State + Employees */}
             <div className="grid grid-cols-2 gap-3 w-full">
               <div className="min-w-0">
-                <label className={`mono text-[11px] uppercase tracking-widest ${label}`}>State</label>
+                <label className={`mono text-[11px] uppercase tracking-widest ${label} block h-4 truncate`}>State</label>
                 <select
                   value={state}
                   onChange={(e) => setStateVal(e.target.value)}
@@ -468,7 +468,7 @@ export const RiskCalculator = ({ inverted = false, defaultEntity = "" }) => {
                 </select>
               </div>
               <div className="min-w-0">
-                <label className={`mono text-[11px] uppercase tracking-widest ${label} truncate block`}>Employees on payroll?</label>
+                <label className={`mono text-[11px] uppercase tracking-widest ${label} block h-4 truncate`}>Employees on payroll?</label>
                 <select
                   value={employees}
                   onChange={(e) => setEmployees(e.target.value)}
@@ -499,8 +499,8 @@ export const RiskCalculator = ({ inverted = false, defaultEntity = "" }) => {
           </div>
         </div>
 
-        {/* ── RIGHT: Results panel ── */}
-        <div className="lg:col-span-7 w-full max-w-full overflow-x-hidden">
+        {/* ── Results panel ── */}
+        <div className="w-full">
           <div className="border border-ink/15 bg-white rounded-sm overflow-hidden w-full max-w-full">
             {/* Panel header */}
             <div className="border-b border-ink/10 px-4 sm:px-5 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2 w-full">

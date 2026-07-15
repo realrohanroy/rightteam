@@ -194,64 +194,70 @@ export const Header = () => {
 export const Footer = () => {
   return (
     <footer className="border-t border-ink/15 bg-ink text-white">
-      {/* Top row with Logo and Contact details */}
-      <div className="container-x pt-14 pb-8 border-b border-white/10 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8">
-        <div>
-          <div className="flex items-center gap-3">
-            <CornerSeal color="#FFFFFF" size={28} />
-            <div className="font-display text-lg font-bold">
-              <span className="text-brand">Right</span><span className="text-white">Team</span><span className="text-brand">.in</span>
+      <div className="container-x py-14">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          {/* Left Column: Logo, description and contact info */}
+          <div className="lg:col-span-5 space-y-6">
+            <div>
+              <div className="flex items-center gap-3">
+                <CornerSeal color="#FFFFFF" size={28} />
+                <div className="font-display text-lg font-bold">
+                  <span className="text-brand">Right</span><span className="text-white">Team</span><span className="text-brand">.in</span>
+                </div>
+              </div>
+              <p className="text-sm text-white/70 mt-3 max-w-xl leading-relaxed">
+                Indian compliance and registration practice — chartered accountants, company secretaries and IP attorneys, in-house.
+              </p>
+            </div>
+            
+            {/* Contact info below the description */}
+            <div className="mono text-[11px] uppercase tracking-widest text-white/60 space-y-2">
+              <div className="flex flex-col sm:flex-row gap-2 sm:gap-4">
+                <div><span className="text-brand">EMAIL:</span> hello@rightteam.in</div>
+                <div className="hidden sm:block text-white/20">|</div>
+                <div><span className="text-brand">CALL:</span> 1800 410 3090</div>
+              </div>
+              <div className="max-w-md text-white/50 leading-relaxed normal-case">
+                Palladium Building, B1-505, Corporate Rd, near Vodafone House, Prahlad Nagar, Ahmedabad, Gujarat 380015
+              </div>
             </div>
           </div>
-          <p className="text-sm text-white/70 mt-3 max-w-xl leading-relaxed">
-            Indian compliance and registration practice — chartered accountants, company secretaries and IP attorneys, in-house.
-          </p>
-        </div>
-        <div className="mono text-[11px] uppercase tracking-widest text-white/60 space-y-2 shrink-0 text-left lg:text-right">
-          <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 lg:justify-end">
-            <div><span className="text-brand">EMAIL:</span> hello@rightteam.in</div>
-            <div className="hidden sm:block text-white/20">|</div>
-            <div><span className="text-brand">CALL:</span> 1800 410 3090</div>
+
+          {/* Right Column: Three links columns */}
+          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-10 lg:pl-10">
+            <div>
+              <div className="mono text-[11px] uppercase tracking-widest text-white/50 mb-4">SERVICES</div>
+              <ul className="space-y-3 text-sm">
+                <li><Link to="/start-your-business" className="hover:text-brand transition-colors">Company Registration</Link></li>
+                <li><Link to="/licences-registrations" className="hover:text-brand transition-colors">Licences & Registrations</Link></li>
+                <li><Link to="/tax-compliance" className="hover:text-brand transition-colors">Tax & Compliance</Link></li>
+                <li><Link to="/protect-your-brand" className="hover:text-brand transition-colors">Protect Your Brand</Link></li>
+                <li><Link to="/grow-your-business" className="hover:text-brand transition-colors">Grow Your Business</Link></li>
+              </ul>
+            </div>
+
+            <div>
+              <div className="mono text-[11px] uppercase tracking-widest text-white/50 mb-4">COMPANY</div>
+              <ul className="space-y-3 text-sm">
+                <li><Link to="/about" className="hover:text-brand transition-colors">About Us</Link></li>
+                <li><Link to="/#services" className="hover:text-brand transition-colors">Our Services</Link></li>
+                <li><Link to="/blogs" className="hover:text-brand transition-colors">Blog & Insights</Link></li>
+                <li><Link to="/contact" className="hover:text-brand transition-colors">Contact Us</Link></li>
+                <li><Link to="/faqs" className="hover:text-brand transition-colors">FAQs</Link></li>
+                <li><Link to="/careers" className="hover:text-brand transition-colors">Careers</Link></li>
+              </ul>
+            </div>
+
+            <div>
+              <div className="mono text-[11px] uppercase tracking-widest text-white/50 mb-4">LEGAL</div>
+              <ul className="space-y-3 text-sm">
+                <li><Link to="/privacy-policy" className="hover:text-brand transition-colors">Privacy Policy</Link></li>
+                <li><Link to="/terms-conditions" className="hover:text-brand transition-colors">Terms & Conditions</Link></li>
+                <li><Link to="/refund-policy" className="hover:text-brand transition-colors">Refund Policy</Link></li>
+                <li><Link to="/disclaimer" className="hover:text-brand transition-colors">Disclaimer</Link></li>
+              </ul>
+            </div>
           </div>
-          <div className="max-w-md text-white/50 leading-relaxed normal-case">
-            Palladium Building, B1-505, Corporate Rd, near Vodafone House, Prahlad Nagar, Ahmedabad, Gujarat 380015
-          </div>
-        </div>
-      </div>
-
-      {/* Middle row with 3 columns */}
-      <div className="container-x py-14 grid grid-cols-1 md:grid-cols-3 gap-10">
-        <div>
-          <div className="mono text-[11px] uppercase tracking-widest text-white/50 mb-4">SERVICES</div>
-          <ul className="space-y-3 text-sm">
-            <li><Link to="/start-your-business" className="hover:text-brand transition-colors">Company Registration</Link></li>
-            <li><Link to="/licences-registrations" className="hover:text-brand transition-colors">Licences & Registrations</Link></li>
-            <li><Link to="/tax-compliance" className="hover:text-brand transition-colors">Tax & Compliance</Link></li>
-            <li><Link to="/protect-your-brand" className="hover:text-brand transition-colors">Protect Your Brand</Link></li>
-            <li><Link to="/grow-your-business" className="hover:text-brand transition-colors">Grow Your Business</Link></li>
-          </ul>
-        </div>
-
-        <div>
-          <div className="mono text-[11px] uppercase tracking-widest text-white/50 mb-4">COMPANY</div>
-          <ul className="space-y-3 text-sm">
-            <li><Link to="/about" className="hover:text-brand transition-colors">About Us</Link></li>
-            <li><Link to="/#services" className="hover:text-brand transition-colors">Our Services</Link></li>
-            <li><Link to="/blogs" className="hover:text-brand transition-colors">Blog & Insights</Link></li>
-            <li><Link to="/contact" className="hover:text-brand transition-colors">Contact Us</Link></li>
-            <li><Link to="/faqs" className="hover:text-brand transition-colors">FAQs</Link></li>
-            <li><Link to="/careers" className="hover:text-brand transition-colors">Careers</Link></li>
-          </ul>
-        </div>
-
-        <div>
-          <div className="mono text-[11px] uppercase tracking-widest text-white/50 mb-4">LEGAL</div>
-          <ul className="space-y-3 text-sm">
-            <li><Link to="/privacy-policy" className="hover:text-brand transition-colors">Privacy Policy</Link></li>
-            <li><Link to="/terms-conditions" className="hover:text-brand transition-colors">Terms & Conditions</Link></li>
-            <li><Link to="/refund-policy" className="hover:text-brand transition-colors">Refund Policy</Link></li>
-            <li><Link to="/disclaimer" className="hover:text-brand transition-colors">Disclaimer</Link></li>
-          </ul>
         </div>
       </div>
 

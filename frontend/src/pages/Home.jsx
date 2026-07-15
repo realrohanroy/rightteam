@@ -339,7 +339,7 @@ export default function Home() {
 
       {/* ── COMPLIANCE CALCULATOR — navy bg ─────────────────────────────────── */}
       <section className="section-navy py-28 border-y border-white/10" data-testid="calculator-wrapper">
-        <div className="container-x mb-12 flex items-center gap-6">
+        <div className="container-x mb-12 flex flex-col items-center text-center gap-4">
           <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-brand shrink-0 shadow-inner">
             <Calendar size={32} strokeWidth={1.5} />
           </div>
