@@ -12,6 +12,8 @@ import NotFoundPage from "@/pages/NotFoundPage";
 import ComplianceHubPage from "@/pages/ComplianceHubPage";
 import CareerPage from "@/pages/CareerPage";
 import EntityCompliancePage from "@/pages/EntityCompliancePage";
+import PrivacyPolicyPage from "@/pages/PrivacyPolicyPage";
+import TermsConditionsPage from "@/pages/TermsConditionsPage";
 import { useSmoothScroll } from "@/hooks/useSmoothScroll";
 import { HelmetProvider } from "react-helmet-async";
 
@@ -46,6 +48,8 @@ function AppInner() {
         <Route path="/compliance-calendar/:entity" element={<EntityCompliancePage />} />
         <Route path="/service/:slug" element={<ServicePage />} />
         <Route path="/:pillar" element={<PillarPage />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+        <Route path="/terms-conditions" element={<TermsConditionsPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>
