@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Layout } from "../components/Layout";
 import { CredentialRow } from "../components/Seal";
-import { TeamGrid } from "../components/TeamGrid";
 import { CompliancePDFCta } from "../components/CompliancePDFCta";
 import { ArrowRight, Check, ChevronDown } from "lucide-react";
 import * as Accordion from "@radix-ui/react-accordion";
@@ -100,8 +99,6 @@ export default function AboutPage() {
           </Accordion.Root>
         </div>
       </section>
-
-      <TeamGrid />
 
       <section className="container-x py-16">
         <CompliancePDFCta />

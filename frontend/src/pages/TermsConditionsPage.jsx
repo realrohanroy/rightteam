@@ -200,11 +200,12 @@ function PolicySection({ id, iconKey, number, title, children }) {
   );
 }
 
-function BulletList({ items }) {
+function BulletList({ items, tone = "light" }) {
+  const textClass = tone === "dark" ? "text-white/80" : "text-ink/75";
   return (
     <ul className="space-y-2">
       {items.map((item, i) => (
-        <li key={i} className="flex items-start gap-3 text-sm text-ink/75 leading-relaxed">
+        <li key={i} className={`flex items-start gap-3 text-sm leading-relaxed ${textClass}`}>
           <span className="mt-1.5 shrink-0 w-1.5 h-1.5 rounded-full bg-brand" />
           <span>{item}</span>
         </li>
@@ -521,7 +522,7 @@ export default function TermsConditionsPage() {
                   <SvgGovt size={16} className="text-brand" />
                   <span className="font-semibold text-sm tracking-wide">Important Disclaimer</span>
                 </div>
-                <BulletList items={[
+                <BulletList tone="dark" items={[
                   "RightTeam cannot influence approval decisions.",
                   "We cannot guarantee registration, certification, licence, or trademark approval.",
                   "We are not responsible for delays caused by government authorities.",
@@ -803,9 +804,6 @@ export default function TermsConditionsPage() {
                   <div className="mt-5 flex flex-wrap gap-3">
                     <Link to="/contact" className="btn-primary text-sm rounded-sm">
                       Reach Our Team <ArrowRight size={14} />
-                    </Link>
-                    <Link to="/terms-conditions" className="btn-outline text-sm rounded-sm border-white/30 text-white hover:border-brand">
-                      Terms &amp; Conditions
                     </Link>
                     <Link to="/privacy-policy" className="btn-outline text-sm rounded-sm border-white/30 text-white hover:border-brand">
                       Privacy Policy

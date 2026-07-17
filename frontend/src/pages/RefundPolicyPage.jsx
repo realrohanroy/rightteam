@@ -109,6 +109,20 @@ const SvgContact = ({ size = 18, className = "" }) => (
   </svg>
 );
 
+const SvgRupee = ({ size = 18, className = "" }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" className={className} xmlns="http://www.w3.org/2000/svg">
+    {/* Two parallel shirorekha bars at the top */}
+    <path d="M6 4h12" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round"/>
+    <path d="M6 9h12" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round"/>
+    {/* Small stem connecting middle bar to the "ra" base */}
+    <path d="M6 13h3" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round"/>
+    {/* Bowl of the Devanagari "ra" curving down-right */}
+    <path d="M9 13c4.3 0 8 3 8.8 7" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"/>
+    {/* Long diagonal leg of "ra" extending to bottom-right */}
+    <path d="M6 13l8.5 8" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round"/>
+  </svg>
+);
+
 /* ── Section registry ─────────────────────────────────────────────────── */
 const SECTIONS = [
   { id: "scope",           label: "Scope",                         Icon: SvgScope },
@@ -238,12 +252,7 @@ export default function RefundPolicyPage() {
             {/* Icon + badge */}
             <div className="flex items-center gap-3 mb-5">
               <div className="w-12 h-12 rounded-sm bg-brand/20 border border-brand/30 flex items-center justify-center">
-                {/* Indian Rupee / wallet refund SVG */}
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" className="text-brand" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M6 3h12M6 8h12M9 8c0 3.31 2.69 6 6 6" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round"/>
-                  <path d="M6 8l6 13" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round"/>
-                  <path d="M18 3c0 2.76-2.69 5-6 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" opacity=".5"/>
-                </svg>
+                <SvgRupee size={22} className="text-brand" />
               </div>
               <div className="mono text-[10px] uppercase tracking-[0.2em] text-white/50 border border-white/15 px-3 py-1 rounded-sm">
                 Legal Document

@@ -18,21 +18,21 @@ const ARTICLES = [
     category: "Tax Law",
     categoryColor: "bg-[#2563EB]", // Royal Blue
     title: "Maximizing Deductions: A Guide for Small Businesses",
-    href: "/resources/maximizing-deductions",
+    href: "/blogs/maximizing-deductions-small-businesses",
   },
   {
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop",
     category: "GST",
     categoryColor: "bg-[#10B981]", // Emerald Green
     title: "Understanding the Latest GST Compliance Changes",
-    href: "/resources/gst-compliance-changes",
+    href: "/blogs/gst-compliance-changes",
   },
   {
     image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1200&auto=format&fit=crop",
     category: "Audit Prep",
     categoryColor: "bg-[#F97316]", // Vivid Orange
     title: "Preparing for Your Next Financial Audit",
-    href: "/resources/preparing-financial-audit",
+    href: "/blogs/preparing-financial-audit",
   },
 ];
 
@@ -49,11 +49,11 @@ const LOGOS = [
 export const ResourcesAndCta = () => {
   return (
     <div className="w-full">
-      {/* 1. Resources & Insights Section */}
+      {/* 1. Blogs & Insights Section */}
       <section className="bg-white py-20" data-testid="resources-insights-section">
         <div className="container-x">
           <h2 className="font-sans text-3xl sm:text-4xl font-bold text-[#0B1E3D] mb-10 text-left">
-            Resources & Insights
+            Blogs &amp; Insights
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

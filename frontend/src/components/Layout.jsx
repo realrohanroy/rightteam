@@ -207,7 +207,7 @@ export const Footer = () => {
                 </div>
               </div>
               <p className="text-sm text-white/70 mt-3 max-w-xl leading-relaxed">
-                Indian compliance and registration practice — chartered accountants, company secretaries and IP attorneys, in-house.
+                Indian compliance and registration practice. Chartered accountants, company secretaries and IP attorneys, in-house.
               </p>
             </div>
             
@@ -268,9 +268,6 @@ export const Footer = () => {
           <div className="mono text-[11px] tracking-widest text-white/50 uppercase">
             © {new Date().getFullYear()} RightTeam Pvt.Ltd.
             Filings subject to government processing timelines.
-          </div>
-          <div className="mono text-[11px] tracking-widest text-white/50 uppercase">
-            Ref: RT/WEB/2026/HOME
           </div>
         </div>
       </div>

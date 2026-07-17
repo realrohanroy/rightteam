@@ -28,9 +28,6 @@ export const FilingTabs = ({ activeSlug, onTabChange }) => {
               data-testid={`filing-tab-${p.slug}`}
               className={`filing-tab whitespace-nowrap ${isActive ? "filing-tab-active" : ""}`}
             >
-              <span className="mono text-[10px] uppercase tracking-widest text-slate2 block leading-none mb-1">
-                Pillar {PILLARS.findIndex((x) => x.slug === p.slug) + 1}
-              </span>
               {p.label}
             </Link>
           );

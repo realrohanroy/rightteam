@@ -18,6 +18,8 @@ import { useSmoothScroll } from "@/hooks/useSmoothScroll";
 import { HelmetProvider } from "react-helmet-async";
 import RefundPolicyPage from "@/pages/RefundPolicyPage";
 import DisclaimerPage from "@/pages/DisclaimerPage";
+import BlogsPage from "@/pages/BlogsPage";
+import BlogPostPage from "@/pages/BlogPostPage";
 
 /* Register GSAP plugins globally */
 import { gsap } from "gsap";
@@ -54,6 +56,8 @@ function AppInner() {
         <Route path="/terms-conditions" element={<TermsConditionsPage />} />
         <Route path="/refund-policy" element={<RefundPolicyPage/>} />
         <Route path="/disclaimer" element={<DisclaimerPage />} />
+        <Route path="/blogs" element={<BlogsPage />} />
+        <Route path="/blogs/:slug" element={<BlogPostPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>

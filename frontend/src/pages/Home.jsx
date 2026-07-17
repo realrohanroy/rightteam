@@ -163,10 +163,7 @@ const MobilePillarAccordion = () => {
               }`}
             >
               <div>
-                <div className={`mono text-[10px] uppercase tracking-widest ${ isOpen ? "text-white/50" : "text-slate2"}` }>
-                  Pillar {idx + 1}
-                </div>
-                <div className="font-display text-base font-semibold mt-0.5">{p.label}</div>
+                <div className="font-display text-base font-semibold">{p.label}</div>
               </div>
               <ChevronDown
                 size={18}
