@@ -16,6 +16,7 @@ import PrivacyPolicyPage from "@/pages/PrivacyPolicyPage";
 import TermsConditionsPage from "@/pages/TermsConditionsPage";
 import { useSmoothScroll } from "@/hooks/useSmoothScroll";
 import { HelmetProvider } from "react-helmet-async";
+import RefundPolicyPage from "@/pages/RefundPolicyPage";
 
 /* Register GSAP plugins globally */
 import { gsap } from "gsap";
@@ -50,6 +51,7 @@ function AppInner() {
         <Route path="/:pillar" element={<PillarPage />} />
         <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
         <Route path="/terms-conditions" element={<TermsConditionsPage />} />
+        <Route path="/refund-policy" element={<RefundPolicyPage/>} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>
