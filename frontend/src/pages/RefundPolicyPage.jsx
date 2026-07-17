@@ -153,10 +153,11 @@ function BulletList({ items, variant = "brand" }) {
     : variant === "green"
     ? "bg-[#2a7a4f]"
     : "bg-brand";
+  const textClass = variant === "light" ? "text-white/85" : "text-ink/75";
   return (
     <ul className="space-y-2">
       {items.map((item, i) => (
-        <li key={i} className="flex items-start gap-3 text-sm text-ink/75 leading-relaxed">
+        <li key={i} className={`flex items-start gap-3 text-sm ${textClass} leading-relaxed`}>
           <span className={`mt-1.5 shrink-0 w-1.5 h-1.5 rounded-full ${dot}`} />
           <span>{item}</span>
         </li>
@@ -245,7 +246,7 @@ export default function RefundPolicyPage() {
                 </svg>
               </div>
               <div className="mono text-[10px] uppercase tracking-[0.2em] text-white/50 border border-white/15 px-3 py-1 rounded-sm">
-                Legal Document · RT/LEGAL/RP/2026
+                Legal Document
               </div>
             </div>
 
@@ -331,6 +332,9 @@ export default function RefundPolicyPage() {
                 </Link>
                 <Link to="/privacy-policy" className="btn-outline w-full justify-center text-xs py-2 rounded-sm">
                   Privacy Policy
+                </Link>
+                <Link to="/disclaimer" className="btn-outline w-full justify-center text-xs py-2 rounded-sm">
+                  Disclaimer
                 </Link>
                 <Link to="/contact" className="btn-primary w-full justify-center text-xs py-2.5 rounded-sm">
                   Contact Us <ArrowRight size={12} />
@@ -454,7 +458,7 @@ export default function RefundPolicyPage() {
                   <SvgGovt size={15} className="text-brand" />
                   <span className="font-semibold text-sm tracking-wide">No Refund in These Scenarios</span>
                 </div>
-                <BulletList items={[
+                <BulletList variant="light" items={[
                   "Application rejected by a government authority.",
                   "Application put on hold or returned for clarification.",
                   "Delayed due to government processing timelines.",
@@ -705,6 +709,9 @@ export default function RefundPolicyPage() {
                     </Link>
                     <Link to="/privacy-policy" className="btn-outline text-sm rounded-sm border-white/30 text-white hover:border-brand">
                       Privacy Policy
+                    </Link>
+                    <Link to="/disclaimer" className="btn-outline text-sm rounded-sm border-white/30 text-white hover:border-brand">
+                      Disclaimer
                     </Link>
                   </div>
                 </div>

@@ -155,7 +155,7 @@ export default function PrivacyPolicyPage() {
                 <Shield size={22} className="text-brand" />
               </div>
               <div className="mono text-[10px] uppercase tracking-[0.2em] text-white/50 border border-white/15 px-3 py-1 rounded-sm">
-                Legal Document · RT/LEGAL/PP/2026
+                Legal Document
               </div>
             </div>
 
@@ -252,7 +252,16 @@ export default function PrivacyPolicyPage() {
                 })}
               </nav>
 
-              <div className="mt-6 pt-4 border-t border-ink/10">
+              <div className="mt-6 pt-4 border-t border-ink/10 space-y-2">
+                <Link to="/terms-conditions" className="btn-outline w-full justify-center text-xs py-2 rounded-sm">
+                  Terms &amp; Conditions
+                </Link>
+                <Link to="/refund-policy" className="btn-outline w-full justify-center text-xs py-2 rounded-sm">
+                  Refund Policy
+                </Link>
+                <Link to="/disclaimer" className="btn-outline w-full justify-center text-xs py-2 rounded-sm">
+                  Disclaimer
+                </Link>
                 <Link
                   to="/contact"
                   className="btn-primary w-full justify-center text-xs py-2.5 rounded-sm"
@@ -634,6 +643,15 @@ export default function PrivacyPolicyPage() {
                   <div className="mt-5 flex flex-wrap gap-3">
                     <Link to="/contact" className="btn-primary text-sm rounded-sm">
                       Reach Our Team <ArrowRight size={14} />
+                    </Link>
+                    <Link to="/terms-conditions" className="btn-outline text-sm rounded-sm border-white/30 text-white hover:border-brand">
+                      Terms &amp; Conditions
+                    </Link>
+                    <Link to="/refund-policy" className="btn-outline text-sm rounded-sm border-white/30 text-white hover:border-brand">
+                      Refund Policy
+                    </Link>
+                    <Link to="/disclaimer" className="btn-outline text-sm rounded-sm border-white/30 text-white hover:border-brand">
+                      Disclaimer
                     </Link>
                     <Link to="/quote" className="btn-outline text-sm rounded-sm border-white/30 text-white hover:border-brand">
                       Get a Free Quote
