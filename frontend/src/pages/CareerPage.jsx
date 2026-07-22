@@ -22,7 +22,10 @@ import {
   Check,
 } from "lucide-react";
 import { Helmet } from "react-helmet-async";
+import axios from "axios";
 
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+const API = `${BACKEND_URL}/api`;
 /* ─────────────────────────────────────────────────────────────────────────────
    JOB DATA
 ───────────────────────────────────────────────────────────────────────────── */
@@ -278,8 +281,11 @@ function ApplicationForm({ selectedRole, onRoleChange }) {
     }
   };
 
-  const handleSubmit = (e) => {
+  const [submitError, setSubmitError] = useState("");
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setSubmitError("");
     const allTouched = Object.fromEntries(Object.keys(form).map((k) => [k, true]));
     setTouched(allTouched);
     const e2 = validate(form);
@@ -287,10 +293,31 @@ function ApplicationForm({ selectedRole, onRoleChange }) {
     if (Object.keys(e2).length > 0) return;
 
     setSubmitting(true);
-    setTimeout(() => {
-      setSubmitting(false);
+    try {
+      const formData = new FormData();
+      formData.append("name", form.fullName);
+      formData.append("phone", form.phone);
+      formData.append("email", form.email);
+      formData.append("position", form.position);
+      // We don't have experience field mapped in backend, backend only has "portfolio", "linkedin", "message"
+      // But we can stuff experience and cover note into "message"
+      const combinedMessage = `Experience: ${form.experience}\nCover Note: ${form.coverNote}`;
+      formData.append("message", combinedMessage);
+      
+      // Append the actual file
+      formData.append("resume", form.resume);
+
+      await axios.post(`${API}/career`, formData, {
+        headers: { "Content-Type": "multipart/form-data" }
+      });
+      
       setSubmitted(true);
-    }, 1800);
+    } catch (error) {
+      console.error("Submission failed:", error);
+      setSubmitError("Failed to submit application. Please check your network and try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const inputClass = (field) =>
@@ -400,7 +427,7 @@ function ApplicationForm({ selectedRole, onRoleChange }) {
           <input
             id="career-email"
             type="email"
-            placeholder="you@example.com"
+            placeholder="you@company.in"
             value={form.email}
             onChange={(e) => handleChange("email", e.target.value)}
             onBlur={() => handleBlur("email")}
@@ -559,6 +586,12 @@ function ApplicationForm({ selectedRole, onRoleChange }) {
       <p className="text-xs text-slate2/80 leading-relaxed">
         By submitting, you agree that RightTeam may store and process your data for recruitment purposes. We do not share personal information with third parties.
       </p>
+
+      {submitError && (
+        <div className="text-sm text-seal bg-seal/10 p-3 border border-seal/20 rounded-sm">
+          {submitError}
+        </div>
+      )}
 
       {/* Submit */}
       <button

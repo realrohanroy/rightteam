@@ -29,15 +29,10 @@ export const CompliancePDFCta = ({ variant = "default" }) => {
     setEmailError("");
     setState("submitting");
     try {
-      const { data } = await axios.post(`${API}/leads`, {
-        service_slug: "compliance-calendar-2026",
-        service_name: "2026 India Compliance Calendar (PDF)",
-        full_name: "Calendar download",
+      const { data } = await axios.post(`${API}/newsletter`, {
         email,
-        phone: "0000000000",
-        source: "calendar_download",
       });
-      setReference(data.reference);
+      setReference(data.id || "Subscribed");
       setState("done");
     } catch {
       setState("error");

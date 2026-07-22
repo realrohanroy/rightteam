@@ -50,8 +50,8 @@ export default function QuotePage() {
     if (touched.phone) {
       if (!form.phone.trim()) {
         errs.phone = "Phone number is required";
-      } else if (form.phone.replace(/[^0-9]/g, "").length < 10) {
-        errs.phone = "Phone number must be at least 10 digits";
+      } else if (!/^\d{10}$/.test(form.phone)) {
+        errs.phone = "Enter a valid 10-digit mobile number";
       }
     }
     return errs;
@@ -73,7 +73,7 @@ export default function QuotePage() {
   const canNext = () => {
     if (step === 0) return !!form.service_slug;
     if (step === 1) return !!form.business_stage && !!form.state;
-    if (step === 2) return !!form.full_name && !!form.email && form.phone.length >= 10;
+    if (step === 2) return !!form.full_name && !!form.email && /^\d{10}$/.test(form.phone);
     return true;
   };
 
@@ -187,7 +187,7 @@ export default function QuotePage() {
 
                   <div className="mt-5 grid sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="mono text-[11px] uppercase tracking-widest text-slate2">Business stage</label>
+                      <label className="mono text-[11px] uppercase tracking-widest text-slate2">Business stage <span className="text-seal">*</span></label>
                       <select
                         value={form.business_stage}
                         onChange={(e) => update("business_stage", e.target.value)}
@@ -202,7 +202,7 @@ export default function QuotePage() {
                       </select>
                     </div>
                     <div>
-                      <label className="mono text-[11px] uppercase tracking-widest text-slate2">State / UT</label>
+                      <label className="mono text-[11px] uppercase tracking-widest text-slate2">State / UT <span className="text-seal">*</span></label>
                       <input
                         type="text"
                         value={form.state}
@@ -239,7 +239,7 @@ export default function QuotePage() {
 
                   <div className="mt-5 grid sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="mono text-[11px] uppercase tracking-widest text-slate2">Full name</label>
+                      <label className="mono text-[11px] uppercase tracking-widest text-slate2">Full name <span className="text-seal">*</span></label>
                       <input
                         type="text"
                         value={form.full_name}
@@ -258,18 +258,31 @@ export default function QuotePage() {
                       )}
                     </div>
                     <div>
-                      <label className="mono text-[11px] uppercase tracking-widest text-slate2">Phone / WhatsApp</label>
-                      <input
-                        type="tel"
-                        value={form.phone}
-                        onChange={(e) => update("phone", e.target.value)}
-                        onBlur={() => setTouched(t => ({ ...t, phone: true }))}
-                        className={`w-full mt-1 bg-white border px-3 py-2.5 focus:outline-none focus:border-ink ${
-                          errors.phone ? "border-seal" : "border-ink/25"
-                        }`}
-                        placeholder="+91 99999 99999"
-                        data-testid="quote-phone"
-                      />
+                      <label className="mono text-[11px] uppercase tracking-widest text-slate2">Mobile Number <span className="text-seal">*</span></label>
+                      <div className="relative mt-1">
+                        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-ink/60 border-r border-ink/20 pr-2 select-none">+91</span>
+                        <input
+                          type="tel"
+                          inputMode="numeric"
+                          value={form.phone}
+                          onChange={(e) => {
+                            const raw = e.target.value.replace(/\D/g, "").slice(0, 10);
+                            update("phone", raw);
+                          }}
+                          onKeyDown={(e) => {
+                            if (!/[\d\b\t]/.test(e.key) && !["Backspace","Delete","Tab","ArrowLeft","ArrowRight","ArrowUp","ArrowDown","End","Home"].includes(e.key)) {
+                              e.preventDefault();
+                            }
+                          }}
+                          onBlur={() => setTouched(t => ({ ...t, phone: true }))}
+                          className={`w-full bg-white border pl-12 pr-3 py-2.5 focus:outline-none focus:border-ink ${
+                            errors.phone ? "border-seal" : "border-ink/25"
+                          }`}
+                          placeholder="9876543210"
+                          maxLength={10}
+                          data-testid="quote-phone"
+                        />
+                      </div>
                       {errors.phone && (
                         <div className="flex items-center gap-1.5 mt-1.5 text-xs bg-white border border-seal/30 px-2.5 py-1.5 rounded shadow-sm text-ink w-fit">
                           <AlertOctagon size={14} className="text-seal shrink-0" />
@@ -278,7 +291,7 @@ export default function QuotePage() {
                       )}
                     </div>
                     <div className="sm:col-span-2">
-                      <label className="mono text-[11px] uppercase tracking-widest text-slate2">Email</label>
+                      <label className="mono text-[11px] uppercase tracking-widest text-slate2">Email <span className="text-seal">*</span></label>
                       <input
                         type="email"
                         value={form.email}
@@ -287,6 +300,7 @@ export default function QuotePage() {
                         className={`w-full mt-1 bg-white border px-3 py-2.5 focus:outline-none focus:border-ink ${
                           errors.email ? "border-seal" : "border-ink/25"
                         }`}
+                        placeholder="you@company.in"
                         data-testid="quote-email"
                       />
                       {errors.email && (
@@ -297,11 +311,15 @@ export default function QuotePage() {
                       )}
                     </div>
                     <div className="sm:col-span-2">
-                      <label className="mono text-[11px] uppercase tracking-widest text-slate2">Anything specific? (optional)</label>
+                      <div className="flex justify-between items-end">
+                        <label className="mono text-[11px] uppercase tracking-widest text-slate2">Anything specific? (optional)</label>
+                        <span className="mono text-[10px] text-slate2">{form.notes.length}/500</span>
+                      </div>
                       <textarea
                         value={form.notes}
-                        onChange={(e) => update("notes", e.target.value)}
+                        onChange={(e) => update("notes", e.target.value.slice(0, 500))}
                         rows={3}
+                        maxLength={500}
                         className="w-full mt-1 bg-white border border-ink/25 px-3 py-2.5 focus:outline-none focus:border-ink"
                         placeholder="e.g. 3 years of pending ROC filings, urgent"
                         data-testid="quote-notes"
