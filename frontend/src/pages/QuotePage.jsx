@@ -6,6 +6,15 @@ import { PILLARS, SERVICES, findService } from "../data/services";
 import { ArrowRight, Check, ArrowLeft, ClipboardCheck, AlertOctagon } from "lucide-react";
 import { Seal } from "../components/Seal";
 import { DocumentReviewIllustration } from "../components/Illustrations";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "../components/ui/select";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -153,28 +162,30 @@ export default function QuotePage() {
                   <h2 className="font-display text-2xl text-ink">What are you looking to file?</h2>
                   <p className="text-slate2 text-sm mt-1">Pick the closest match — we'll fine-tune on the call.</p>
                   <div className="mt-5 relative">
-                    <select
+                    <Select
                       value={form.service_slug}
-                      onChange={(e) => update("service_slug", e.target.value)}
-                      className="w-full appearance-none bg-white border border-ink/25 px-4 py-3 focus:outline-none focus:border-ink"
-                      data-testid="quote-service-select"
+                      onValueChange={(val) => update("service_slug", val)}
                     >
-                      <option value="">Select a service…</option>
-                      {PILLARS.map((p) => (
-                        <optgroup key={p.slug} label={p.label}>
-                          {SERVICES.filter((s) => s.pillar === p.slug).map((s) => (
-                            <option key={s.slug} value={s.slug}>{s.name} — from {s.startingPrice}</option>
-                          ))}
-                        </optgroup>
-                      ))}
-                    </select>
+                      <SelectTrigger className="w-full bg-white border border-ink/25 px-4 h-[46px] rounded-none focus:ring-0 focus:border-ink" data-testid="quote-service-select">
+                        <SelectValue placeholder="Select a service…" />
+                      </SelectTrigger>
+                      <SelectContent className="rounded-sm max-h-[300px]">
+                        {PILLARS.map((p) => (
+                          <SelectGroup key={p.slug}>
+                            <SelectLabel className="bg-alt/50 uppercase tracking-widest text-slate2 text-[10px]">{p.label}</SelectLabel>
+                            {SERVICES.filter((s) => s.pillar === p.slug).map((s) => (
+                              <SelectItem key={s.slug} value={s.slug}>{s.name}</SelectItem>
+                            ))}
+                          </SelectGroup>
+                        ))}
+                      </SelectContent>
+                    </Select>
                   </div>
                   {chosen && (
                     <div className="mt-5 border border-ink/15 p-4 bg-alt">
                       <div className="mono text-[10px] uppercase tracking-widest text-slate2">You picked</div>
                       <div className="font-display text-xl text-ink mt-1">{chosen.name}</div>
                       <div className="text-sm text-slate2 mt-1">{chosen.oneLine}</div>
-                      <div className="mt-3 font-display text-2xl text-ink font-bold">Starts at {chosen.startingPrice}</div>
                     </div>
                   )}
                 </div>
@@ -188,45 +199,64 @@ export default function QuotePage() {
                   <div className="mt-5 grid sm:grid-cols-2 gap-4">
                     <div>
                       <label className="mono text-[11px] uppercase tracking-widest text-slate2">Business stage <span className="text-seal">*</span></label>
-                      <select
+                      <Select
                         value={form.business_stage}
-                        onChange={(e) => update("business_stage", e.target.value)}
-                        className="w-full mt-1 bg-white border border-ink/25 px-3 py-2.5 focus:outline-none focus:border-ink"
-                        data-testid="quote-stage"
+                        onValueChange={(val) => update("business_stage", val)}
                       >
-                        <option value="">Select…</option>
-                        <option>Not registered yet</option>
-                        <option>Proprietorship / Partnership</option>
-                        <option>LLP / Private Limited</option>
-                        <option>Public Limited</option>
-                      </select>
+                        <SelectTrigger className="w-full mt-1 bg-white border border-ink/25 px-3 h-[42px] rounded-none focus:ring-0 focus:border-ink" data-testid="quote-stage">
+                          <SelectValue placeholder="Select…" />
+                        </SelectTrigger>
+                        <SelectContent className="rounded-sm">
+                          <SelectItem value="Not registered yet">Not registered yet</SelectItem>
+                          <SelectItem value="Proprietorship / Partnership">Proprietorship / Partnership</SelectItem>
+                          <SelectItem value="LLP / Private Limited">LLP / Private Limited</SelectItem>
+                          <SelectItem value="Public Limited">Public Limited</SelectItem>
+                        </SelectContent>
+                      </Select>
                     </div>
                     <div>
                       <label className="mono text-[11px] uppercase tracking-widest text-slate2">State / UT <span className="text-seal">*</span></label>
-                      <input
-                        type="text"
+                      <Select
                         value={form.state}
-                        onChange={(e) => update("state", e.target.value)}
-                        className="w-full mt-1 bg-white border border-ink/25 px-3 py-2.5 focus:outline-none focus:border-ink"
-                        placeholder="e.g. Maharashtra"
-                        data-testid="quote-state"
-                      />
+                        onValueChange={(val) => update("state", val)}
+                      >
+                        <SelectTrigger className="w-full mt-1 bg-white border border-ink/25 px-3 h-[42px] rounded-none focus:ring-0 focus:border-ink" data-testid="quote-state">
+                          <SelectValue placeholder="e.g. Maharashtra" />
+                        </SelectTrigger>
+                        <SelectContent className="rounded-sm max-h-[300px]">
+                          {[
+                            "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", 
+                            "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", 
+                            "Karnataka", "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", 
+                            "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Punjab", 
+                            "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura", 
+                            "Uttar Pradesh", "Uttarakhand", "West Bengal", 
+                            "Andaman and Nicobar Islands", "Chandigarh", "Dadra and Nagar Haveli and Daman and Diu", 
+                            "Delhi", "Jammu and Kashmir", "Ladakh", "Lakshadweep", "Puducherry"
+                          ].map(state => (
+                            <SelectItem key={state} value={state}>{state}</SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
                     </div>
                     <div className="sm:col-span-2">
                       <label className="mono text-[11px] uppercase tracking-widest text-slate2">Estimated annual turnover (optional)</label>
-                      <select
-                        value={form.turnover}
-                        onChange={(e) => update("turnover", e.target.value)}
-                        className="w-full mt-1 bg-white border border-ink/25 px-3 py-2.5 focus:outline-none focus:border-ink"
-                        data-testid="quote-turnover"
+                      <Select
+                        value={form.turnover || "Prefer not to say"}
+                        onValueChange={(val) => update("turnover", val)}
                       >
-                        <option value="">Prefer not to say</option>
-                        <option>Pre-revenue</option>
-                        <option>Under ₹40 lakh</option>
-                        <option>₹40 lakh – ₹1 crore</option>
-                        <option>₹1 crore – ₹5 crore</option>
-                        <option>Above ₹5 crore</option>
-                      </select>
+                        <SelectTrigger className="w-full mt-1 bg-white border border-ink/25 px-3 h-[42px] rounded-none focus:ring-0 focus:border-ink" data-testid="quote-turnover">
+                          <SelectValue placeholder="Prefer not to say" />
+                        </SelectTrigger>
+                        <SelectContent className="rounded-sm">
+                          <SelectItem value="Prefer not to say">Prefer not to say</SelectItem>
+                          <SelectItem value="Pre-revenue">Pre-revenue</SelectItem>
+                          <SelectItem value="Under ₹40 lakh">Under ₹40 lakh</SelectItem>
+                          <SelectItem value="₹40 lakh – ₹1 crore">₹40 lakh – ₹1 crore</SelectItem>
+                          <SelectItem value="₹1 crore – ₹5 crore">₹1 crore – ₹5 crore</SelectItem>
+                          <SelectItem value="Above ₹5 crore">Above ₹5 crore</SelectItem>
+                        </SelectContent>
+                      </Select>
                     </div>
                   </div>
                 </div>

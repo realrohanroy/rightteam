@@ -66,33 +66,48 @@ export default function AboutPage() {
 
       <section className="container-x pb-20 grid lg:grid-cols-12 gap-10">
         <div className="lg:col-span-5">
-          <div className="mono text-[11px] uppercase tracking-[0.22em] text-slate2">Principles of practice</div>
+          <div className="mono text-[11px] uppercase tracking-[0.22em] text-slate2">FAQs</div>
           <h2 className="font-display text-3xl sm:text-4xl text-ink mt-3 leading-tight">
-            Predictable by design.
+            Frequently Asked Questions
           </h2>
         </div>
         <div className="lg:col-span-7">
-          <Accordion.Root type="multiple" defaultValue={["v-0"]} className="space-y-0 border-t border-ink/10">
+          <Accordion.Root type="multiple" defaultValue={["faq-0"]} className="space-y-0 border-t border-ink/10">
             {[
-              { t: "Fixed-fee engagements.", b: "The quote issued at engagement is the fee billed at completion. Hourly billing is not offered." },
-              { t: "Named accountability.", b: "Every engagement is assigned to a named manager whose ICAI or ICSI membership number appears on the engagement letter." },
-              { t: "Missed-deadline refund.", b: "If a statutory return is filed late due to the firm, the professional fee for that return is refunded in full." },
-              { t: "Documented review.", b: "Every return is reviewed with the client before submission. Draft, approval and filing are all logged in the client dashboard." },
+              { 
+                q: "How long does company registration actually take?", 
+                a: "Usually 7-10 working days for a Pvt Ltd or LLP, once your documents are in order. Honestly, the delays we see are almost never on the government's side, it's incomplete paperwork. That's why we check everything before we file, not after it gets rejected." 
+              },
+              { 
+                q: "Do I really need a CA, or can I just do this myself?", 
+                a: "You can register it yourself, no law against that. But we've seen enough rejected applications to know where people trip up, a DIN mismatch here, a naming conflict there. We're not saying you can't do it. We're saying we've already made those mistakes so you don't have to." 
+              },
+              { 
+                q: "What happens if I miss a GST or ROC deadline?", 
+                a: "It adds up faster than most people expect, and on some filings there's no cap on the penalty. The good news, we clear lapsed filings all the time, even multi-year ones. It's fixable. Just gets pricier the longer you sit on it." 
+              },
+              { 
+                q: "How does your pricing work?", 
+                a: "One fixed fee, told to you upfront, before you say yes to anything. And we don't hide the government fee inside our number either, you'll always know what's ours and what's the state's." 
+              },
+              { 
+                q: "What if you're the one who's late?", 
+                a: "Then you get your fee back. Simple as that, as long as the delay was on us, not because we were waiting on a document from you. This is also why every client gets one manager who owns the whole thing, not a rotating support queue." 
+              },
+              { 
+                q: "Do you only work with startups?", 
+                a: "No, half our clients are companies that have been running for years and just need their compliance sorted. Startups usually come to us through \"Start a Business.\" Older businesses usually land in \"Tax & Compliance\" or \"People & Money.\"" 
+              },
             ].map((v, i) => (
-              <Accordion.Item key={i} value={`v-${i}`} className="border-b border-ink/10">
+              <Accordion.Item key={i} value={`faq-${i}`} className="border-b border-ink/10">
                 <Accordion.Header>
-                  <Accordion.Trigger className="w-full flex items-center justify-between py-5 text-left group gap-4">
-                    <div className="flex items-center gap-4">
-                      <div className="w-6 h-6 border border-approve bg-approve text-white flex items-center justify-center shrink-0 rounded-sm">
-                        <Check size={14} strokeWidth={3} />
-                      </div>
-                      <span className="font-semibold text-ink">{v.t}</span>
-                    </div>
-                    <ChevronDown size={18} className="text-ink shrink-0 transition-transform group-data-[state=open]:rotate-180" />
+                  <Accordion.Trigger className="w-full flex items-start sm:items-center justify-between py-5 text-left group gap-4">
+                    <span className="font-semibold text-ink text-base sm:text-lg pr-4">{v.q}</span>
+                    <ChevronDown size={18} className="text-ink shrink-0 transition-transform group-data-[state=open]:rotate-180 mt-1 sm:mt-0" />
                   </Accordion.Trigger>
                 </Accordion.Header>
-                <Accordion.Content className="pb-5 pl-14">
-                  <p className="text-slate2 text-sm leading-relaxed prose-narrow">{v.b}</p>
+                <Accordion.Content className="pb-5">
+                  <p className="text-slate2 text-sm sm:text-base leading-relaxed prose-narrow">{v.a}</p>
                 </Accordion.Content>
               </Accordion.Item>
             ))}

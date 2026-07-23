@@ -45,14 +45,14 @@ export const CredibilityBar = () => (
           className="border-r border-b md:border-b-0 border-ink/10"
         />
         <AnimatedStat
-          target={500}
+          target={2000}
           suffix="+"
           label="Businesses served"
           sublabel="ACROSS INDIA"
           className="border-b md:border-r md:border-b-0 border-ink/10"
         />
         <AnimatedStat
-          target={50}
+          target={500}
           suffix="+"
           label="Compliance & Legal SOlutions"
           sublabel="FOR STARTUPS & MSMEs"

@@ -28,7 +28,7 @@ const HERO_SERVICES = [
   "GST FILINGS DONE RIGHT",
   "PROTECT YOUR BRAND",
   "GET ISO CERTIFIED",
-  "REGISTER ON GeM PORTAL",
+  "GET STARTUP INDIA RECOGNITION",
   "APPLY FOR FSSAI LICENCE",
   "FILE YOUR INCOME TAX",
 ];
@@ -51,7 +51,7 @@ const HeroServiceList = () => {
 
   return (
     <div
-      className="relative h-[360px] w-full max-w-[450px] overflow-hidden"
+      className="relative h-[360px] w-full max-w-[600px] overflow-hidden"
       data-testid="hero-service-marquee"
       style={{
         maskImage: "linear-gradient(to bottom, transparent 0%, black 25%, black 75%, transparent 100%)",
@@ -76,7 +76,7 @@ const HeroServiceList = () => {
         return (
           <div
             key={pos}
-            className="absolute left-0 w-full pl-10 font-display flex items-center text-white"
+            className="absolute left-0 w-full pl-10 font-display flex items-center text-white whitespace-nowrap"
             style={{
               height: `${ITEM_H}px`,
               top: 0,
@@ -230,12 +230,12 @@ export default function Home() {
         <div className="container-x relative z-10 w-full grid lg:grid-cols-12 gap-16 lg:gap-12 items-center flex-1">
           
           {/* Left: headline + CTA */}
-          <div className="lg:col-span-7" ref={heroRef}>
+          <div className="lg:col-span-6" ref={heroRef}>
             {/* Pill overline */}
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/10 text-xs font-semibold text-white/90">
-              <span className="text-white">Ranked #1 Compliance platform</span> 
+              <span className="text-white">Fast. Reliable. Hassle-Free Compliance.</span> 
               <span className="text-white/60 mx-1">|</span>
-              <a href="#" className="hover:text-white transition-colors flex items-center gap-1">Read report <ArrowRight size={12} /></a>
+              <a href="/contact" className="hover:text-white transition-colors flex items-center gap-1">Talk to an Expert<ArrowRight size={12} /></a>
             </div>
 
             {/* Headline */}
@@ -269,7 +269,7 @@ export default function Home() {
           </div>
 
           {/* Right: auto-looping service marquee — hidden on mobile/smaller screens */}
-          <div className="hidden lg:flex lg:col-span-5 justify-end">
+          <div className="hidden lg:flex lg:col-span-6 justify-end">
              {/* The list itself aligns to the right side of its container */}
             <HeroServiceList />
           </div>
@@ -409,7 +409,7 @@ export default function Home() {
               "gst-registration",
               "trademark-filing",
               "income-tax-return",
-              "gem-registration",
+              "startup-india-recognition",
               "iso-certification",
             ].map((slug) => {
               const s = SERVICES.find((x) => x.slug === slug);

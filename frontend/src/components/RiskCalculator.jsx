@@ -484,7 +484,9 @@ export const RiskCalculator = ({ inverted = false, defaultEntity = "" }) => {
             <button
               onClick={handleCalculate}
               disabled={!entity || !state || loading}
-              className="btn-primary w-full justify-center disabled:opacity-40 flex items-center gap-2"
+              className={`btn-primary w-full justify-center disabled:opacity-75 disabled:cursor-not-allowed flex items-center gap-2 ${
+                inverted ? "bg-brand" : ""
+              }`}
               data-testid="risk-run"
             >
               {loading ? (
