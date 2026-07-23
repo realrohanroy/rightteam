@@ -278,7 +278,7 @@ export default function Home() {
         {/* ── Trusted-by strip — transparent backdrop, overlays the hero background, infinite horizontal marquee on mobile/desktop ── */}
         <div className="lg:absolute relative bottom-0 left-0 right-0 z-10 border-t border-white/10 bg-transparent py-6 overflow-hidden">
           <p className="text-center text-[11px] tracking-widest text-white uppercase font-semibold mb-5 px-6">
-            Trusted by 8,400+ Indian businesses — startups, manufacturers &amp; enterprises
+            Trusted by 2000+ Indian businesses — startups, manufacturers &amp; enterprises
           </p>
           <div className="relative w-full overflow-hidden">
             <div className="animate-marquee-left lg:!animate-none lg:justify-center flex gap-12 sm:gap-16 items-center w-max lg:w-full hover:[animation-play-state:paused] lg:hover:[animation-play-state:running] cursor-pointer">
