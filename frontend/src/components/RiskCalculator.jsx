@@ -425,7 +425,7 @@ export const RiskCalculator = ({ inverted = false, defaultEntity = "" }) => {
                       data-testid={`entity-tile-${et.key}`}
                       className={`flex flex-col items-center justify-center gap-1.5 p-3 rounded-lg border-2 transition-all text-center cursor-pointer min-w-0 ${
                         active
-                          ? "border-brand bg-brand/5 shadow-sm"
+                          ? "border-brand bg-white shadow-sm"
                           : "border-ink/15 bg-white hover:border-ink/30 hover:bg-alt"
                       }`}
                       aria-pressed={active}
