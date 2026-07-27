@@ -170,6 +170,18 @@ class HRJobTests(TestCase):
         self.assertEqual(res.status_code, 400)
         self.assertIn("type", res.data)
 
+    def test_seed_initial_jobs_when_empty(self):
+        self.assertEqual(JobOpening.objects.count(), 0)
+        pub_client = APIClient()
+        res = pub_client.get("/api/hr/jobs")
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(len(res.data), 3)
+        self.assertEqual(JobOpening.objects.count(), 3)
+        titles = [j["title"] for j in res.data]
+        self.assertIn("Business Development Executive", titles)
+        self.assertIn("Business Development Manager", titles)
+        self.assertIn("Team Leader – Sales", titles)
+
     def test_public_endpoint_returns_active_only(self):
         JobOpening.objects.create(
             title="Active", department="D", location="L", type="Full-time",

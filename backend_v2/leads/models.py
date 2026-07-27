@@ -103,7 +103,10 @@ class JobOpening(models.Model):
     department  = models.CharField(max_length=100)
     location    = models.CharField(max_length=100)
     type        = models.CharField(max_length=20, choices=TYPE_CHOICES, default="Full-time")
+    experience  = models.CharField(max_length=100, default="0–2 Years")
     description = models.TextField(max_length=5000)   # stored as plain text only
+    responsibilities = models.TextField(max_length=3000, blank=True, default="", help_text="Newline-separated list of key responsibilities")
+    icon_name   = models.CharField(max_length=50, default="default", help_text="Icon identifier (e.g., bde, bdm, tls, default)")
     is_active   = models.BooleanField(default=True)   # soft-delete — never hard-delete
     created_by  = models.ForeignKey(
         "auth.User",

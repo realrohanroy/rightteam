@@ -29,7 +29,7 @@ export default function HRDashboardPage() {
   const [sessionMsg, setSession]  = useState("");
 
   // Form state
-  const EMPTY_FORM = { title: "", department: "", location: "", type: "Full-time", description: "" };
+  const EMPTY_FORM = { title: "", department: "", location: "", type: "Full-time", experience: "0–2 Years", icon_name: "default", description: "", responsibilities: "" };
   const [form, setForm]         = useState(EMPTY_FORM);
   const [formErr, setFormErr]   = useState({});
   const [submitting, setSub]    = useState(false);
@@ -86,8 +86,11 @@ export default function HRDashboardPage() {
     if (form.title.length > 200)  errs.title       = "Max 200 chars";
     if (!form.department.trim())  errs.department  = "Required";
     if (!form.location.trim())    errs.location    = "Required";
+    if (!form.experience.trim())  errs.experience  = "Required";
+    if (form.experience.length > 100) errs.experience = "Max 100 chars";
     if (!form.description.trim()) errs.description = "Required";
     if (form.description.length > 5000) errs.description = "Max 5000 chars";
+    if (form.responsibilities && form.responsibilities.length > 3000) errs.responsibilities = "Max 3000 chars";
     return errs;
   };
 
@@ -174,7 +177,27 @@ export default function HRDashboardPage() {
                   {JOB_TYPES.map((t) => <option key={t}>{t}</option>)}
                 </select>
               </Field>
+              <Field label="Experience Required *" error={formErr.experience}>
+                <input style={s.input} value={form.experience} placeholder="e.g. 0–2 Years"
+                  onChange={(e) => setForm((f) => ({ ...f, experience: e.target.value }))} />
+              </Field>
+              <Field label="Card Icon Style" error={formErr.icon_name}>
+                <select style={s.input} value={form.icon_name}
+                  onChange={(e) => setForm((f) => ({ ...f, icon_name: e.target.value }))}>
+                  <option value="default">Default (Document / Badge)</option>
+                  <option value="bde">Briefcase & Growth (Sales / Exec)</option>
+                  <option value="bdm">Chart & Analytics (Manager)</option>
+                  <option value="tls">Team & Leadership (Lead)</option>
+                </select>
+              </Field>
             </div>
+            <Field label={`Key Responsibilities (${form.responsibilities.length}/3000) — One per line`} error={formErr.responsibilities}>
+              <textarea style={{ ...s.input, minHeight: 90, resize: "vertical" }}
+                value={form.responsibilities}
+                placeholder="Identify and pursue new business opportunities&#10;Build and maintain client relationships&#10;Achieve sales & business development targets"
+                onChange={(e) => setForm((f) => ({ ...f, responsibilities: e.target.value }))}
+                maxLength={3000} />
+            </Field>
             <Field label={`Description * (${form.description.length}/5000)`} error={formErr.description}>
               <textarea style={{ ...s.input, minHeight: 120, resize: "vertical" }}
                 value={form.description}
@@ -236,7 +259,7 @@ function JobCard({ job, onDeactivate, inactive = false }) {
         <div>
           <div style={s.cardTitle}>{job.title}</div>
           <div style={s.cardMeta}>
-            {job.department} · {job.location} · {job.type}
+            {job.department} · {job.location} · {job.type} · {job.experience || "0–2 Years"}
             {job.created_at && <> · {new Date(job.created_at).toLocaleDateString("en-IN", { day: "2-digit", month: "short", year: "numeric" })}</>}
             {job["created_by__username"] && <> · by {job["created_by__username"]}</>}
           </div>
@@ -249,6 +272,18 @@ function JobCard({ job, onDeactivate, inactive = false }) {
         {inactive && <span style={s.inactiveBadge}>Hidden</span>}
       </div>
       <p style={s.cardDesc}>{job.description}</p>
+      {job.responsibilities && job.responsibilities.length > 0 && (
+        <div style={{ marginTop: 12, borderTop: "1px dashed #e5e7eb", paddingTop: 10 }}>
+          <div style={{ fontSize: 11, fontWeight: 700, color: "#6b7280", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 6 }}>
+            Key Responsibilities:
+          </div>
+          <ul style={{ margin: 0, paddingLeft: 18, fontSize: 13, color: "#374151" }}>
+            {job.responsibilities.map((r, i) => (
+              <li key={i} style={{ marginBottom: 3 }}>{r}</li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }

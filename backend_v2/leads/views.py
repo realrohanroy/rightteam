@@ -180,24 +180,89 @@ def hr_logout(request):
     return Response({"status": "logged out"}, status=status.HTTP_200_OK)
 
 
+def seed_initial_jobs():
+    """Seeds the 3 initial RightTeam job postings if the table is empty."""
+    if JobOpening.objects.count() > 0:
+        return
+    initial_jobs = [
+        {
+            "title": "Business Development Executive",
+            "department": "Business Development",
+            "location": "Ahmedabad",
+            "type": "Full-time",
+            "experience": "0–2 Years",
+            "description": "We are looking for a motivated individual to identify new business opportunities, build strong client relationships and contribute to the growth of our services.",
+            "responsibilities": "Identify and pursue new business opportunities\nBuild and maintain client relationships\nAchieve sales & business development targets",
+            "icon_name": "bde",
+        },
+        {
+            "title": "Business Development Manager",
+            "department": "Business Development",
+            "location": "Ahmedabad",
+            "type": "Full-time",
+            "experience": "2–3 Years",
+            "description": "We are looking for a dynamic professional to lead business development initiatives, drive client acquisition and achieve growth targets.",
+            "responsibilities": "Develop and execute business strategies\nLead client meetings and negotiations\nDrive revenue growth and team performance",
+            "icon_name": "bdm",
+        },
+        {
+            "title": "Team Leader – Sales",
+            "department": "Sales & Management",
+            "location": "Ahmedabad",
+            "type": "Full-time",
+            "experience": "3–5 Years",
+            "description": "We are looking for an experienced leader to manage the sales team, ensure target achievement and drive overall performance.",
+            "responsibilities": "Lead, motivate and manage the sales team\nMonitor performance and provide feedback\nEnsure targets are met and exceeded",
+            "icon_name": "tls",
+        },
+    ]
+    for data in initial_jobs:
+        JobOpening.objects.create(**data)
+
+
 @api_view(["GET"])
 def hr_jobs_public(request):
     """Public endpoint: active jobs only. Used by the CareerPage."""
-    jobs = JobOpening.objects.filter(is_active=True).order_by("-created_at").values(
-        "id", "title", "department", "location", "type", "description", "created_at"
-    )
-    return Response(list(jobs), status=status.HTTP_200_OK)
+    seed_initial_jobs()
+    jobs_data = []
+    for j in JobOpening.objects.filter(is_active=True).order_by("id"):
+        jobs_data.append({
+            "id": j.id,
+            "title": j.title,
+            "department": j.department,
+            "location": j.location,
+            "type": j.type,
+            "experience": j.experience,
+            "description": j.description,
+            "responsibilities": [r.strip() for r in j.responsibilities.splitlines() if r.strip()],
+            "icon_name": j.icon_name,
+            "created_at": j.created_at,
+        })
+    return Response(jobs_data, status=status.HTTP_200_OK)
 
 
 @api_view(["GET"])
 @require_hr_token
 def hr_jobs_all(request):
     """Admin endpoint: all jobs including inactive. Used by HR dashboard."""
-    jobs = JobOpening.objects.all().order_by("-created_at").values(
-        "id", "title", "department", "location", "type", "description",
-        "is_active", "created_at", "created_by__username",
-    )
-    return Response(list(jobs), status=status.HTTP_200_OK)
+    seed_initial_jobs()
+    jobs_data = []
+    for j in JobOpening.objects.all().order_by("id"):
+        jobs_data.append({
+            "id": j.id,
+            "title": j.title,
+            "department": j.department,
+            "location": j.location,
+            "type": j.type,
+            "experience": j.experience,
+            "description": j.description,
+            "responsibilities": [r.strip() for r in j.responsibilities.splitlines() if r.strip()],
+            "icon_name": j.icon_name,
+            "is_active": j.is_active,
+            "created_at": j.created_at,
+            "created_by__username": j.created_by.username if j.created_by else "System",
+        })
+    return Response(jobs_data, status=status.HTTP_200_OK)
 
 
 @api_view(["POST"])
@@ -208,6 +273,13 @@ def hr_job_create(request):
     location    = request.data.get("location", "").strip()
     job_type    = request.data.get("type", "").strip()
     description = request.data.get("description", "").strip()
+    experience  = request.data.get("experience", "").strip() or "0–2 Years"
+    responsibilities_raw = request.data.get("responsibilities", "")
+    if isinstance(responsibilities_raw, list):
+        responsibilities = "\n".join([str(r).strip() for r in responsibilities_raw if str(r).strip()])
+    else:
+        responsibilities = str(responsibilities_raw).strip()
+    icon_name   = request.data.get("icon_name", "default").strip() or "default"
 
     errors = {}
     if not title:               errors["title"]       = "Required."
@@ -220,18 +292,24 @@ def hr_job_create(request):
         errors["type"] = "Must be Full-time, Part-time, or Internship."
     if not description:             errors["description"] = "Required."
     elif len(description) > 5000:   errors["description"] = "Max 5000 characters."
+    if len(experience) > 100:       errors["experience"]  = "Max 100 characters."
+    if len(responsibilities) > 3000: errors["responsibilities"] = "Max 3000 characters."
     if errors:
         return Response(errors, status=status.HTTP_400_BAD_REQUEST)
 
     # Escape any HTML — job description is always plain text
     safe_description = html.escape(description)
+    safe_responsibilities = html.escape(responsibilities)
 
     job = JobOpening.objects.create(
         title=title,
         department=department,
         location=location,
         type=job_type,
+        experience=experience,
         description=safe_description,
+        responsibilities=safe_responsibilities,
+        icon_name=icon_name,
         created_by=request.hr_user,
     )
 

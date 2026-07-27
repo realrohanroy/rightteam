@@ -139,7 +139,7 @@ function JobCard({ job, onApply }) {
 /* ─────────────────────────────────────────────────────────────────────────────
    APPLICATION FORM
 ───────────────────────────────────────────────────────────────────────────── */
-function ApplicationForm({ selectedRole, onRoleChange }) {
+function ApplicationForm({ selectedRole, onRoleChange, jobs = [] }) {
   const [form, setForm] = useState({
     fullName: "",
     phone: "",
@@ -553,6 +553,50 @@ function ApplicationForm({ selectedRole, onRoleChange }) {
 /* ─────────────────────────────────────────────────────────────────────────────
    MAIN PAGE
 ───────────────────────────────────────────────────────────────────────────── */
+function getJobIcon(iconName, id) {
+  const key = iconName || id || "default";
+  if (key === "bde" || key === "1") {
+    return (
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
+        <rect width="48" height="48" rx="10" fill="#0B1E3D" />
+        <path d="M14 34V22l10-8 10 8v12" stroke="#E8522B" strokeWidth="2.2" strokeLinecap="round" />
+        <rect x="19" y="26" width="10" height="8" rx="1" stroke="#fff" strokeWidth="2" />
+        <circle cx="33" cy="18" r="4" fill="#E8522B" />
+        <path d="M31 18l1.5 1.5L35 16" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    );
+  }
+  if (key === "bdm" || key === "2") {
+    return (
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
+        <rect width="48" height="48" rx="10" fill="#0B1E3D" />
+        <rect x="12" y="28" width="6" height="8" rx="1" fill="#E8522B" />
+        <rect x="21" y="22" width="6" height="14" rx="1" fill="#fff" fillOpacity=".7" />
+        <rect x="30" y="16" width="6" height="20" rx="1" fill="#E8522B" />
+        <path d="M14 20l8-6 8 4 8-8" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    );
+  }
+  if (key === "tls" || key === "3") {
+    return (
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
+        <rect width="48" height="48" rx="10" fill="#0B1E3D" />
+        <circle cx="24" cy="16" r="5" stroke="#E8522B" strokeWidth="2.2" />
+        <path d="M12 38c0-6.627 5.373-10 12-10s12 3.373 12 10" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
+        <path d="M32 20l2 2 4-4" stroke="#E8522B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    );
+  }
+  return (
+    <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
+      <rect width="48" height="48" rx="10" fill="#0B1E3D" />
+      <path d="M16 18h16M16 24h16M16 30h10" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
+      <circle cx="34" cy="30" r="4" fill="#E8522B" />
+      <path d="M32 30l1.5 1.5L36 28" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 export default function CareerPage() {
   const formRef = useRef(null);
   const [selectedRole, setSelectedRole] = useState("");
@@ -573,17 +617,10 @@ export default function CareerPage() {
     title: j.title,
     type: j.type,
     location: j.location,
-    experience: j.department,   // use department as the badge label
+    experience: j.experience || j.department || "0–2 Years",
     description: j.description,
-    responsibilities: [],        // API doesn't carry these; hidden when empty
-    icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
-        <rect width="48" height="48" rx="10" fill="#0B1E3D" />
-        <rect x="12" y="28" width="6" height="8" rx="1" fill="#E8522B" />
-        <rect x="21" y="22" width="6" height="14" rx="1" fill="#fff" fillOpacity=".7" />
-        <rect x="30" y="16" width="6" height="20" rx="1" fill="#E8522B" />
-      </svg>
-    ),
+    responsibilities: Array.isArray(j.responsibilities) ? j.responsibilities : [],
+    icon: getJobIcon(j.icon_name, String(j.id)),
   }));
 
   const scrollToForm = (roleTitle) => {
@@ -798,7 +835,7 @@ export default function CareerPage() {
                   <p className="text-xs text-slate2">All fields marked <span className="text-seal font-bold">*</span> are required</p>
                 </div>
               </div>
-              <ApplicationForm selectedRole={selectedRole} onRoleChange={setSelectedRole} />
+              <ApplicationForm selectedRole={selectedRole} onRoleChange={setSelectedRole} jobs={jobs} />
             </div>
           </div>
         </div>
