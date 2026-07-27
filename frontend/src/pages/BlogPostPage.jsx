@@ -239,7 +239,7 @@ export default function BlogPostPage() {
               <div className="flex-1">
                 <div className="mono text-[10px] uppercase tracking-[0.22em] text-brand mb-2">Need help?</div>
                 <h3 className="font-display text-xl text-white mb-1.5">Talk to a RightTeam advisor</h3>
-                <p className="text-sm text-white/65 leading-relaxed">Book a free 30-minute consultation — we will read this with you and map it to your books.</p>
+                <p className="text-sm text-white/65 leading-relaxed">Book a free 30-minute consultation, we will read this with you and map it to your books.</p>
               </div>
               <div className="flex items-center gap-3">
                 <Link to="/contact" className="btn-primary text-sm rounded-sm">
@@ -257,7 +257,7 @@ export default function BlogPostPage() {
               <div>
                 <div className="font-semibold text-ink text-sm">RightTeam Editorial</div>
                 <p className="text-xs text-ink/60 mt-1 leading-relaxed">
-                  Plain-English guides on business compliance, taxation and registrations — reviewed by our in-house chartered accountants before publication.
+                  Plain-English guides on business compliance, taxation and registrations reviewed by our in-house chartered accountants before publication.
                 </p>
               </div>
             </div>

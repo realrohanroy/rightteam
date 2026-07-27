@@ -146,13 +146,13 @@ export default function BlogsPage() {
   return (
     <Layout>
       <Helmet>
-        <title>Blogs &amp; Insights — RightTeam.in</title>
+        <title>Blogs &amp; Insights - RightTeam.in</title>
         <meta
           name="description"
           content="Practical, expert-written guides on business compliance, GST, tax planning, audit preparation and more from the RightTeam editorial desk."
         />
         <meta name="keywords" content="business blog India, GST blog, tax saving blog, audit blog, RightTeam insights" />
-        <meta property="og:title" content="Blogs &amp; Insights — RightTeam.in" />
+        <meta property="og:title" content="Blogs &amp; Insights - RightTeam.in" />
         <meta property="og:description" content="Practical, expert-written guides on business compliance, GST, tax planning, audit preparation and more." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.rightteam.in/blogs" />
@@ -185,9 +185,8 @@ export default function BlogsPage() {
               Blogs &amp; Insights
             </h1>
             <p className="mt-5 text-white/65 text-base sm:text-lg leading-relaxed max-w-2xl">
-              Practical, plain-English guides on business compliance, GST, tax saving and audit
-              readiness — written by the RightTeam editorial desk and reviewed by our chartered
-              accountants.
+              Practical guides on business compliance, GST, tax saving and audit
+              readiness.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-6">
@@ -275,7 +274,7 @@ export default function BlogsPage() {
           <div className="flex-1">
             <div className="mono text-[10px] uppercase tracking-[0.22em] text-brand mb-2">Stay informed</div>
             <h3 className="font-display text-2xl text-white mb-2">Get practical compliance updates in your inbox</h3>
-            <p className="text-sm text-white/65 leading-relaxed">One short, no-spam email a month. GST, tax and audit — distilled.</p>
+            <p className="text-sm text-white/65 leading-relaxed">One short, no-spam email a month. GST, tax and audit distilled.</p>
           </div>
           <div className="flex items-center gap-3">
             <Link to="/contact" className="btn-primary text-sm rounded-sm">

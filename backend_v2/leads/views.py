@@ -105,3 +105,167 @@ def career_api(request):
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+# ── HR Portal Views ────────────────────────────────────────────────────────────
+
+import html
+import datetime
+from django.contrib.auth import authenticate
+from django.utils import timezone as tz
+from .hr_auth import issue_token, get_client_ip, require_hr_token
+from .models import JobOpening, LoginAttempt, HRAuditLog
+
+RATE_LIMIT_WINDOW_SECONDS = 60
+RATE_LIMIT_MAX_FAILURES   = 5
+PRUNE_OLDER_THAN_HOURS    = 24
+
+
+def _prune_old_attempts():
+    """Remove LoginAttempt rows older than 24h to prevent table bloat."""
+    cutoff = tz.now() - datetime.timedelta(hours=PRUNE_OLDER_THAN_HOURS)
+    LoginAttempt.objects.filter(attempted_at__lt=cutoff).delete()
+
+
+def _is_rate_limited(ip: str) -> bool:
+    window_start = tz.now() - datetime.timedelta(seconds=RATE_LIMIT_WINDOW_SECONDS)
+    fail_count = LoginAttempt.objects.filter(
+        ip_address=ip,
+        success=False,
+        attempted_at__gte=window_start,
+    ).count()
+    return fail_count >= RATE_LIMIT_MAX_FAILURES
+
+
+@api_view(["POST"])
+def hr_login(request):
+    _prune_old_attempts()
+    ip = get_client_ip(request)
+
+    if _is_rate_limited(ip):
+        return Response(
+            {"error": "Too many failed attempts. Please wait 60 seconds."},
+            status=status.HTTP_429_TOO_MANY_REQUESTS,
+            headers={"Retry-After": "60"},
+        )
+
+    username = request.data.get("username", "").strip()
+    password = request.data.get("password", "")
+
+    # authenticate() handles password hashing safely
+    user = authenticate(request, username=username, password=password)
+
+    if user is None or not user.is_staff or not user.is_active:
+        LoginAttempt.objects.create(ip_address=ip, username=username, success=False)
+        HRAuditLog.objects.create(action="LOGIN_FAIL", ip_address=ip, detail=username)
+        return Response(
+            {"error": "Invalid credentials."},
+            status=status.HTTP_401_UNAUTHORIZED,
+        )
+
+    LoginAttempt.objects.create(ip_address=ip, username=username, success=True)
+    HRAuditLog.objects.create(actor=user, action="LOGIN", ip_address=ip)
+    token = issue_token(user.id, user.username)
+    return Response({"token": token, "username": user.username}, status=status.HTTP_200_OK)
+
+
+@api_view(["POST"])
+@require_hr_token
+def hr_logout(request):
+    HRAuditLog.objects.create(
+        actor=request.hr_user,
+        action="LOGOUT",
+        ip_address=get_client_ip(request),
+    )
+    return Response({"status": "logged out"}, status=status.HTTP_200_OK)
+
+
+@api_view(["GET"])
+def hr_jobs_public(request):
+    """Public endpoint: active jobs only. Used by the CareerPage."""
+    jobs = JobOpening.objects.filter(is_active=True).order_by("-created_at").values(
+        "id", "title", "department", "location", "type", "description", "created_at"
+    )
+    return Response(list(jobs), status=status.HTTP_200_OK)
+
+
+@api_view(["GET"])
+@require_hr_token
+def hr_jobs_all(request):
+    """Admin endpoint: all jobs including inactive. Used by HR dashboard."""
+    jobs = JobOpening.objects.all().order_by("-created_at").values(
+        "id", "title", "department", "location", "type", "description",
+        "is_active", "created_at", "created_by__username",
+    )
+    return Response(list(jobs), status=status.HTTP_200_OK)
+
+
+@api_view(["POST"])
+@require_hr_token
+def hr_job_create(request):
+    title       = request.data.get("title", "").strip()
+    department  = request.data.get("department", "").strip()
+    location    = request.data.get("location", "").strip()
+    job_type    = request.data.get("type", "").strip()
+    description = request.data.get("description", "").strip()
+
+    errors = {}
+    if not title:               errors["title"]       = "Required."
+    elif len(title) > 200:      errors["title"]       = "Max 200 characters."
+    if not department:          errors["department"]  = "Required."
+    elif len(department) > 100: errors["department"]  = "Max 100 characters."
+    if not location:            errors["location"]    = "Required."
+    elif len(location) > 100:   errors["location"]    = "Max 100 characters."
+    if job_type not in ("Full-time", "Part-time", "Internship"):
+        errors["type"] = "Must be Full-time, Part-time, or Internship."
+    if not description:             errors["description"] = "Required."
+    elif len(description) > 5000:   errors["description"] = "Max 5000 characters."
+    if errors:
+        return Response(errors, status=status.HTTP_400_BAD_REQUEST)
+
+    # Escape any HTML — job description is always plain text
+    safe_description = html.escape(description)
+
+    job = JobOpening.objects.create(
+        title=title,
+        department=department,
+        location=location,
+        type=job_type,
+        description=safe_description,
+        created_by=request.hr_user,
+    )
+
+    HRAuditLog.objects.create(
+        actor=request.hr_user,
+        action="JOB_CREATE",
+        target_id=job.id,
+        detail=job.title,
+        ip_address=get_client_ip(request),
+    )
+
+    return Response(
+        {"id": job.id, "title": job.title, "status": "created"},
+        status=status.HTTP_201_CREATED,
+    )
+
+
+@api_view(["DELETE"])
+@require_hr_token
+def hr_job_delete(request, pk):
+    try:
+        job = JobOpening.objects.get(pk=pk)
+    except JobOpening.DoesNotExist:
+        return Response({"error": "Job not found."}, status=status.HTTP_404_NOT_FOUND)
+
+    job.is_active = False
+    job.save()
+
+    HRAuditLog.objects.create(
+        actor=request.hr_user,
+        action="JOB_DEACTIVATE",
+        target_id=job.id,
+        detail=job.title,
+        ip_address=get_client_ip(request),
+    )
+
+    return Response({"status": "deactivated", "id": job.id}, status=status.HTTP_200_OK)

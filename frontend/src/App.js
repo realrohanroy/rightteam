@@ -20,6 +20,8 @@ import RefundPolicyPage from "@/pages/RefundPolicyPage";
 import DisclaimerPage from "@/pages/DisclaimerPage";
 import BlogsPage from "@/pages/BlogsPage";
 import BlogPostPage from "@/pages/BlogPostPage";
+import HRLoginPage from "@/pages/HRLoginPage";
+import HRDashboardPage from "@/pages/HRDashboardPage";
 
 /* Register GSAP plugins globally */
 import { gsap } from "gsap";
@@ -51,6 +53,9 @@ function AppInner() {
         <Route path="/careers" element={<CareerPage />} />
         <Route path="/compliance-calendar/:entity" element={<EntityCompliancePage />} />
         <Route path="/service/:slug" element={<ServicePage />} />
+        {/* HR portal — must be before /:pillar wildcard */}
+        <Route path="/hr" element={<HRLoginPage />} />
+        <Route path="/hr/dashboard" element={<HRDashboardPage />} />
         <Route path="/:pillar" element={<PillarPage />} />
         <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
         <Route path="/terms-conditions" element={<TermsConditionsPage />} />

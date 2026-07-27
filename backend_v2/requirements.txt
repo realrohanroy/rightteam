@@ -8,3 +8,5 @@ gunicorn==22.0.0
 cloudinary==1.41.0
 
 brevo-python
+
+PyJWT==2.9.0

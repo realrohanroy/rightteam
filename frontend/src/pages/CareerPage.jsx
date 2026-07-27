@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Layout } from "../components/Layout";
 import {
   MapPin,
@@ -26,79 +26,7 @@ import axios from "axios";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
-/* ─────────────────────────────────────────────────────────────────────────────
-   JOB DATA
-───────────────────────────────────────────────────────────────────────────── */
-const JOBS = [
-  {
-    id: "bde",
-    title: "Business Development Executive",
-    type: "Full Time",
-    location: "Ahmedabad",
-    experience: "0–2 Years",
-    icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
-        <rect width="48" height="48" rx="10" fill="#0B1E3D" />
-        <path d="M14 34V22l10-8 10 8v12" stroke="#E8522B" strokeWidth="2.2" strokeLinecap="round" />
-        <rect x="19" y="26" width="10" height="8" rx="1" stroke="#fff" strokeWidth="2" />
-        <circle cx="33" cy="18" r="4" fill="#E8522B" />
-        <path d="M31 18l1.5 1.5L35 16" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
-    description:
-      "We are looking for a motivated individual to identify new business opportunities, build strong client relationships and contribute to the growth of our services.",
-    responsibilities: [
-      "Identify and pursue new business opportunities",
-      "Build and maintain client relationships",
-      "Achieve sales & business development targets",
-    ],
-  },
-  {
-    id: "bdm",
-    title: "Business Development Manager",
-    type: "Full Time",
-    location: "Ahmedabad",
-    experience: "2–3 Years",
-    icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
-        <rect width="48" height="48" rx="10" fill="#0B1E3D" />
-        <rect x="12" y="28" width="6" height="8" rx="1" fill="#E8522B" />
-        <rect x="21" y="22" width="6" height="14" rx="1" fill="#fff" fillOpacity=".7" />
-        <rect x="30" y="16" width="6" height="20" rx="1" fill="#E8522B" />
-        <path d="M14 20l8-6 8 4 8-8" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
-    description:
-      "We are looking for a dynamic professional to lead business development initiatives, drive client acquisition and achieve growth targets.",
-    responsibilities: [
-      "Develop and execute business strategies",
-      "Lead client meetings and negotiations",
-      "Drive revenue growth and team performance",
-    ],
-  },
-  {
-    id: "tls",
-    title: "Team Leader – Sales",
-    type: "Full Time",
-    location: "Ahmedabad",
-    experience: "3–5 Years",
-    icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
-        <rect width="48" height="48" rx="10" fill="#0B1E3D" />
-        <circle cx="24" cy="16" r="5" stroke="#E8522B" strokeWidth="2.2" />
-        <path d="M12 38c0-6.627 5.373-10 12-10s12 3.373 12 10" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
-        <path d="M32 20l2 2 4-4" stroke="#E8522B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
-    description:
-      "We are looking for an experienced leader to manage the sales team, ensure target achievement and drive overall performance.",
-    responsibilities: [
-      "Lead, motivate and manage the sales team",
-      "Monitor performance and provide feedback",
-      "Ensure targets are met and exceeded",
-    ],
-  },
-];
+/* JOBS are fetched live from the HR portal — see useEffect in CareerPage */
 
 const WHY_JOIN = [
   {
@@ -181,17 +109,21 @@ function JobCard({ job, onApply }) {
 
       {/* Right — responsibilities + CTA */}
       <div className="lg:w-72 shrink-0 border-t lg:border-t-0 lg:border-l border-ink/10 pt-5 lg:pt-0 lg:pl-8">
-        <div className="mono text-[11px] uppercase tracking-[0.18em] text-ink/60 mb-3 font-semibold">
-          Key Responsibilities
-        </div>
-        <ul className="space-y-2 mb-5">
-          {job.responsibilities.map((r, i) => (
-            <li key={i} className="flex items-start gap-2.5 text-sm text-ink/80">
-              <CheckCircle2 className="w-4 h-4 text-approve mt-0.5 shrink-0" />
-              {r}
-            </li>
-          ))}
-        </ul>
+        {job.responsibilities && job.responsibilities.length > 0 && (
+          <>
+            <div className="mono text-[11px] uppercase tracking-[0.18em] text-ink/60 mb-3 font-semibold">
+              Key Responsibilities
+            </div>
+            <ul className="space-y-2 mb-5">
+              {job.responsibilities.map((r, i) => (
+                <li key={i} className="flex items-start gap-2.5 text-sm text-ink/80">
+                  <CheckCircle2 className="w-4 h-4 text-approve mt-0.5 shrink-0" />
+                  {r}
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
         <button
           onClick={() => onApply(job.title)}
           className="btn-primary w-full justify-center text-sm"
@@ -457,7 +389,7 @@ function ApplicationForm({ selectedRole, onRoleChange }) {
             className={`${inputClass("position")} pl-10 appearance-none cursor-pointer`}
           >
             <option value="">Select a position</option>
-            {JOBS.map((j) => (
+            {jobs.map((j) => (
               <option key={j.id} value={j.title}>{j.title}</option>
             ))}
           </select>
@@ -624,6 +556,35 @@ function ApplicationForm({ selectedRole, onRoleChange }) {
 export default function CareerPage() {
   const formRef = useRef(null);
   const [selectedRole, setSelectedRole] = useState("");
+  const [liveJobs, setLiveJobs] = useState([]);
+  const [jobsLoading, setJobsLoading] = useState(true);
+
+  useEffect(() => {
+    fetch(`${API}/hr/jobs`)
+      .then((r) => r.ok ? r.json() : [])
+      .then((data) => setLiveJobs(Array.isArray(data) ? data : []))
+      .catch(() => setLiveJobs([]))
+      .finally(() => setJobsLoading(false));
+  }, []);
+
+  // Map API job shape → shape expected by JobCard
+  const jobs = liveJobs.map((j) => ({
+    id: String(j.id),
+    title: j.title,
+    type: j.type,
+    location: j.location,
+    experience: j.department,   // use department as the badge label
+    description: j.description,
+    responsibilities: [],        // API doesn't carry these; hidden when empty
+    icon: (
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
+        <rect width="48" height="48" rx="10" fill="#0B1E3D" />
+        <rect x="12" y="28" width="6" height="8" rx="1" fill="#E8522B" />
+        <rect x="21" y="22" width="6" height="14" rx="1" fill="#fff" fillOpacity=".7" />
+        <rect x="30" y="16" width="6" height="20" rx="1" fill="#E8522B" />
+      </svg>
+    ),
+  }));
 
   const scrollToForm = (roleTitle) => {
     setSelectedRole(roleTitle);
@@ -757,12 +718,21 @@ export default function CareerPage() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-approve opacity-75" />
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-approve" />
               </span>
-              {JOBS.length} Active Openings
+              {jobsLoading ? "Loading…" : `${jobs.length} Active Opening${jobs.length !== 1 ? "s" : ""}`}
             </div>
           </div>
 
           <div className="space-y-5">
-            {JOBS.map((job) => (
+            {jobsLoading && (
+              <div className="text-slate2 text-sm py-8 text-center">Loading openings…</div>
+            )}
+            {!jobsLoading && jobs.length === 0 && (
+              <div className="paper-card p-8 text-center text-slate2 text-sm">
+                No open positions at the moment. Check back soon or send your CV to{" "}
+                <a href="mailto:careers@rightteam.in" className="text-brand hover:underline">careers@rightteam.in</a>.
+              </div>
+            )}
+            {jobs.map((job) => (
               <JobCard key={job.id} job={job} onApply={scrollToForm} />
             ))}
           </div>
