@@ -24,7 +24,7 @@ import {
 import { Helmet } from "react-helmet-async";
 import axios from "axios";
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:8000";
 const API = `${BACKEND_URL}/api`;
 /* JOBS are fetched live from the HR portal — see useEffect in CareerPage */
 

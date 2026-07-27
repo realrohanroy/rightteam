@@ -5,7 +5,7 @@ import { Seal } from "../components/Seal";
 import { Mail, Phone, MapPin, ArrowRight, Check } from "lucide-react";
 import { DuotoneImage } from "../components/DuotoneImage";
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:8000";
 const API = `${BACKEND_URL}/api`;
 
 export default function ContactPage() {
