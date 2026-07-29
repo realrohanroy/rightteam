@@ -22,10 +22,6 @@ export const ServiceCard = ({ service }) => (
         <ServiceIcon slug={service.slug} size={40} color="#0B1E3D" />
       </div>
 
-      {/* Service reference code — restrained, below icon */}
-      <div className="mono text-[10px] uppercase tracking-widest text-slate2 mb-2">
-        RT/{service.slug.split("-").slice(0, 2).join("-").toUpperCase()}
-      </div>
 
       <h3 className="font-display text-xl text-ink mt-1 leading-tight">
         {service.name}

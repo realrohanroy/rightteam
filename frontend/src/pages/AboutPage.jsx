@@ -18,7 +18,7 @@ export default function AboutPage() {
             A statutory compliance practice run by chartered accountants and company secretaries.
           </h1>
           <p className="text-base sm:text-lg text-ink/75 mt-5 leading-relaxed prose-narrow">
-            Incorporated in Ahmedabar in 2026, RightTeam now services 500+ businesses across 24 states with in-house CAs, CS and IP attorneys.
+            Incorporated in Ahmedabad in 2026, Right Team now services 2000+ businesses across 24 states and UT with in-house CAs, CS and IP attorneys.
           </p>
 
           <div className="mt-8 relative h-[300px] sm:h-[400px] w-full lg:hidden rounded-sm overflow-hidden mb-10">
@@ -28,16 +28,7 @@ export default function AboutPage() {
             />
           </div>
 
-          <div className="mt-6 lg:mt-10">
-            <CredentialRow
-              items={[
-                { label: "ICAI Member Firm" },
-                { label: "ICSI Registered Practice" },
-                { label: "GST Practitioner GSTP/27/00429", color: "#E8522B" },
-                { label: "IPO Registered Patent Agent" },
-              ]}
-            />
-          </div>
+      
         </div>
         
       </section>
@@ -47,10 +38,10 @@ export default function AboutPage() {
         <div className="grid lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-9 grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
-              { n: "500+", l: "Businesses on retainer" },
-              { n: "50+", l: "Compliance & Legal Solutions" },
+              { n: "2000+", l: "Businesses on retainer" },
+              { n: "500+", l: "Compliance & Legal Solutions" },
               { n: "24", l: "States and Union Territories" },
-              { n: "0", l: "Fee-refund penalty misses" },
+              { n: "0", l: "Penalty missed" },
             ].map((s, i) => (
               <div key={i} className="border-l-2 border-brand pl-5 py-1">
                 <div className="font-display text-3xl font-bold text-ink leading-none">{s.n}</div>
@@ -59,7 +50,7 @@ export default function AboutPage() {
             ))}
           </div>
           <div className="lg:col-span-3 flex justify-center lg:justify-end">
-            <OnTimeRing percentage={99.8} label="On-time filing rate" />
+            <OnTimeRing percentage={100} label="On-time filing rate" />
           </div>
         </div>
       </section>

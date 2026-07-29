@@ -129,6 +129,23 @@ export const SERVICES = [
     ],
   },
   {
+    slug: "section-8-ngo",
+    pillar: "start-your-business",
+    name: "Section 8",
+    startingPrice: p(12999),
+    oneLine: "Non-profit company registration for CSR funding and foreign funding.",
+    heroSummary:
+      "Register a Section 8 company with MCA licence, incorporation certificate and object clause drafted for your cause.",
+    whatYouNeed: [
+      "PAN & Aadhaar of directors",
+      "Project plan and estimated income/expenditure",
+      "Registered office proof",
+    ],
+    process: filingProcess,
+    framing: "benefit",
+    faqs: [],
+  },
+  {
     slug: "partnership-firm",
     pillar: "start-your-business",
     name: "Partnership Firm (ROF)",
@@ -144,6 +161,32 @@ export const SERVICES = [
 
 
   // ---------- Licences & Registrations ----------
+  {
+    slug: "startup-india-recognition",
+    pillar: "licences-registrations",
+    name: "Startup India",
+    startingPrice: p(4999),
+    oneLine: "DPIIT recognition to unlock tax exemptions, tender benefits and government grants.",
+    heroSummary:
+      "Apply for DPIIT recognition under the Startup India scheme. Includes pitch deck alignment, application filing and follow-up.",
+    whatYouNeed: ["Incorporation certificate", "PAN of the entity", "Brief on innovation / product", "Website / pitch deck"],
+    process: filingProcess.slice(0, 4),
+    framing: "benefit",
+    faqs: [],
+  },
+  {
+    slug: "msme-udyam",
+    pillar: "licences-registrations",
+    name: "Udyam Registration",
+    startingPrice: p(1499),
+    oneLine: "Unlock lower interest rates, government tenders and delayed-payment protection.",
+    heroSummary:
+      "Udyam registration on the government portal with Aadhaar-linked business details and certificate issue.",
+    whatYouNeed: ["Aadhaar of proprietor / signatory", "PAN of business", "Bank details", "Business activity code (NIC)"],
+    process: filingProcess.slice(0, 4),
+    framing: "benefit",
+    faqs: [],
+  },
   {
     slug: "gst-registration",
     pillar: "licences-registrations",
@@ -169,46 +212,18 @@ export const SERVICES = [
     ],
   },
   {
-    slug: "msme-udyam",
+    slug: "fssai-registration",
     pillar: "licences-registrations",
-    name: "Udyam Registration",
-    startingPrice: p(1499),
-    oneLine: "Unlock lower interest rates, government tenders and delayed-payment protection.",
+    name: "FSSAI Registration",
+    startingPrice: p(2499),
+    oneLine: "Mandatory for anyone selling, storing or manufacturing food. Basic, State or Central licence.",
     heroSummary:
-      "Udyam registration on the government portal with Aadhaar-linked business details and certificate issue.",
-    whatYouNeed: ["Aadhaar of proprietor / signatory", "PAN of business", "Bank details", "Business activity code (NIC)"],
-    process: filingProcess.slice(0, 4),
-    framing: "benefit",
-    faqs: [],
-  },
-  {
-    slug: "startup-india-recognition",
-    pillar: "licences-registrations",
-    name: "Startup India",
-    startingPrice: p(4999),
-    oneLine: "DPIIT recognition to unlock tax exemptions, tender benefits and government grants.",
-    heroSummary:
-      "Apply for DPIIT recognition under the Startup India scheme. Includes pitch deck alignment, application filing and follow-up.",
-    whatYouNeed: ["Incorporation certificate", "PAN of the entity", "Brief on innovation / product", "Website / pitch deck"],
-    process: filingProcess.slice(0, 4),
-    framing: "benefit",
-    faqs: [],
-  },
-  {
-    slug: "section-8-ngo",
-    pillar: "licences-registrations",
-    name: "Section 8",
-    startingPrice: p(12999),
-    oneLine: "Non-profit company registration for CSR funding and foreign funding.",
-    heroSummary:
-      "Register a Section 8 company with MCA licence, incorporation certificate and object clause drafted for your cause.",
-    whatYouNeed: [
-      "PAN & Aadhaar of directors",
-      "Project plan and estimated income/expenditure",
-      "Registered office proof",
-    ],
+      "We pick the right FSSAI category (Basic / State / Central) based on your turnover and file the application end-to-end.",
+    whatYouNeed: ["Business proof", "Address proof", "Food category list", "Owner ID proof"],
     process: filingProcess,
-    framing: "benefit",
+    framing: "loss",
+    penalty:
+      "Operating without a valid FSSAI licence: fine up to ₹5 lakh and up to 6 months imprisonment for repeat offences under the FSS Act.",
     faqs: [],
   },
   {
@@ -222,21 +237,6 @@ export const SERVICES = [
     whatYouNeed: ["PAN of business", "Bank certificate or cancelled cheque", "Address proof of business"],
     process: filingProcess,
     framing: "benefit",
-    faqs: [],
-  },
-  {
-    slug: "fssai-registration",
-    pillar: "licences-registrations",
-    name: "FSSAI Registration",
-    startingPrice: p(2499),
-    oneLine: "Mandatory for anyone selling, storing or manufacturing food. Basic, State or Central licence.",
-    heroSummary:
-      "We pick the right FSSAI category (Basic / State / Central) based on your turnover and file the application end-to-end.",
-    whatYouNeed: ["Business proof", "Address proof", "Food category list", "Owner ID proof"],
-    process: filingProcess,
-    framing: "loss",
-    penalty:
-      "Operating without a valid FSSAI licence: fine up to ₹5 lakh and up to 6 months imprisonment for repeat offences under the FSS Act.",
     faqs: [],
   },
   {
