@@ -141,23 +141,7 @@ export const SERVICES = [
     framing: "benefit",
     faqs: [],
   },
-  {
-    slug: "section-8-ngo",
-    pillar: "start-your-business",
-    name: "Section 8 Company",
-    startingPrice: p(12999),
-    oneLine: "Non-profit company registration for charitable, educational or social causes.",
-    heroSummary:
-      "Register a Section 8 company with MCA licence, incorporation certificate and object clause drafted for your cause.",
-    whatYouNeed: [
-      "PAN & Aadhaar of directors",
-      "Project plan and estimated income/expenditure",
-      "Registered office proof",
-    ],
-    process: filingProcess,
-    framing: "benefit",
-    faqs: [],
-  },
+
 
   // ---------- Licences & Registrations ----------
   {
@@ -207,6 +191,23 @@ export const SERVICES = [
       "Apply for DPIIT recognition under the Startup India scheme. Includes pitch deck alignment, application filing and follow-up.",
     whatYouNeed: ["Incorporation certificate", "PAN of the entity", "Brief on innovation / product", "Website / pitch deck"],
     process: filingProcess.slice(0, 4),
+    framing: "benefit",
+    faqs: [],
+  },
+  {
+    slug: "section-8-ngo",
+    pillar: "licences-registrations",
+    name: "Section 8",
+    startingPrice: p(12999),
+    oneLine: "Non-profit company registration for CSR funding and foreign funding.",
+    heroSummary:
+      "Register a Section 8 company with MCA licence, incorporation certificate and object clause drafted for your cause.",
+    whatYouNeed: [
+      "PAN & Aadhaar of directors",
+      "Project plan and estimated income/expenditure",
+      "Registered office proof",
+    ],
+    process: filingProcess,
     framing: "benefit",
     faqs: [],
   },

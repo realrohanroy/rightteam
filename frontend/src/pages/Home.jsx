@@ -124,10 +124,10 @@ const ClientLogoRow = () => (
 // ─── Pillar tabs preview (dynamic logic) ──────────────────────────────────────
 const PillarTabsPreview = ({ activePillarSlug }) => {
   const pillar = PILLARS.find((p) => p.slug === activePillarSlug) || PILLARS[0];
-  const services = SERVICES.filter((s) => s.pillar === pillar.slug).slice(0, 3);
+  const services = SERVICES.filter((s) => s.pillar === pillar.slug).slice(0, 4);
   return (
-    <div className="grid md:grid-cols-4 gap-6">
-      <div className="md:col-span-1">
+    <div className="grid lg:grid-cols-5 gap-6">
+      <div className="lg:col-span-1">
         <div className="font-display text-xl text-ink leading-tight">{pillar.label}</div>
         <Link
           to={`/${pillar.slug}`}
@@ -136,7 +136,7 @@ const PillarTabsPreview = ({ activePillarSlug }) => {
           View all services →
         </Link>
       </div>
-      <div className="md:col-span-3 grid sm:grid-cols-3 gap-4">
+      <div className="lg:col-span-4 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {services.map((s) => (
           <ServiceCard key={s.slug} service={s} />
         ))}
@@ -152,7 +152,7 @@ const MobilePillarAccordion = () => {
     <div className="divide-y divide-ink/10 border border-ink/15 rounded-sm overflow-hidden">
       {PILLARS.map((p, idx) => {
         const isOpen = openSlug === p.slug;
-        const services = SERVICES.filter((s) => s.pillar === p.slug).slice(0, 3);
+        const services = SERVICES.filter((s) => s.pillar === p.slug).slice(0, 4);
         return (
           <div key={p.slug}>
             {/* Accordion Header */}
