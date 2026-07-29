@@ -9,7 +9,7 @@ import { findService, findPillar, servicesByPillar } from "../data/services";
 import { ArrowRight, Check, Phone, ChevronDown } from "lucide-react";
 import * as Accordion from "@radix-ui/react-accordion";
 import NotFoundPage from "./NotFoundPage";
-import { DocStateTransition } from "../components/DocStateTransition";
+
 
 export default function ServicePage() {
   const { slug } = useParams();
@@ -65,9 +65,6 @@ export default function ServicePage() {
               </div>
             </div>
             
-            <div className="md:ml-auto">
-              <DocStateTransition />
-            </div>
           </div>
 
           {/* Details — collapsed by default for lighter first scroll */}

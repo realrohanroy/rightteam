@@ -16,7 +16,6 @@ import { CredibilityBar } from "../components/CredibilityBar";
 import { TestimonialsSection } from "../components/TestimonialsSection";
 import { CalculatorIllustrationPlaceholder, ProcessIllustrationPlaceholder } from "../components/HeroIllustrationPlaceholder";
 import { PenaltyChart } from "../components/PenaltyChart";
-import { DocStateTransition } from "../components/DocStateTransition";
 import { PILLARS, SERVICES } from "../data/services";
 import { CLIENT_LOGOS } from "../data/marketing";
 import { ArrowRight, Check, Calendar, Play, ChevronDown } from "lucide-react";
