@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useRef, useState } from "react"
+import React, { createContext, useContext, useEffect, useRef, useState, useCallback } from "react"
 import { Check, ChevronDown } from "lucide-react"
 
 // ── Context ──────────────────────────────────────────────────────────────────
@@ -16,8 +16,8 @@ export const Select = ({ value, onValueChange, children }) => {
     return () => document.removeEventListener("mousedown", close)
   }, [])
 
-  const register = (val, label) =>
-    setLabels((prev) => (prev[val] === label ? prev : { ...prev, [val]: label }))
+  const register = useCallback((val, label) =>
+    setLabels((prev) => (prev[val] === label ? prev : { ...prev, [val]: label })), [])
 
   return (
     <Ctx.Provider value={{ value, onValueChange, open, setOpen, labels, register }}>
@@ -86,7 +86,7 @@ export const SelectItem = ({ value, children, className }) => {
   const isSelected = selected === value
 
   // Register this item's display label so SelectValue can look it up
-  useEffect(() => { register(value, children) }, [value, children])
+  useEffect(() => { register(value, children) }, [value, children, register])
 
   return (
     <div
