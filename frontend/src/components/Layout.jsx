@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Phone, Mail, ChevronDown } from "lucide-react";
-import { PILLARS } from "../data/services";
+import { PILLARS, SERVICES } from "../data/services";
 import { CornerSeal } from "./Seal";
 
 const NAV = [
@@ -16,6 +16,7 @@ const NAV = [
 export const Header = () => {
   const [open, setOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [activeMegaCategory, setActiveMegaCategory] = useState(PILLARS[0]?.slug);
   const loc = useLocation();
   const isHome = loc.pathname === "/";
   
@@ -84,17 +85,35 @@ export const Header = () => {
                       {n.label}
                       <ChevronDown size={16} className={`${chevronColor} group-hover:rotate-180 transition-transform`} />
                     </button>
-                    {/* Dropdown Menu */}
-                    <div className="absolute top-full left-0 mt-1 w-64 bg-white border border-ink/10 shadow-lg py-2 rounded-sm opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                      {PILLARS.map((p) => (
-                        <Link
-                          key={p.slug}
-                          to={`/${p.slug}`}
-                          className="block px-4 py-2.5 text-sm text-[#0B1E3D] hover:bg-alt font-medium transition-colors"
-                        >
-                          {p.label}
-                        </Link>
-                      ))}
+                    {/* Dropdown Menu - Two Pane Mega Menu */}
+                    <div className="absolute top-full -left-48 mt-1 w-[800px] bg-white border border-ink/10 shadow-xl rounded flex opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 overflow-hidden min-h-[400px]">
+                      {/* Left Pane: Categories */}
+                      <div className="w-1/3 bg-gray-50 border-r border-ink/10 py-4 flex flex-col">
+                        {PILLARS.map((p) => (
+                          <Link
+                            key={p.slug}
+                            to={`/${p.slug}`}
+                            onMouseEnter={() => setActiveMegaCategory(p.slug)}
+                            className={`w-full text-left px-6 py-3 text-[14px] font-medium transition-colors ${activeMegaCategory === p.slug ? "bg-white text-brand border-l-4 border-brand font-semibold shadow-sm" : "text-[#0B1E3D] hover:bg-white/50 hover:text-brand border-l-4 border-transparent"}`}
+                          >
+                            {p.label}
+                          </Link>
+                        ))}
+                      </div>
+                      {/* Right Pane: Services */}
+                      <div className="w-2/3 bg-white p-6">
+                        <div className="grid grid-cols-2 gap-x-6 gap-y-4 content-start">
+                          {SERVICES.filter((s) => s.pillar === activeMegaCategory).map((service) => (
+                            <Link
+                              key={service.slug}
+                              to={`/service/${service.slug}`}
+                              className="text-sm text-ink/80 hover:text-brand transition-colors font-medium"
+                            >
+                              {service.name}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 );
@@ -146,19 +165,35 @@ export const Header = () => {
                       </button>
                       
                       {servicesOpen && (
-                        <div className="pl-4 pb-3 flex flex-col gap-1">
+                        <div className="pl-4 pb-3 flex flex-col gap-2">
                           {PILLARS.map((p) => (
-                            <Link
-                              key={p.slug}
-                              to={`/${p.slug}`}
-                              onClick={() => {
-                                setOpen(false);
-                                setServicesOpen(false);
-                              }}
-                              className={`py-2 text-sm font-medium transition-colors ${isHome ? "text-white/70 hover:text-white" : "text-ink/80 hover:text-brand"}`}
-                            >
-                              {p.label}
-                            </Link>
+                            <div key={p.slug} className="flex flex-col">
+                              <Link
+                                to={`/${p.slug}`}
+                                onClick={() => {
+                                  setOpen(false);
+                                  setServicesOpen(false);
+                                }}
+                                className={`py-1 text-sm font-semibold transition-colors ${isHome ? "text-white/90 hover:text-white" : "text-[#0B1E3D] hover:text-brand"}`}
+                              >
+                                {p.label}
+                              </Link>
+                              <div className="pl-3 mt-1 flex flex-col gap-1 border-l-2 border-brand/20">
+                                {SERVICES.filter(s => s.pillar === p.slug).map(service => (
+                                  <Link
+                                    key={service.slug}
+                                    to={`/service/${service.slug}`}
+                                    onClick={() => {
+                                      setOpen(false);
+                                      setServicesOpen(false);
+                                    }}
+                                    className={`py-1 text-[13px] font-medium transition-colors ${isHome ? "text-white/60 hover:text-white" : "text-ink/70 hover:text-brand"}`}
+                                  >
+                                    {service.name}
+                                  </Link>
+                                ))}
+                              </div>
+                            </div>
                           ))}
                         </div>
                       )}
@@ -229,11 +264,11 @@ export const Footer = () => {
             <div>
               <div className="mono text-[11px] uppercase tracking-widest text-white/50 mb-4">SERVICES</div>
               <ul className="space-y-3 text-sm">
-                <li><Link to="/start-your-business" className="hover:text-brand transition-colors">Company Registration</Link></li>
-                <li><Link to="/licences-registrations" className="hover:text-brand transition-colors">Licences & Registrations</Link></li>
-                <li><Link to="/tax-compliance" className="hover:text-brand transition-colors">Tax & Compliance</Link></li>
-                <li><Link to="/protect-your-brand" className="hover:text-brand transition-colors">Protect Your Brand</Link></li>
-                <li><Link to="/grow-your-business" className="hover:text-brand transition-colors">Grow Your Business</Link></li>
+                <li><Link to="/company-registration" className="hover:text-brand transition-colors">Company Registration</Link></li>
+                <li><Link to="/licenses-certifications" className="hover:text-brand transition-colors">Licenses & Certifications</Link></li>
+                <li><Link to="/taxation-compliance" className="hover:text-brand transition-colors">Taxation & Compliance</Link></li>
+                <li><Link to="/intellectual-property" className="hover:text-brand transition-colors">Intellectual Property</Link></li>
+                <li><Link to="/international-business" className="hover:text-brand transition-colors">International Business Setup</Link></li>
               </ul>
             </div>
 

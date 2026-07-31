@@ -124,7 +124,7 @@ const ClientLogoRow = () => (
 // ─── Pillar tabs preview (dynamic logic) ──────────────────────────────────────
 const PillarTabsPreview = ({ activePillarSlug }) => {
   const pillar = PILLARS.find((p) => p.slug === activePillarSlug) || PILLARS[0];
-  const isStartBusiness = pillar.slug === "start-your-business" || pillar.slug === "licences-registrations";
+  const isStartBusiness = pillar.slug === "company-registration" || pillar.slug === "licenses-certifications";
   const limit = isStartBusiness ? 4 : 3;
   const services = SERVICES.filter((s) => s.pillar === pillar.slug).slice(0, limit);
   
@@ -155,7 +155,7 @@ const MobilePillarAccordion = () => {
     <div className="divide-y divide-ink/10 border border-ink/15 rounded-sm overflow-hidden">
       {PILLARS.map((p, idx) => {
         const isOpen = openSlug === p.slug;
-        const isStartBusiness = p.slug === "start-your-business" || p.slug === "licences-registrations";
+        const isStartBusiness = p.slug === "company-registration" || p.slug === "licenses-certifications";
         const limit = isStartBusiness ? 4 : 3;
         const services = SERVICES.filter((s) => s.pillar === p.slug).slice(0, limit);
         return (
@@ -400,25 +400,20 @@ export default function Home() {
                 Filings we complete most often.
               </h2>
             </div>
-            <Link
-              to="/quote"
-              className="link-brand text-sm"
-            >
-              View full catalog →
-            </Link>
+
           </div>
 
           <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5" ref={servicesGridRef}>
             {[
               "private-limited-company",
               "gst-registration",
-              "trademark-filing",
-              "income-tax-return",
+              "trademark-registration",
+              "income-tax-filing",
               "startup-india-recognition",
               "iso-certification",
             ].map((slug) => {
               const s = SERVICES.find((x) => x.slug === slug);
-              return <ServiceCard key={slug} service={s} />;
+              return s ? <ServiceCard key={slug} service={s} /> : null;
             })}
           </div>
         </div>
