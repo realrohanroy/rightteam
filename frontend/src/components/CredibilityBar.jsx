@@ -54,7 +54,7 @@ export const CredibilityBar = () => (
         <AnimatedStat
           target={500}
           suffix="+"
-          label="Compliance & Legal SOlutions"
+          label="Compliance & Legal Solutions"
           sublabel="FOR STARTUPS & MSMEs"
           className="border-r border-ink/10"
         />

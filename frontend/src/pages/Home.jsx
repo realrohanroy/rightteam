@@ -350,7 +350,7 @@ export default function Home() {
               FREE COMPLIANCE CHECK • ONLINE
             </div>
             <h2 className="font-display text-2xl sm:text-3xl text-white mt-2 leading-tight">
-              Check Your Business Compliance in Just 30 Seconds.
+              Find the exact statutory compliances your business needs.
             </h2>
           </div>
         </div>
