@@ -74,7 +74,7 @@
 
   /* ── Primary button — brand on hover ─────────────────────────────── */
   .btn-primary {
-    @apply inline-flex items-center gap-2 bg-ink text-white px-5 py-3 text-sm font-medium tracking-wide transition-all rounded-sm;
+    @apply inline-flex items-center gap-2 bg-ink text-white px-5 py-3 text-sm font-medium tracking-wide transition-all rounded-sm select-none cursor-pointer;
   }
   .btn-primary:hover {
     background-color: #E8522B;
@@ -88,7 +88,7 @@
 
   /* ── Outline button — brand fill on hover ────────────────────────── */
   .btn-outline {
-    @apply inline-flex items-center gap-2 border border-ink/40 text-ink px-5 py-3 text-sm font-medium tracking-wide rounded-sm transition-all;
+    @apply inline-flex items-center gap-2 border border-ink/40 text-ink px-5 py-3 text-sm font-medium tracking-wide rounded-sm transition-all select-none cursor-pointer;
   }
   .btn-outline:hover {
     background-color: #E8522B;
@@ -99,7 +99,7 @@
 
   /* ── Urgent button ────────────────────────────────────────────────── */
   .btn-urgent {
-    @apply inline-flex items-center gap-2 bg-seal text-white px-5 py-3 text-sm font-medium tracking-wide rounded-sm transition-all;
+    @apply inline-flex items-center gap-2 bg-seal text-white px-5 py-3 text-sm font-medium tracking-wide rounded-sm transition-all select-none cursor-pointer;
   }
   .btn-urgent:hover {
     animation: stamp-down 220ms ease-in;

@@ -2,7 +2,7 @@ import React from "react";
 import { useParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Layout } from "../components/Layout";
-import { RiskCalculator } from "../components/RiskCalculator";
+import { ComplianceChecklist } from "../components/ComplianceChecklist";
 import { StaticComplianceTable } from "../components/StaticComplianceTable";
 import { ENTITY_TYPES, filingsFor } from "../data/marketing";
 import NotFoundPage from "./NotFoundPage";
@@ -70,7 +70,7 @@ export default function EntityCompliancePage() {
             Use the interactive calculator below to find state-specific filings like Professional Tax.
           </p>
         </div>
-        <RiskCalculator defaultEntity={entity} />
+        <ComplianceChecklist defaultEntity={entity} />
       </section>
     </Layout>
   );

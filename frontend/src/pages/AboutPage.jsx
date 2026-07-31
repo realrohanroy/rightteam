@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { Layout } from "../components/Layout";
 import { CredentialRow } from "../components/Seal";
 import { CompliancePDFCta } from "../components/CompliancePDFCta";
@@ -9,6 +9,22 @@ import { OnTimeRing } from "../components/OnTimeRing";
 import { DuotoneImage } from "../components/DuotoneImage";
 
 export default function AboutPage() {
+  const { hash } = useLocation();
+  
+  useEffect(() => {
+    if (hash) {
+      const id = hash.replace('#', '');
+      const element = document.getElementById(id);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [hash]);
+
   return (
     <Layout>
       <section className="container-x pt-10 relative">
@@ -55,7 +71,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="container-x pb-20 grid lg:grid-cols-12 gap-10">
+      <section id="faq" className="scroll-mt-32 container-x pb-20 grid lg:grid-cols-12 gap-10">
         <div className="lg:col-span-5">
           <div className="mono text-[11px] uppercase tracking-[0.22em] text-slate2">FAQs</div>
           <h2 className="font-display text-3xl sm:text-4xl text-ink mt-3 leading-tight">

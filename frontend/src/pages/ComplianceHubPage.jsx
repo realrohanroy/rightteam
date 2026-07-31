@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Layout } from "../components/Layout";
-import { RiskCalculator } from "../components/RiskCalculator";
+import { ComplianceChecklist } from "../components/ComplianceChecklist";
 import { ENTITY_TYPES } from "../data/marketing";
 import { Calendar } from "lucide-react";
 import { CalendarIllustration } from "../components/Illustrations";
@@ -32,7 +32,7 @@ export default function ComplianceHubPage() {
           </div>
         </div>
         <div className="[&_.container-x]:!pt-0">
-          <RiskCalculator inverted />
+          <ComplianceChecklist inverted />
         </div>
       </section>
 

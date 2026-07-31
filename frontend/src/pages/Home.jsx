@@ -6,7 +6,7 @@ import { Layout } from "../components/Layout";
 import { FilingTabs } from "../components/FilingTabs";
 import { CredentialRow } from "../components/Seal";
 import { ServiceCard } from "../components/ServiceCard";
-import { RiskCalculator } from "../components/RiskCalculator";
+import { ComplianceChecklist } from "../components/ComplianceChecklist";
 import { TeamGrid } from "../components/TeamGrid";
 import { ComparisonTable } from "../components/ComparisonTable";
 import { CaseStudies } from "../components/CaseStudies";
@@ -355,7 +355,7 @@ export default function Home() {
           </div>
         </div>
         <div className="[&_.container-x]:!pt-0">
-          <RiskCalculator inverted />
+          <ComplianceChecklist inverted />
         </div>
       </section>
 

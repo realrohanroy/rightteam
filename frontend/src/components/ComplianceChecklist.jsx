@@ -63,8 +63,10 @@ const ENTITY_COMPLIANCE_MAP = {
   ]
 };
 
-export const RiskCalculator = ({ inverted = false, defaultEntity = "" }) => {
+export const ComplianceChecklist = ({ inverted = false, defaultEntity = "" }) => {
   const [entity, setEntity] = useState(defaultEntity);
+  const [hasSubmitted, setHasSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
   const label = inverted ? "text-white/50" : "text-slate2";
 
   React.useEffect(() => {
@@ -97,9 +99,9 @@ export const RiskCalculator = ({ inverted = false, defaultEntity = "" }) => {
                   <button
                     key={et.key}
                     type="button"
-                    onClick={() => setEntity(et.key)}
+                    onClick={() => { setEntity(et.key); setHasSubmitted(false); }}
                     data-testid={`entity-tile-${et.key}`}
-                    className={`flex flex-col items-center justify-center gap-2 p-4 rounded-xl border-2 transition-all text-center cursor-pointer min-w-0 ${
+                    className={`flex flex-col items-center justify-center gap-2 p-4 rounded-xl border-2 transition-all text-center cursor-pointer select-none min-w-0 ${
                       active
                         ? "border-brand bg-white shadow-md transform scale-[1.02]"
                         : "border-ink/10 bg-white hover:border-ink/25 hover:bg-gray-50/80 hover:shadow-sm"
@@ -123,35 +125,51 @@ export const RiskCalculator = ({ inverted = false, defaultEntity = "" }) => {
                 );
               })}
             </div>
+            
+            {/* ── Action Button ── */}
+            <div className="mt-4 flex justify-center w-full">
+              <button
+                onClick={() => {
+                  if (!entity) return;
+                  setLoading(true);
+                  setTimeout(() => {
+                    setLoading(false);
+                    setHasSubmitted(true);
+                  }, 800);
+                }}
+                disabled={!entity || loading}
+                className={`btn-primary w-full max-w-md px-8 py-3.5 text-[15px] flex items-center justify-center gap-2 disabled:opacity-75 disabled:cursor-not-allowed ${
+                  inverted ? "bg-brand" : ""
+                }`}
+              >
+                {loading ? (
+                  <>
+                    <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                    Generating...
+                  </>
+                ) : (
+                  <>Generate Compliance Checklist <ArrowRight size={16} /></>
+                )}
+              </button>
+            </div>
           </div>
         </div>
 
         {/* ── Results panel ── */}
-        <div className="w-full">
-          <div className="border border-ink/15 bg-white rounded-xl shadow-sm overflow-hidden w-full max-w-full">
-            {/* Panel header */}
-            <div className="border-b border-ink/10 px-5 sm:px-6 py-5 flex items-center justify-between gap-2 w-full bg-gray-50/50">
-              <div className="mono text-xs uppercase tracking-widest text-slate2 font-semibold">
-                Required Statutory Compliances
-              </div>
-              {entity && (
+        {hasSubmitted && (
+          <div className="w-full mt-4 animate-fade-in">
+            <div className="border border-ink/15 bg-white rounded-xl shadow-sm overflow-hidden w-full max-w-full">
+              {/* Panel header */}
+              <div className="border-b border-ink/10 px-5 sm:px-6 py-5 flex items-center justify-between gap-2 w-full bg-gray-50/50">
+                <div className="mono text-xs uppercase tracking-widest text-slate2 font-semibold">
+                  Required Statutory Compliances
+                </div>
                 <div className="text-xs font-semibold text-brand bg-brand/10 px-3 py-1 rounded-full">
                   {activeRequiredServices.length} Requirements
                 </div>
-              )}
-            </div>
-
-            {/* Awaiting input */}
-            {!entity ? (
-              <div className="p-12 text-center flex flex-col items-center justify-center">
-                <CheckCircle size={40} className="text-ink/10 mb-4" />
-                <div className="mono text-[11px] uppercase tracking-widest text-slate2">Awaiting selection</div>
-                <p className="text-ink/50 mt-2 text-sm max-w-xs mx-auto">
-                  Pick your business structure above to see the exact statutory filings you need to stay compliant.
-                </p>
               </div>
-            ) : (
-              /* Results List */
+
+              {/* Results List */}
               <div className="divide-y divide-ink/10" data-testid="compliance-results">
                 {activeRequiredServices.map((service, idx) => (
                   <div key={idx} className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 sm:px-6 hover:bg-gray-50/50 transition-colors group">
@@ -186,10 +204,8 @@ export const RiskCalculator = ({ inverted = false, defaultEntity = "" }) => {
                   </div>
                 )}
               </div>
-            )}
-            
-            {/* CTA Footer */}
-            {entity && (
+              
+              {/* CTA Footer */}
               <div className="bg-ink p-6 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div className="text-white/90 text-sm font-medium text-center sm:text-left">
                   Need help managing all these compliances?
@@ -198,9 +214,9 @@ export const RiskCalculator = ({ inverted = false, defaultEntity = "" }) => {
                   Talk to an Expert <ArrowRight size={14} />
                 </Link>
               </div>
-            )}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </section>
   );
