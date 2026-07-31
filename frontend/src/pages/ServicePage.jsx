@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Layout } from "../components/Layout";
-import { FilingTabs } from "../components/FilingTabs";
+
 import { Checklist, NeedsList } from "../components/Checklist";
 import { PenaltyCallout } from "../components/PenaltyCallout";
 import { Seal, CornerSeal } from "../components/Seal";
@@ -34,9 +34,6 @@ export default function ServicePage() {
       {/* Hero + sidebar quote */}
       <section className="container-x pt-6 pb-8 grid lg:grid-cols-12 gap-10 items-start">
         <div className="lg:col-span-8">
-          <div className={`mono text-[11px] uppercase tracking-[0.25em] font-semibold flex items-center gap-2 ${isLoss ? "text-seal" : "text-approve"}`}>
-            RT/SVC/{service.slug.toUpperCase()}
-          </div>
           <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl text-ink mt-3 leading-[1.05]">
             {service.name}
           </h1>
@@ -99,10 +96,9 @@ export default function ServicePage() {
         </aside>
       </section>
 
-      {/* Filing tabs contextual */}
+      {/* Process Section */}
       <section className="container-x py-20">
-        <FilingTabs activeSlug={service.pillar} />
-        <div className="bg-white border border-t-0 border-ink/70 p-8 sm:p-12 grid lg:grid-cols-12 gap-10">
+        <div className="bg-white border border-ink/15 rounded-xl shadow-sm p-8 sm:p-12 grid lg:grid-cols-12 gap-10">
           <div className="lg:col-span-6">
             <div className="mono text-[11px] uppercase tracking-[0.25em] text-slate2">
               Process
