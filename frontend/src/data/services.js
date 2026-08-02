@@ -55,7 +55,6 @@ export const SERVICES = [
   createService("company-registration", "LLP registration", "Partnership flexibility with limited liability.", 5499),
   createService("company-registration", "Partnership Firm", "Simple way for two or more people to run a business.", 2999),
   createService("company-registration", "Sole Proprietorship", "Simplest business structure for a single owner.", 1999),
-  createService("company-registration", "Startup India", "DPIIT recognition for tax exemptions and grants.", 4999),
   createService("company-registration", "Nidhi Company", "For cultivating the habit of thrift and savings among members.", 19999),
   createService("company-registration", "Microfinance Company", "Section 8 company providing microcredit.", 24999),
   createService("company-registration", "Producer Company", "For farmers and agriculturists.", 14999),
@@ -72,7 +71,7 @@ export const SERVICES = [
   createService("ngo", "CSR-1 Registration", "Mandatory for NGOs undertaking CSR activities.", 2999),
 
   // --- Licenses & Certifications ---
-  createService("licenses-certifications", "Startup India Recognition", "DPIIT recognition.", 4999),
+  createService("licenses-certifications", "Startup India", "DPIIT recognition for tax exemptions and grants.", 4999),
   createService("licenses-certifications", "Udyam Registration", "MSME registration for benefits.", 1499),
   createService("licenses-certifications", "GST Registration", "Get your GSTIN in 5-7 working days.", 1999),
   createService("licenses-certifications", "Import Export Code", "10-digit IEC from DGFT.", 2499),
@@ -81,7 +80,8 @@ export const SERVICES = [
   createService("licenses-certifications", "ISO Certification", "ISO 9001 and other quality certifications.", 4999),
   createService("licenses-certifications", "Shop and Establishment", "Mandatory state-level registration.", 2499),
   createService("licenses-certifications", "Professional Tax", "Registration for professional tax.", 1999),
-  createService("licenses-certifications", "RERA Registration", "Real Estate Regulatory Authority registration.", 14999),
+  createService("licenses-certifications", "NSIC Registration", "For participating in government tenders.", 7999),
+  createService("licenses-certifications", "APEDA Registration", "For exporters of agricultural products.", 5999),
 
   // --- FSSAI Registration ---
   createService("fssai-registration", "Basic FSSAI Registration", "For small food businesses.", 1499),
@@ -140,8 +140,6 @@ export const SERVICES = [
 
   // --- Other Services ---
   createService("other-services", "Business Advisory", "Expert advisory for cash flow and strategy.", 24999),
-  createService("other-services", "NSIC Registration", "For participating in government tenders.", 7999),
-  createService("other-services", "APEDA Registration", "For exporters of agricultural products.", 5999),
   createService("other-services", "Drafting of Legal Documents", "NDAs, employment agreements, and more.", 3999),
   createService("other-services", "Pitch Deck Preparation", "Professional pitch deck for fundraising.", 14999)
 ];

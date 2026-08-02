@@ -409,7 +409,7 @@ export default function Home() {
               "gst-registration",
               "trademark-registration",
               "income-tax-filing",
-              "startup-india-recognition",
+              "startup-india",
               "iso-certification",
             ].map((slug) => {
               const s = SERVICES.find((x) => x.slug === slug);

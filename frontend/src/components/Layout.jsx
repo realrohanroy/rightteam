@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Phone, Mail, ChevronDown } from "lucide-react";
 import { PILLARS, SERVICES } from "../data/services";
@@ -19,6 +19,17 @@ export const Header = () => {
   const [activeMegaCategory, setActiveMegaCategory] = useState(PILLARS[0]?.slug);
   const loc = useLocation();
   const isHome = loc.pathname === "/";
+  
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [open]);
   
   // Dynamic classes for merging with the dark hero image
   const headerClass = isHome 
@@ -150,7 +161,7 @@ export const Header = () => {
         </div>
 
         {open && (
-          <div className={`lg:hidden border-t absolute top-full left-0 w-full shadow-lg ${isHome ? "bg-black/95 border-white/10" : "bg-white border-ink/10"}`}>
+          <div className={`lg:hidden border-t absolute top-full left-0 w-full shadow-lg max-h-[calc(100vh-4rem)] overflow-y-auto ${isHome ? "bg-black/95 border-white/10" : "bg-white border-ink/10"}`}>
             <div className="container-x py-4 flex flex-col gap-1">
               {NAV.map((n) => {
                 if (n.hasDropdown) {

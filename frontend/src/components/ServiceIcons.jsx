@@ -54,7 +54,7 @@ const ICON_MAP = {
   // Licences & Registrations
   "gst-registration": Receipt,
   "msme-udyam": Factory,
-  "startup-india-recognition": Rocket,
+  "startup-india": Rocket,
   "import-export-code": Globe,
   "fssai-registration": UtensilsCrossed,
   "gem-registration": Store,
