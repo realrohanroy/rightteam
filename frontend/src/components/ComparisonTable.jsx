@@ -17,7 +17,7 @@ const OthersCell = ({ value }) => {
 };
 
 export const ComparisonTable = () => (
-  <section className="section-alt py-24 border-y border-ink/10" data-testid="comparison-table">
+  <section id="comparison" className="section-alt py-24 border-y border-ink/10" data-testid="comparison-table">
     <div className="container-x">
       {/* Centered Heading with brand-consistent elements */}
       <div className="text-center mb-12">

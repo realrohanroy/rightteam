@@ -238,38 +238,46 @@ export default function Home() {
           <div className="lg:col-span-6" ref={heroRef}>
             {/* Pill overline */}
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/10 text-xs font-semibold text-white/90">
-              <span className="text-white">Fast. Reliable. Hassle-Free Compliance.</span> 
+              <span className="text-white">✔ Trusted by Growing Businesses Across India</span> 
               <span className="text-white/60 mx-1">|</span>
               <a href="/contact" className="hover:text-white transition-colors flex items-center gap-1">Talk to an Expert<ArrowRight size={12} /></a>
             </div>
 
             {/* Headline */}
             <h1 className="font-display text-2xl sm:text-3xl lg:text-4xl leading-[1.05] mt-6 text-white font-bold tracking-tight">
-              The compliance platform to direct your best work
+              Compliance, Done Right. Every Time.
             </h1>
 
             {/* Subhead */}
             <p className="text-lg text-white/80 mt-6 max-w-xl leading-relaxed">
-              Every statutory filing for tax, MCA. Intelligent workflows for professional control and collaboration. On-brand production at any scale.
+              Never miss another ROC, MCA, GST, or tax deadline. RightTeam manages your statutory compliance so you can focus on growing your business.
             </p>
 
             {/* CTA Buttons */}
             <div className="mt-8 flex flex-wrap items-center gap-4">
-              <Link
-                to="/quote"
+              <a
+                href="#compliance-check"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('compliance-check')?.scrollIntoView({ behavior: 'smooth' });
+                }}
                 className="inline-flex items-center justify-center bg-white text-[#050B14] px-8 py-3.5 text-sm font-bold tracking-wide rounded-xl hover:bg-white/90 active:scale-95 transition-all shadow-md"
                 data-testid="hero-get-started"
               >
-                Get Started Now
-              </Link>
-              <Link
-                to="/contact"
+                Get a Free Compliance Review
+              </a>
+              <a
+                href="#comparison"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('comparison')?.scrollIntoView({ behavior: 'smooth' });
+                }}
                 className="inline-flex items-center justify-center gap-2 border border-white text-white hover:bg-white/10 px-8 py-3.5 text-sm font-bold tracking-wide rounded-xl active:scale-95 transition-all"
                 data-testid="hero-book-meeting"
               >
                 <Play size={14} fill="currentColor" />
                 <span>Why RightTeam?</span>
-              </Link>
+              </a>
             </div>
           </div>
 
@@ -340,7 +348,7 @@ export default function Home() {
       <CredibilityBar />
 
       {/* ── COMPLIANCE CALCULATOR — navy bg ─────────────────────────────────── */}
-      <section className="section-navy py-28 border-y border-white/10" data-testid="calculator-wrapper">
+      <section id="compliance-check" className="section-navy py-28 border-y border-white/10" data-testid="calculator-wrapper">
         <div className="container-x mb-12 flex flex-col items-center text-center gap-4">
           <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-brand shrink-0 shadow-inner">
             <Calendar size={32} strokeWidth={1.5} />
