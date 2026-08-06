@@ -128,14 +128,46 @@ export const COMPARISON = {
 // Populate CLIENT_LOGOS only with real, permission-cleared names.
 export const CLIENT_LOGOS = [];
 
-// Entity type options for the compliance risk calculator
+// Entity type options for the compliance risk calculator.
+// subtitle — shown on the entity card beneath the label.
+// futureRoute — reserved for /compliance/:slug dedicated pages (do not navigate yet).
 export const ENTITY_TYPES = [
-  { key: "sole-prop", label: "Sole Proprietorship" },
-  { key: "partnership", label: "Partnership Firm" },
-  { key: "llp", label: "LLP" },
-  { key: "opc", label: "One Person Company" },
-  { key: "pvt-ltd", label: "Private Limited Company" },
-  { key: "public-ltd", label: "Public Limited Company" },
+  {
+    key: "sole-prop",
+    label: "Sole Proprietorship",
+    subtitle: "GST, Income Tax & Trade Licence",
+    futureRoute: "/compliance/sole-proprietorship",
+  },
+  {
+    key: "partnership",
+    label: "Partnership Firm",
+    subtitle: "GST Returns & Annual Tax Filing",
+    futureRoute: "/compliance/partnership-firm",
+  },
+  {
+    key: "llp",
+    label: "LLP",
+    subtitle: "Annual Filing & Regulatory Compliance",
+    futureRoute: "/compliance/llp",
+  },
+  {
+    key: "opc",
+    label: "One Person Company",
+    subtitle: "Annual MCA & Tax Compliance",
+    futureRoute: "/compliance/one-person-company",
+  },
+  {
+    key: "pvt-ltd",
+    label: "Private Limited Company",
+    subtitle: "Annual ROC, MCA & Tax Compliance",
+    futureRoute: "/compliance/private-limited-company",
+  },
+  {
+    key: "public-ltd",
+    label: "Public Limited Company",
+    subtitle: "Full Statutory & Listed Company Compliance",
+    futureRoute: "/compliance/public-limited-company",
+  },
 ];
 
 export const STATES = [

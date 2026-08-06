@@ -660,36 +660,55 @@ export default function CareerPage() {
         <div className="absolute inset-0 bg-gradient-to-br from-brand/20 via-ink/90 to-ink" />
 
         <div className="container-x relative z-10 py-20 sm:py-28 lg:py-32">
-          <div className="max-w-3xl">
-            <div className="mono text-[11px] uppercase tracking-[0.22em] text-brand mb-5 flex items-center gap-2">
-              <span className="w-8 h-px bg-brand inline-block" />
-              Join Our Team
+          <div className="flex flex-col lg:flex-row lg:items-center gap-12 lg:gap-16">
+            {/* Text content */}
+            <div className="flex-1 max-w-2xl">
+              <div className="mono text-[11px] uppercase tracking-[0.22em] text-brand mb-5 flex items-center gap-2">
+                <span className="w-8 h-px bg-brand inline-block" />
+                Join Our Team
+              </div>
+              <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl text-white leading-[1.06] mb-6">
+                Build Your Career.{" "}
+                <span className="text-brand">Grow With Us.</span>
+              </h1>
+              <p className="text-lg text-white/75 leading-relaxed mb-10 max-w-xl">
+                Be part of India's most trusted compliance and registration practice. We're growing fast and looking for passionate professionals to join our Ahmedabad team.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <button
+                  onClick={() => scrollToForm("")}
+                  className="inline-flex items-center gap-2.5 bg-brand text-white px-7 py-3.5 rounded-sm font-semibold text-sm hover:bg-brand-dark transition-all hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(232,82,43,0.4)]"
+                  id="hero-view-openings-btn"
+                >
+                  View Open Positions <ChevronRight className="w-4.5 h-4.5" />
+                </button>
+                <a
+                  href="#why-rightteam"
+                  className="inline-flex items-center gap-2.5 border border-white/30 text-white px-7 py-3.5 rounded-sm font-semibold text-sm hover:bg-white/10 transition-all"
+                >
+                  Why RightTeam
+                </a>
+              </div>
             </div>
-            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl text-white leading-[1.06] mb-6">
-              Build Your Career.{" "}
-              <span className="text-brand">Grow With Us.</span>
-            </h1>
-            <p className="text-lg text-white/75 leading-relaxed mb-10 max-w-xl">
-              Be part of India's most trusted compliance and registration practice. We're growing fast and looking for passionate professionals to join our Ahmedabad team.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <button
-                onClick={() => scrollToForm("")}
-                className="inline-flex items-center gap-2.5 bg-brand text-white px-7 py-3.5 rounded-sm font-semibold text-sm hover:bg-brand-dark transition-all hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(232,82,43,0.4)]"
-                id="hero-view-openings-btn"
+
+            {/* Hero illustration — Interview / Join the team */}
+            <div className="hidden lg:flex lg:w-[420px] xl:w-[460px] shrink-0 items-center justify-center">
+              <div
+                className="relative w-full"
+                style={{
+                  filter: "drop-shadow(0 20px 40px rgba(232,82,43,0.18)) drop-shadow(0 4px 12px rgba(0,0,0,0.35))",
+                  animation: "float-y 5s ease-in-out infinite",
+                }}
               >
-                View Open Positions <ChevronRight className="w-4.5 h-4.5" />
-              </button>
-              <a
-                href="#why-rightteam"
-                className="inline-flex items-center gap-2.5 border border-white/30 text-white px-7 py-3.5 rounded-sm font-semibold text-sm hover:bg-white/10 transition-all"
-              >
-                Why RightTeam
-              </a>
+                <img
+                  src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/interview_rmcf.svg"
+                  alt="Interview and career opportunity illustration"
+                  loading="eager"
+                  style={{ width: "100%", height: "auto", opacity: 0.92 }}
+                />
+              </div>
             </div>
           </div>
-
-          
         </div>
       </section>
 
@@ -717,14 +736,26 @@ export default function CareerPage() {
 
       {/* ── Culture Pillars ───────────────────────────────────────────────── */}
       <section className="container-x py-16 sm:py-20">
-        <div className="text-center mb-12">
-          <div className="mono text-[11px] uppercase tracking-[0.22em] text-brand mb-3">Our Culture</div>
-          <h2 className="font-display text-3xl sm:text-4xl text-ink">
-            Why Build Your Career With RightTeam?
-          </h2>
-          <p className="text-slate2 mt-4 max-w-xl mx-auto leading-relaxed">
-            We foster an environment where professionals thrive, grow and make a meaningful impact every single day.
-          </p>
+        {/* Section header + illustration row */}
+        <div className="flex flex-col lg:flex-row lg:items-center gap-10 mb-14">
+          <div className="flex-1">
+            <div className="mono text-[11px] uppercase tracking-[0.22em] text-brand mb-3">Our Culture</div>
+            <h2 className="font-display text-3xl sm:text-4xl text-ink">
+              Why Build Your Career With RightTeam?
+            </h2>
+            <p className="text-slate2 mt-4 max-w-xl leading-relaxed">
+              We foster an environment where professionals thrive, grow and make a meaningful impact every single day.
+            </p>
+          </div>
+          {/* Winners / Team celebration illustration */}
+          <div className="hidden lg:block lg:w-72 xl:w-80 shrink-0">
+            <img
+              src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/winners_2yls.svg"
+              alt="Team celebrating success and achievement"
+              loading="lazy"
+              style={{ width: "100%", height: "auto" }}
+            />
+          </div>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {CULTURE_PILLARS.map((p, i) => (
@@ -786,9 +817,19 @@ export default function CareerPage() {
               <h2 className="font-display text-3xl sm:text-4xl text-ink mb-4 leading-tight">
                 Join Our Growing Team
               </h2>
-              <p className="text-slate2 leading-relaxed mb-8">
+              <p className="text-slate2 leading-relaxed mb-6">
                 Take the next step in your career. Fill out the form and our HR team will get back to you within 3–5 business days.
               </p>
+
+              {/* Application form illustration */}
+              <div className="mb-8 rounded-xl overflow-hidden bg-gradient-to-br from-brand/5 to-transparent p-4 border border-brand/10">
+                <img
+                  src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/business_plan_5i9d.svg"
+                  alt="Professional submitting a job application and building a business plan"
+                  loading="lazy"
+                  style={{ width: "100%", maxHeight: "220px", objectFit: "contain" }}
+                />
+              </div>
 
               {/* Process steps */}
               <div className="space-y-4 mb-8">
@@ -844,8 +885,13 @@ export default function CareerPage() {
       {/* ── Bottom CTA ───────────────────────────────────────────────────── */}
       <section className="section-alt border-t border-ink/10">
         <div className="container-x py-14">
-          <div className="border border-ink bg-ink text-white p-8 sm:p-10 flex flex-col md:flex-row items-center gap-6 justify-between rounded-sm">
-            <div className="text-center md:text-left">
+          <div className="border border-ink bg-ink text-white p-8 sm:p-10 flex flex-col md:flex-row items-center gap-8 justify-between rounded-sm overflow-hidden relative">
+            {/* Subtle radial glow behind illustration */}
+            <div
+              className="absolute right-0 top-0 w-72 h-72 rounded-full pointer-events-none"
+              style={{ background: "radial-gradient(ellipse at 70% 30%, rgba(232,82,43,0.18) 0%, transparent 70%)" }}
+            />
+            <div className="text-center md:text-left relative z-10">
               <div className="mono text-[11px] uppercase tracking-widest text-brand mb-2">Don't see your role?</div>
               <h3 className="font-display text-2xl sm:text-3xl leading-tight">
                 Send us your resume anyway.
@@ -854,9 +900,18 @@ export default function CareerPage() {
                 We're always on the lookout for exceptional talent. Drop your CV and we'll reach out when a matching role opens up.
               </p>
             </div>
+            {/* Envelope illustration */}
+            <div className="hidden md:block w-36 lg:w-44 shrink-0 relative z-10 opacity-90">
+              <img
+                src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/envelope_n8lc.svg"
+                alt="Send your CV via email"
+                loading="lazy"
+                style={{ width: "100%", height: "auto", filter: "brightness(0) invert(1) opacity(0.85)" }}
+              />
+            </div>
             <a
               href="mailto:careers@rightteam.in"
-              className="inline-flex items-center gap-2 bg-brand text-white px-7 py-3.5 font-semibold text-sm rounded-sm hover:bg-brand-dark transition-all shrink-0 hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 bg-brand text-white px-7 py-3.5 font-semibold text-sm rounded-sm hover:bg-brand-dark transition-all shrink-0 hover:-translate-y-0.5 relative z-10"
             >
               Email Your CV <ArrowRight className="w-4 h-4" />
             </a>

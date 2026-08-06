@@ -15,15 +15,17 @@ const fmtDate = (iso) =>
   });
 
 const CATEGORY_BG = {
-  "Tax Law":   "bg-[#2563EB]",
-  "GST":       "bg-[#10B981]",
-  "Audit Prep":"bg-[#F97316]",
+  "Tax Law":    "bg-[#2563EB]",
+  "GST":        "bg-[#10B981]",
+  "Audit Prep": "bg-[#F97316]",
+  "Compliance": "bg-[#0B1E3D]",
 };
 
 const CATEGORY_TXT = {
-  "Tax Law":   "text-[#2563EB]",
-  "GST":       "text-[#10B981]",
-  "Audit Prep":"text-[#F97316]",
+  "Tax Law":    "text-[#2563EB]",
+  "GST":        "text-[#10B981]",
+  "Audit Prep": "text-[#F97316]",
+  "Compliance": "text-[#0B1E3D]",
 };
 
 function FeaturedCard({ post }) {
@@ -33,12 +35,12 @@ function FeaturedCard({ post }) {
       to={`/blogs/${post.slug}`}
       className="group block rounded-2xl overflow-hidden bg-white border border-ink/10 hover:border-brand/40 hover:shadow-2xl transition-all duration-500"
     >
-      <div className="grid grid-cols-1 md:grid-cols-2">
-        <div className="overflow-hidden aspect-[16/10] md:aspect-auto md:h-full bg-[#050B14] relative">
+      <div className="grid grid-cols-1 md:grid-cols-2 md:max-h-[380px]">
+        <div className="overflow-hidden aspect-[16/10] md:aspect-[4/3] bg-[#050B14] relative">
           <DuotoneImage
             src={post.image}
             alt={post.title}
-            className="w-full h-full transform group-hover:scale-105 transition-transform duration-700"
+            className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
           />
         </div>
         <div className="p-7 lg:p-10 flex flex-col justify-center">

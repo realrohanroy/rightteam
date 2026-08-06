@@ -209,6 +209,11 @@
   0%, 100% { box-shadow: 0 0 0 0 rgba(232, 82, 43, 0.4); }
   50%       { box-shadow: 0 0 0 8px rgba(232, 82, 43, 0); }
 }
+/* Gentle vertical float — used by hero illustrations */
+@keyframes float-y {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-14px); }
+}
 
 /* Hero service list — scrolls up by exactly half the total list height (7 items × 72px = 504px) */
 @keyframes marquee-up {

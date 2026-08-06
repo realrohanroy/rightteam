@@ -347,19 +347,32 @@ export default function Home() {
       {/* ── CREDIBILITY BAR — stat strip ──────────────────────────────────── */}
       <CredibilityBar />
 
-      {/* ── COMPLIANCE CALCULATOR — navy bg ─────────────────────────────────── */}
+      {/* ── COMPLIANCE CHECKER — navy bg ─────────────────────────────────── */}
       <section id="compliance-check" className="section-navy py-28 border-y border-white/10" data-testid="calculator-wrapper">
         <div className="container-x mb-12 flex flex-col items-center text-center gap-4">
           <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-brand shrink-0 shadow-inner">
-            <Calendar size={32} strokeWidth={1.5} />
+            <Calendar size={32} strokeWidth={1.5} aria-hidden="true" />
           </div>
-          <div>
+          <div className="max-w-2xl">
+            {/* Eyebrow */}
             <div className="mono text-[11px] uppercase tracking-[0.22em] text-brand">
-              FREE COMPLIANCE CHECK • ONLINE
+              FREE BUSINESS COMPLIANCE CHECKER
             </div>
-            <h2 className="font-display text-2xl sm:text-3xl text-white mt-2 leading-tight">
-              Find the exact statutory compliances your business needs.
+            {/* H2 — page already has one H1 in the hero */}
+            <h2 className="font-display text-2xl sm:text-3xl text-white mt-3 leading-tight">
+              Know Every Compliance Your Business Must Follow
             </h2>
+            {/* Supporting paragraph — crawlable, keyword-natural */}
+            <p className="mt-4 text-white/70 text-sm sm:text-base leading-relaxed">
+              Select your business type to instantly generate a personalised statutory compliance checklist based on Indian regulations. Discover your obligations across{" "}
+              <span className="text-white/90 font-medium">ROC Filings</span>,{" "}
+              <span className="text-white/90 font-medium">MCA Compliance</span>,{" "}
+              <span className="text-white/90 font-medium">GST Returns</span>,{" "}
+              <span className="text-white/90 font-medium">Income Tax</span>,{" "}
+              <span className="text-white/90 font-medium">Annual Filings</span>, and{" "}
+              <span className="text-white/90 font-medium">Event-Based Compliances</span>{" "}
+              — all in under a minute.
+            </p>
           </div>
         </div>
         <div className="[&_.container-x]:!pt-0">

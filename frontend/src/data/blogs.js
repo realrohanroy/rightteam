@@ -4,28 +4,37 @@
 // renderer stays clean.
 
 export const BLOG_CATEGORIES = [
-  { id: "all",        label: "All" },
-  { id: "tax-law",    label: "Tax Law" },
-  { id: "gst",        label: "GST" },
-  { id: "audit-prep", label: "Audit Prep" },
+  { id: "all",         label: "All" },
+  { id: "tax-law",     label: "Tax Law" },
+  { id: "gst",         label: "GST" },
+  { id: "audit-prep",  label: "Audit Prep" },
+  { id: "compliance",  label: "Compliance" },
 ];
 
 const RELATED = {
   "maximizing-deductions-small-businesses": [
-    { slug: "gst-compliance-changes",   label: "Understanding GST Compliance Changes" },
-    { slug: "preparing-financial-audit", label: "Preparing for Your Next Financial Audit" },
+    { slug: "gst-compliance-changes",          label: "Understanding GST Compliance Changes" },
+    { slug: "preparing-financial-audit",        label: "Preparing for Your Next Financial Audit" },
+    { slug: "business-compliance-guide-india",  label: "The Complete Guide to Business Compliance in India" },
   ],
   "gst-compliance-changes": [
     { slug: "maximizing-deductions-small-businesses", label: "Maximizing Deductions for Small Businesses" },
-    { slug: "preparing-financial-audit", label: "Preparing for Your Next Financial Audit" },
+    { slug: "preparing-financial-audit",              label: "Preparing for Your Next Financial Audit" },
+    { slug: "business-compliance-guide-india",        label: "The Complete Guide to Business Compliance in India" },
   ],
   "preparing-financial-audit": [
     { slug: "maximizing-deductions-small-businesses", label: "Maximizing Deductions for Small Businesses" },
-    { slug: "gst-compliance-changes", label: "Understanding GST Compliance Changes" },
+    { slug: "gst-compliance-changes",                 label: "Understanding GST Compliance Changes" },
+    { slug: "business-compliance-guide-india",        label: "The Complete Guide to Business Compliance in India" },
+  ],
+  "business-compliance-guide-india": [
+    { slug: "gst-compliance-changes",    label: "Understanding GST Compliance Changes" },
+    { slug: "preparing-financial-audit", label: "Preparing for Your Next Financial Audit" },
   ],
 };
 
 export const BLOGS = [
+  // ── 1. Tax deductions guide ──────────────────────────────────────────────
   {
     slug: "maximizing-deductions-small-businesses",
     title: "Maximizing Deductions: A Guide for Small Businesses",
@@ -61,7 +70,7 @@ export const BLOGS = [
         "PPF, ELSS, NSC, life insurance - keep 5-year statements.",
         "Home loan principal - Form 16A / bank certificate.",
         "Children's tuition fee - bonafide certificate from the school.",
-      ] },
+      ]},
 
       { type: "h3", text: "2. Section 80D - Health insurance premiums" },
       { type: "p", text: "Premiums paid for health insurance covering self, spouse, dependent children and parents qualify for deduction up to ₹25,000. If parents are senior citizens, the cap rises to ₹50,000. Keep premium receipts and the policy document; preventive health check-ups (up to ₹5,000) are included within the same cap." },
@@ -97,7 +106,7 @@ export const BLOGS = [
         "Home office floor plan and utility bills.",
         "Donation receipts with 80G reference numbers.",
         "Payroll, PF/ESI challans for employment-based deductions.",
-      ] },
+      ]},
 
       { type: "quote", text: "A deduction is only as good as the document that supports it. Keep proofs digital, indexed, and accessible from your CA's dashboard - it is the single highest-leverage habit in small business tax planning." },
 
@@ -106,6 +115,7 @@ export const BLOGS = [
     ],
   },
 
+  // ── 2. GST compliance changes ────────────────────────────────────────────
   {
     slug: "gst-compliance-changes",
     title: "Understanding the Latest GST Compliance Changes",
@@ -142,7 +152,7 @@ export const BLOGS = [
         "Recipient accepts, rejects or keeps pending on the IMS dashboard.",
         "Auto-populated details flow into GSTR-1 / IFF by the 11th of the next month.",
         "Supplier files GSTR-1 with these pre-filled values - saving hours of data entry.",
-      ] },
+      ]},
 
       { type: "h3", text: "2. Invoice Management System (IMS)" },
       { type: "p", text: "IMS is the single window where a recipient reviews the invoices issued to them. Once accepted, the input tax credit is locked in; if rejected, the supplier must correct the invoice. Pending status is treated as deemed acceptance after the due date. For high-volume businesses, the IMS workflow reduces reconciliation effort by an order of magnitude." },
@@ -156,7 +166,7 @@ export const BLOGS = [
         "Auto-population from IMS - fewer manual entries.",
         "Late fee rationalised for nil returns.",
         "Mandatory reconciliation for high-value ITC.",
-      ] },
+      ]},
 
       { type: "h3", text: "5. E-invoicing thresholds" },
       { type: "p", text: "The e-invoicing threshold has been progressively lowered. Businesses with turnover above ₹5 crore must already be issuing e-invoices; further reductions to the threshold are expected. If your turnover is approaching this mark, getting on the e-invoice and IMS workflow now is far cheaper than retrofitting it later." },
@@ -175,13 +185,14 @@ export const BLOGS = [
         "Switch to QRMP if your turnover is under ₹5 crore and your invoicing is regular.",
         "Reconcile GSTR-2B with your purchase register every month.",
         "Update your ERP / accounting tool to support e-invoicing at the new threshold.",
-      ] },
+      ]},
 
       { type: "h3", text: "How RightTeam can help" },
       { type: "p", text: "Our GST desk manages end-to-end monthly and quarterly compliance for over 200 clients - from upload to IMS to GSTR-3B, with quarterly health checks. We also help migrate legacy books onto e-invoice and IMS-ready stacks. Book a free 30-minute review to find out how much time you can save." },
     ],
   },
 
+  // ── 3. Audit preparation guide ───────────────────────────────────────────
   {
     slug: "preparing-financial-audit",
     title: "Preparing for Your Next Financial Audit",
@@ -223,7 +234,7 @@ export const BLOGS = [
         "Fixed asset register with depreciation schedule.",
         "Statutory registers (members, directors, charges).",
         "Prior year audited financials and audit reports.",
-      ] },
+      ]},
 
       { type: "h3", text: "Step 3 - Reconcile the bank first" },
       { type: "p", text: "Bank reconciliation is the single most time-consuming part of an audit. Do it before the auditor starts, not during. Use your accounting tool's auto-match, but always investigate unmatched entries - they are almost always the source of queries." },
@@ -247,6 +258,127 @@ export const BLOGS = [
 
       { type: "h3", text: "How RightTeam can help" },
       { type: "p", text: "We provide end-to-end audit support - from pre-audit bookkeeping cleanup to working-paper preparation, to attending the audit with your statutory auditors. We can also be your single point of contact, so your team keeps working while the audit happens around them." },
+    ],
+  },
+
+  // ── 4. Business compliance guide (new) ───────────────────────────────────
+  // Route: /blogs/business-compliance-guide-india
+  // Image: business discussion between a woman and man (Unsplash)
+  {
+    slug: "business-compliance-guide-india",
+    title: "The Complete Guide to Business Compliance in India (FY 2026–27)",
+    excerpt:
+      "Every registered business in India carries mandatory statutory obligations that vary by legal structure. This guide maps out exactly which ROC, MCA, GST, income tax, and annual filing requirements apply to your company — and what happens if you miss them.",
+    category: "Compliance",
+    categoryColor: "bg-[#0B1E3D]",
+    categorySlug: "compliance",
+    image:
+      "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=1600&auto=format&fit=crop",
+    author: "RightTeam Editorial",
+    datePublished: "2026-08-04",
+    readMinutes: 8,
+    keywords: [
+      "statutory compliance India",
+      "company compliance checklist",
+      "ROC compliance",
+      "MCA compliance",
+      "GST compliance",
+      "annual filing India",
+      "LLP compliance",
+      "Private Limited compliance",
+      "income tax compliance business",
+      "business compliance FY 2026-27",
+    ],
+    meta: {
+      title: "Complete Guide to Business Compliance in India (FY 2026–27) | RightTeam",
+      description:
+        "Know exactly which statutory compliances — ROC, MCA, GST, income tax, and annual filings — apply to your business structure in India. Updated for FY 2026–27.",
+    },
+    sections: [
+      { type: "p", text: "Every registered business in India has specific statutory compliance obligations determined by its legal structure. A Private Limited Company follows a different annual compliance calendar from an LLP, which differs again from a Sole Proprietorship or a Partnership Firm. Getting this mapping wrong — or missing a deadline — attracts penalties, interest, and in serious cases, director disqualification or company strike-off." },
+      { type: "p", text: "This guide maps out the key statutory compliance requirements by entity type, explains why they exist, and shows you what to expect if you miss them. It is updated for FY 2026–27 and reviewed by RightTeam's in-house chartered accountants and company secretaries." },
+
+      { type: "h3", text: "1. Why Statutory Compliance Matters for Every Business" },
+      { type: "p", text: "Statutory compliance is not optional — it is mandated by the Income Tax Act 1961, the Companies Act 2013, the CGST Act 2017, the LLP Act 2008, and several other central and state laws. Regulators including the Ministry of Corporate Affairs (MCA), the Central Board of Direct Taxes (CBDT), and the Central Board of Indirect Taxes and Customs (CBIC) all enforce separate compliance calendars with independent penalty structures." },
+      { type: "list", items: [
+        "Missing a GST return attracts a late fee of ₹50/day (₹20/day for nil returns), plus 18% p.a. interest on unpaid tax.",
+        "Missing an ROC annual filing (AOC-4 or MGT-7) attracts ₹100/day per form — with no upper cap under Sections 137 and 92 of the Companies Act.",
+        "Sustained ROC default triggers director disqualification under Section 164(2) and can lead to company strike-off under Section 248.",
+        "Late income tax filing attracts ₹5,000 under Section 234F and bars loss carry-forward.",
+      ]},
+
+      { type: "h3", text: "2. Private Limited Company Compliance" },
+      { type: "p", text: "A Private Limited Company registered under the Companies Act 2013 carries the most comprehensive annual compliance calendar. Every Private Limited Company — regardless of turnover or activity — must complete the following every financial year." },
+      { type: "list", items: [
+        "ROC AOC-4: Annual financial statements filed with the Registrar of Companies within 30 days of the AGM.",
+        "ROC MGT-7A: Annual return filed within 60 days of the AGM (OPCs and small companies use MGT-7A; others use MGT-7).",
+        "Statutory audit: Mandatory under Section 139 for all companies, irrespective of turnover.",
+        "Board meetings: Minimum 4 per year with no more than 120 days between consecutive meetings.",
+        "DIR-3 KYC: Annual director KYC by 30 September; DIN deactivated otherwise.",
+        "Income tax return: Filed by 31 October for companies requiring tax audit, 31 July otherwise.",
+        "GST returns: Monthly GSTR-1, GSTR-3B, and annual GSTR-9 (where applicable).",
+        "TDS quarterly returns: Form 26Q/24Q filed within prescribed due dates each quarter.",
+      ]},
+
+      { type: "h3", text: "3. LLP Compliance Requirements" },
+      { type: "p", text: "An LLP (Limited Liability Partnership) registered under the LLP Act 2008 has its own MCA compliance calendar. LLP compliance is lighter than a private limited company but still mandatory every year — missed filings attract ₹100/day penalties with no cap." },
+      { type: "list", items: [
+        "LLP Form 11 (Annual Return): Filed by 30 May each year. Penalty: ₹100/day from the due date.",
+        "LLP Form 8 (Statement of Accounts & Solvency): Filed by 30 October each year.",
+        "DIR-3 KYC for designated partners: Filed by 30 September; DPIN deactivated on default.",
+        "Income tax return: Filed by 31 July (non-audit LLPs) or 31 October (audit LLPs).",
+        "GST compliance: Monthly GSTR-1 and GSTR-3B if registered under GST.",
+      ]},
+
+      { type: "h3", text: "4. One Person Company (OPC) Compliance" },
+      { type: "p", text: "An OPC is a private limited company with a single member. Its ROC and MCA compliance obligations mirror those of a regular Private Limited Company, though the AGM requirement is relaxed. OPCs must complete AOC-4 (financial statements), statutory audit, director KYC, and income tax return filing every year." },
+
+      { type: "h3", text: "5. Sole Proprietorship & Partnership Firm Compliance" },
+      { type: "p", text: "Sole Proprietorships and Partnership Firms are not registered under the Companies Act, so there are no ROC filings. However, they still carry significant compliance obligations under GST and the Income Tax Act." },
+      { type: "list", items: [
+        "Income tax return (ITR-3 or ITR-4): Filed by 31 July (non-audit) or 31 October (Section 44AB audit cases).",
+        "GST returns: If GST-registered, monthly GSTR-1 and GSTR-3B, and annual GSTR-9.",
+        "TDS returns: If the business deducts TDS (e.g., rent payments, professional fees), quarterly Form 26Q.",
+        "Partnership deed registration: While optional federally, required in most states for banking and legal disputes.",
+        "Municipal trade licence: Required in most municipalities for operating a business from a physical location.",
+      ]},
+
+      { type: "h3", text: "6. GST Compliance — Applicable to All Registered Businesses" },
+      { type: "p", text: "GST compliance cuts across all entity types. Any business with aggregate turnover above ₹20 lakh (₹10 lakh for North-East states) must register and file returns. For businesses in the QRMP scheme (turnover up to ₹5 crore), quarterly returns with monthly payments apply. All others file monthly." },
+      { type: "list", items: [
+        "GSTR-1 (outward supplies): 11th of the following month for monthly filers; quarterly for QRMP.",
+        "GSTR-3B (summary return + payment): 20th of the following month (22nd/24th for QRMP filers).",
+        "GSTR-9 (annual return): 31 December of the following financial year.",
+        "E-invoicing: Mandatory for businesses with turnover above ₹5 crore.",
+      ]},
+
+      { type: "h3", text: "7. Income Tax Compliance — Key Deadlines" },
+      { type: "p", text: "Income tax compliance applies to every business — sole proprietors, partners, directors, and companies alike. The key annual deadline is 31 July for most non-audit taxpayers, and 31 October for companies and businesses requiring a tax audit under Section 44AB." },
+      { type: "list", items: [
+        "Advance tax: Paid in four instalments — 15 June (15%), 15 September (45%), 15 December (75%), and 15 March (100%).",
+        "TDS deduction and deposit: TDS must be deducted and deposited by the 7th of the following month.",
+        "ITR filing: 31 July (most non-audit cases), 31 October (audit companies), 30 November (transfer pricing).",
+      ]},
+
+      { type: "h3", text: "8. Common Compliance Mistakes and How to Avoid Them" },
+      { type: "p", text: "The most expensive compliance mistakes are not complex — they are simply missed due dates. The following are the most common issues RightTeam sees when businesses first engage with us." },
+      { type: "list", items: [
+        "Treating GST and income tax as the only compliance obligations — and ignoring ROC filings until a director's DIN is deactivated.",
+        "Missing DIR-3 KYC (due 30 September every year) — this deactivates a director's DIN instantly on 1 October.",
+        "Confusing the AGM deadline with the ROC filing deadline — AGM must be held by 30 September, but AOC-4 and MGT-7 have separate 30-day and 60-day windows after the AGM.",
+        "Not filing LLP Form 11 by 30 May — the most common LLP compliance lapse we see.",
+        "Registering under GST but not filing nil returns when there are no transactions — nil returns still require filing.",
+      ]},
+
+      { type: "quote", text: "A compliance deadline missed is not just a fine — it is a signal to regulators that the business is not governed. The reputational and operational cost of a DIN deactivation or company strike-off notice far exceeds the cost of staying on top of every annual filing." },
+
+      { type: "h3", text: "9. Frequently Asked Questions on Business Compliance in India" },
+      { type: "p", text: "Is compliance mandatory even if my company has no business activity? Yes. A Dormant Company or Strike-Off application must be filed if you want to stop compliance obligations. Simply having no transactions does not waive the annual ROC, income tax, or GST filing requirements." },
+      { type: "p", text: "What is the difference between statutory audit and tax audit? A statutory audit is mandatory for all companies under the Companies Act and must be conducted by a Chartered Accountant before the ROC filings. A tax audit under Section 44AB of the Income Tax Act applies to businesses with turnover above the prescribed threshold." },
+      { type: "p", text: "Can I manage all my compliance requirements myself? For micro-businesses and sole proprietors with simple books, basic GST and income tax compliance is manageable. However, once a company or LLP is involved — with ROC filings, statutory audit, director KYC and event-based compliances — professional management is strongly recommended. The penalties for errors and delays are disproportionately high." },
+
+      { type: "h3", text: "How RightTeam Can Help" },
+      { type: "p", text: "RightTeam manages end-to-end statutory compliance for Private Limited Companies, LLPs, OPCs, Partnership Firms and Proprietorships across India. Our in-house CAs, Company Secretaries and tax advisors handle every annual filing, ROC form, GST return and income tax submission — with deadline reminders and a dedicated account manager for each client. Book a free compliance review to find out exactly which filings apply to your business and get a fixed-price annual compliance quote." },
     ],
   },
 ];
