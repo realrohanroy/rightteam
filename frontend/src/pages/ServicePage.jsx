@@ -43,18 +43,22 @@ export default function ServicePage() {
 
           <div className="mt-8 flex flex-col md:flex-row md:items-center gap-8">
             <div className="flex flex-wrap items-center gap-6">
-              <div>
-                <div className="mono text-[11px] uppercase tracking-widest text-slate2">
-                  Starting at
-                </div>
-                <div className="font-display text-4xl text-ink font-black leading-none mt-1">
-                  {service.startingPrice}
-                </div>
-                <div className="mono text-[10px] uppercase tracking-widest text-slate2 mt-1">
-                  Fixed fee · Government fees included
-                </div>
-              </div>
-              <div className="h-14 w-px bg-ink/20 hidden sm:block" />
+              {service.startingPrice && (
+                <>
+                  <div>
+                    <div className="mono text-[11px] uppercase tracking-widest text-slate2">
+                      Starting at
+                    </div>
+                    <div className="font-display text-4xl text-ink font-black leading-none mt-1">
+                      {service.startingPrice}
+                    </div>
+                    <div className="mono text-[10px] uppercase tracking-widest text-slate2 mt-1">
+                      Fixed fee · Government fees included
+                    </div>
+                  </div>
+                  <div className="h-14 w-px bg-ink/20 hidden sm:block" />
+                </>
+              )}
               <div>
                 <div className="mono text-[11px] uppercase tracking-widest text-slate2">Turnaround</div>
                 <div className="font-semibold text-ink text-lg">7–14 working days</div>
@@ -163,10 +167,12 @@ export default function ServicePage() {
                   <CornerSeal />
                 </div>
                 <div className="mt-4 pt-3 border-t border-ink/10 flex items-center justify-between">
-                  <div className="text-sm">
-                    <span className="text-slate2 mono text-[10px] uppercase tracking-widest">From</span>{" "}
-                    <span className="font-display font-bold text-ink">{r.startingPrice}</span>
-                  </div>
+                  {r.startingPrice ? (
+                    <div className="text-sm">
+                      <span className="text-slate2 mono text-[10px] uppercase tracking-widest">From</span>{" "}
+                      <span className="font-display font-bold text-ink">{r.startingPrice}</span>
+                    </div>
+                  ) : <div />}
                   <ArrowRight size={16} className="text-ink group-hover:text-seal transition-colors" />
                 </div>
               </Link>

@@ -29,7 +29,7 @@ const monthlyProcess = [
   { title: "Filed before the due date", body: "Return filed, challan paid, acknowledgement stored in your dashboard." },
 ];
 
-const p = (n) => `₹${n.toLocaleString("en-IN")}`;
+const p = (n) => typeof n === "number" ? `₹${n.toLocaleString("en-IN")}` : n;
 
 // Helper to generate a placeholder service
 const createService = (categorySlug, name, oneLine, price) => ({
@@ -51,9 +51,9 @@ export const SERVICES = [
   // --- Company Registration ---
   createService("company-registration", "Private Limited Company", "The default structure for startups raising capital.", 6999),
   createService("company-registration", "Public Limited Company", "For large-scale businesses planning to raise public funds.", 14999),
-  createService("company-registration", "One Person Company", "For solo founders who want limited liability.", 5999),
-  createService("company-registration", "LLP registration", "Partnership flexibility with limited liability.", 5499),
-  createService("company-registration", "Partnership Firm", "Simple way for two or more people to run a business.", 2999),
+  createService("company-registration", "One Person Company", "For solo founders who want limited liability.", 6999),
+  createService("company-registration", "LLP registration", "Partnership flexibility with limited liability.", 6999),
+  createService("company-registration", "Partnership Firm", "Simple way for two or more people to run a business.", 3999),
   createService("company-registration", "Sole Proprietorship", "Simplest business structure for a single owner.", 1999),
   createService("company-registration", "Nidhi Company", "For cultivating the habit of thrift and savings among members.", 19999),
   createService("company-registration", "Microfinance Company", "Section 8 company providing microcredit.", 24999),
@@ -63,30 +63,30 @@ export const SERVICES = [
   createService("company-registration", "Foreign Company", "Branch office, liaison office, or project office.", 39999),
 
   // --- NGO ---
-  createService("ngo", "Section 8 Company", "Non-profit company registration.", 12999),
+  createService("ngo", "Section 8 Company", "Non-profit company registration.", 6999),
   createService("ngo", "Trust Registration", "Setup a charitable trust.", 9999),
   createService("ngo", "Society Registration", "Register a society under the Societies Registration Act.", 11999),
-  createService("ngo", "12A and 80G Registration", "Tax exemptions for NGOs.", 14999),
+  createService("ngo", "12A and 80G Registration", "Tax exemptions for NGOs.", 4999),
   createService("ngo", "FCRA Registration", "For receiving foreign contributions.", 24999),
-  createService("ngo", "CSR-1 Registration", "Mandatory for NGOs undertaking CSR activities.", 2999),
+  createService("ngo", "CSR-1 Registration", "Mandatory for NGOs undertaking CSR activities.", 2499),
 
   // --- Licenses & Certifications ---
-  createService("licenses-certifications", "Startup India", "DPIIT recognition for tax exemptions and grants.", 4999),
-  createService("licenses-certifications", "Udyam Registration", "MSME registration for benefits.", 1499),
-  createService("licenses-certifications", "GST Registration", "Get your GSTIN in 5-7 working days.", 1999),
-  createService("licenses-certifications", "Import Export Code", "10-digit IEC from DGFT.", 2499),
-  createService("licenses-certifications", "GeM Registration", "Register on Government e-Marketplace.", 3999),
+  createService("licenses-certifications", "Startup India", "DPIIT recognition for tax exemptions and grants.", 3999),
+  createService("licenses-certifications", "Udyam Registration", "MSME registration for benefits.", 999),
+  createService("licenses-certifications", "GST Registration", "Get your GSTIN in 5-7 working days.", 1499),
+  createService("licenses-certifications", "Import Export Code", "10-digit IEC from DGFT.", 1499),
+  createService("licenses-certifications", "GeM Registration", "Register on Government e-Marketplace.", 4999),
   createService("licenses-certifications", "Digital Signature Certificate", "Class 3 DSC for secure filings.", 1499),
-  createService("licenses-certifications", "ISO Certification", "ISO 9001 and other quality certifications.", 4999),
+  createService("licenses-certifications", "ISO Certification", "ISO 9001 and other quality certifications.", 3999),
   createService("licenses-certifications", "Shop and Establishment", "Mandatory state-level registration.", 2499),
   createService("licenses-certifications", "Professional Tax", "Registration for professional tax.", 1999),
-  createService("licenses-certifications", "NSIC Registration", "For participating in government tenders.", 7999),
-  createService("licenses-certifications", "APEDA Registration", "For exporters of agricultural products.", 5999),
+  createService("licenses-certifications", "NSIC Registration", "For participating in government tenders.", "As per case"),
+  createService("licenses-certifications", "APEDA Registration", "For exporters of agricultural products.", 14999),
 
   // --- FSSAI Registration ---
-  createService("fssai-registration", "Basic FSSAI Registration", "For small food businesses.", 1499),
-  createService("fssai-registration", "State FSSAI License", "For mid-sized food businesses.", 4999),
-  createService("fssai-registration", "Central FSSAI License", "For large food businesses and importers.", 9999),
+  createService("fssai-registration", "Basic FSSAI Registration", "For small food businesses.", 999),
+  createService("fssai-registration", "State FSSAI License", "For mid-sized food businesses.", "Prof. fee ₹3,999 + Gov fees"),
+  createService("fssai-registration", "Central FSSAI License", "For large food businesses and importers.", "Prof. fee ₹7,999 + Gov fees"),
   createService("fssai-registration", "FSSAI Annual Return", "Filing of mandatory food safety returns.", 1999),
 
   // --- Trade License ---
@@ -94,10 +94,10 @@ export const SERVICES = [
   createService("trade-license", "Health Trade License", "For businesses dealing with goods/services affecting public health.", 5999),
 
   // --- BIS Registration ---
-  createService("bis-registration", "BIS Certification (ISI)", "Quality certification for specific products.", 19999),
-  createService("bis-registration", "BIS Hallmarking", "For precious metals like gold and silver.", 14999),
-  createService("bis-registration", "WPC Approval", "Wireless Planning & Coordination approval.", 24999),
-  createService("bis-registration", "EPR Authorization", "Extended Producer Responsibility for e-waste/plastic.", 29999),
+  createService("bis-registration", "BIS Certification (ISI)", "Quality certification for specific products.", "As per case"),
+  createService("bis-registration", "BIS Hallmarking", "For precious metals like gold and silver.", "As per case"),
+  createService("bis-registration", "WPC Approval", "Wireless Planning & Coordination approval.", "As per case"),
+  createService("bis-registration", "EPR Authorization", "Extended Producer Responsibility for e-waste/plastic.", "As per case"),
 
   // --- International Business Setup ---
   createService("international-business", "FEMA Compliance", "Foreign Exchange Management Act compliance.", 9999),
@@ -107,41 +107,41 @@ export const SERVICES = [
 
   // --- Taxation & Compliance ---
   {
-    ...createService("taxation-compliance", "ROC Annual Filing", "AOC-4, MGT-7 and MGT-7A filed.", 3999),
+    ...createService("taxation-compliance", "ROC Annual Filing", "AOC-4, MGT-7 and MGT-7A filed.", null),
     process: filingProcess, framing: "loss"
   },
   {
-    ...createService("taxation-compliance", "Auditing", "Statutory, internal, and tax audits.", 4999),
+    ...createService("taxation-compliance", "Auditing", "Statutory, internal, and tax audits.", null),
     process: filingProcess, framing: "loss"
   },
   {
-    ...createService("taxation-compliance", "GST Returns", "Monthly/Quarterly GST filings.", 999),
+    ...createService("taxation-compliance", "GST Returns", "Monthly/Quarterly GST filings.", null),
     process: monthlyProcess, framing: "loss"
   },
   {
-    ...createService("taxation-compliance", "Income Tax Filing", "ITR-1 to ITR-7 filed.", 1499),
+    ...createService("taxation-compliance", "Income Tax Filing", "ITR-1 to ITR-7 filed.", null),
     process: filingProcess, framing: "loss"
   },
   {
-    ...createService("taxation-compliance", "TDS Return Filing", "Quarterly Form 24Q, 26Q, 27Q.", 1499),
+    ...createService("taxation-compliance", "TDS Return Filing", "Quarterly Form 24Q, 26Q, 27Q.", null),
     process: monthlyProcess, framing: "loss"
   },
   {
-    ...createService("taxation-compliance", "Accounting & Bookkeeping", "Monthly accounting services.", 4999),
+    ...createService("taxation-compliance", "Accounting & Bookkeeping", "Monthly accounting services.", null),
     process: monthlyProcess, framing: "benefit"
   },
 
   // --- Intellectual Property ---
-  createService("intellectual-property", "Trademark Registration", "Protect your brand name and logo.", 4499),
+  createService("intellectual-property", "Trademark Registration", "Protect your brand name and logo.", "₹1,999 + Gov fees"),
   createService("intellectual-property", "Trademark Objection", "Respond to registry objections.", 2499),
-  createService("intellectual-property", "Copyright Registration", "Protect software, literature, or art.", 3999),
-  createService("intellectual-property", "Patent Filing", "Protect your inventions.", 19999),
-  createService("intellectual-property", "Design Registration", "Protect the aesthetic design of your product.", 6999),
+  createService("intellectual-property", "Copyright Registration", "Protect software, literature, or art.", 9999),
+  createService("intellectual-property", "Patent Filing", "Protect your inventions.", "On Request"),
+  createService("intellectual-property", "Design Registration", "Protect the aesthetic design of your product.", "On Request"),
 
   // --- Other Services ---
   createService("other-services", "Business Advisory", "Expert advisory for cash flow and strategy.", 24999),
   createService("other-services", "Drafting of Legal Documents", "NDAs, employment agreements, and more.", 3999),
-  createService("other-services", "Pitch Deck Preparation", "Professional pitch deck for fundraising.", 14999)
+  createService("other-services", "Pitch Deck Preparation", "Professional pitch deck for fundraising.", 8999)
 ];
 
 // For backwards compatibility and routing logic

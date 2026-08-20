@@ -30,15 +30,17 @@ export const ServiceCard = ({ service }) => (
         {service.oneLine}
       </p>
 
-      <div className="mt-5 pt-4 border-t border-ink/10 flex items-end justify-between">
-        <div>
-          <div className="mono text-[11px] uppercase tracking-widest text-slate2">
-            Starting at
+      <div className={`mt-5 pt-4 border-t border-ink/10 flex items-end ${service.startingPrice ? 'justify-between' : 'justify-end'}`}>
+        {service.startingPrice && (
+          <div>
+            <div className="mono text-[11px] uppercase tracking-widest text-slate2">
+              Starting at
+            </div>
+            <div className="font-display text-2xl text-ink font-bold leading-none mt-1">
+              {service.startingPrice}
+            </div>
           </div>
-          <div className="font-display text-2xl text-ink font-bold leading-none mt-1">
-            {service.startingPrice}
-          </div>
-        </div>
+        )}
         <span className="inline-flex items-center gap-1 text-sm font-medium text-ink group-hover:text-brand transition-colors">
           View details
           <ArrowUpRight size={16} />
