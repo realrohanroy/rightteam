@@ -41,10 +41,10 @@ export const ComparisonTable = () => (
                 return (
                   <th
                     key={c.key}
-                    className={`text-center p-2 sm:p-4 font-display text-xs sm:text-base text-white border-r border-white/10 last:border-r-0 relative ${
+                    className={`text-center p-2 sm:p-4 font-display text-xs sm:text-base text-white border-r last:border-r-0 relative ${
                       isHighlight
-                        ? "border-t-4 border-l-4 border-r-4 border-[#A855F7] rounded-t-2xl z-10 shadow-[0_-6px_15px_rgba(168,85,247,0.35),-6px_0_15px_rgba(168,85,247,0.35),6px_0_15px_rgba(168,85,247,0.35)]"
-                        : ""
+                        ? "border-t-4 border-l-4 border-r-4 border-t-[#A855F7] border-x-[#A855F7] rounded-t-2xl z-20 shadow-[0_-6px_15px_rgba(168,85,247,0.35),-6px_0_15px_rgba(168,85,247,0.35),6px_0_15px_rgba(168,85,247,0.35)]"
+                        : "border-white/10"
                     }`}
                   >
                     {c.label}
@@ -75,14 +75,14 @@ export const ComparisonTable = () => (
                       return (
                         <td
                           key={c.key}
-                          className={`p-2 sm:p-4 text-center bg-white border-l-4 border-r-4 border-[#A855F7] relative z-10 ${
+                          className={`p-2 sm:p-4 text-center bg-white border-l-4 border-r-4 border-x-[#A855F7] relative z-20 ${
                             isLastRow
-                              ? "border-b-4 rounded-b-2xl shadow-[0_8px_20px_rgba(168,85,247,0.4),-6px_0_15px_rgba(168,85,247,0.3),6px_0_15px_rgba(168,85,247,0.3)]"
-                              : "border-b border-slate-100 shadow-[-6px_0_15px_rgba(168,85,247,0.3),6px_0_15px_rgba(168,85,247,0.3)]"
+                              ? "border-b-4 border-b-[#A855F7] rounded-b-2xl shadow-[0_8px_20px_rgba(168,85,247,0.4),-6px_0_15px_rgba(168,85,247,0.3),6px_0_15px_rgba(168,85,247,0.3)]"
+                              : "border-b border-b-slate-200 shadow-[-6px_0_15px_rgba(168,85,247,0.3),6px_0_15px_rgba(168,85,247,0.3)]"
                           }`}
                         >
                           <div className="flex items-center justify-center h-full">
-                            <Check className="text-[#A855F7] w-4 h-4 sm:w-5 sm:h-5" strokeWidth={3} />
+                            <Check className="text-green-500 w-4 h-4 sm:w-5 sm:h-5" strokeWidth={3} />
                           </div>
                         </td>
                       );

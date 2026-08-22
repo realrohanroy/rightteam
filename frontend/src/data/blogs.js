@@ -297,6 +297,7 @@ export const BLOGS = [
     sections: [
       { type: "p", text: "Every registered business in India has specific statutory compliance obligations determined by its legal structure. A Private Limited Company follows a different annual compliance calendar from an LLP, which differs again from a Sole Proprietorship or a Partnership Firm. Getting this mapping wrong — or missing a deadline — attracts penalties, interest, and in serious cases, director disqualification or company strike-off." },
       { type: "p", text: "This guide maps out the key statutory compliance requirements by entity type, explains why they exist, and shows you what to expect if you miss them. It is updated for FY 2026–27 and reviewed by RightTeam's in-house chartered accountants and company secretaries." },
+      { type: "link", text: "Check Your Compliance Automatically", url: "/#compliance-check" },
 
       { type: "h3", text: "1. Why Statutory Compliance Matters for Every Business" },
       { type: "p", text: "Statutory compliance is not optional — it is mandated by the Income Tax Act 1961, the Companies Act 2013, the CGST Act 2017, the LLP Act 2008, and several other central and state laws. Regulators including the Ministry of Corporate Affairs (MCA), the Central Board of Direct Taxes (CBDT), and the Central Board of Indirect Taxes and Customs (CBIC) all enforce separate compliance calendars with independent penalty structures." },

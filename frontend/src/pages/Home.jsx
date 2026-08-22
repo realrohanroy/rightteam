@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { Layout } from "../components/Layout";
@@ -215,9 +215,21 @@ const MobilePillarAccordion = () => {
 
 // ─── Home Page ────────────────────────────────────────────────────────────────
 export default function Home() {
+  const { hash } = useLocation();
   const heroRef = useScrollFadeIn({ y: 20 });
   const servicesGridRef = useScrollStagger({ stagger: 0.08 });
   const [activePillar, setActivePillar] = useState(PILLARS[0].slug);
+
+  useEffect(() => {
+    if (hash) {
+      setTimeout(() => {
+        const element = document.getElementById(hash.replace('#', ''));
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 250);
+    }
+  }, [hash]);
 
   return (
     <Layout>
@@ -364,17 +376,6 @@ export default function Home() {
             <h2 className="font-display text-2xl sm:text-3xl text-white mt-3 leading-tight">
               Know Every Compliance Your Business Must Follow
             </h2>
-            {/* Supporting paragraph — crawlable, keyword-natural */}
-            <p className="mt-4 text-white/70 text-sm sm:text-base leading-relaxed">
-              Select your business type to instantly generate a personalised statutory compliance checklist based on Indian regulations. Discover your obligations across{" "}
-              <span className="text-white/90 font-medium">ROC Filings</span>,{" "}
-              <span className="text-white/90 font-medium">MCA Compliance</span>,{" "}
-              <span className="text-white/90 font-medium">GST Returns</span>,{" "}
-              <span className="text-white/90 font-medium">Income Tax</span>,{" "}
-              <span className="text-white/90 font-medium">Annual Filings</span>, and{" "}
-              <span className="text-white/90 font-medium">Event-Based Compliances</span>{" "}
-              — all in under a minute.
-            </p>
           </div>
         </div>
         <div className="[&_.container-x]:!pt-0">

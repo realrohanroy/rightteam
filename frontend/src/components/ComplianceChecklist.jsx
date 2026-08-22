@@ -250,8 +250,7 @@ export const ComplianceChecklist = ({ inverted = false, defaultEntity = "" }) =>
           </div>
         </div>
 
-        {/* ── SEO context block — always visible, crawlable ── */}
-        <SeoContextBlock inverted={inverted} />
+        {/* ── SEO context block removed per request ── */}
 
         {/* ── Results panel — shown after submission ── */}
         {hasSubmitted && (

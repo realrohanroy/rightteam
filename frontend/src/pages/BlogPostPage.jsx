@@ -50,6 +50,14 @@ function RenderSection({ section }) {
           <p className="text-[15px] text-ink/85 leading-relaxed italic">"{section.text}"</p>
         </blockquote>
       );
+    case "link":
+      return (
+        <div className="my-8">
+          <a href={section.url} className="inline-flex items-center gap-2 bg-brand text-white font-bold text-sm py-3 px-6 rounded-sm shadow-sm hover:bg-brand/90 transition-colors">
+            {section.text} <ArrowRight size={16} />
+          </a>
+        </div>
+      );
     default:
       return null;
   }
