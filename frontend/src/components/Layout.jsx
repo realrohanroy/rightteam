@@ -82,10 +82,13 @@ export const Header = () => {
       <header className={headerClass}>
         <div className="container-x flex items-center justify-between py-4 lg:py-12">
           <Link to="/" className="flex items-center gap-2 sm:gap-3" data-testid="brand-home-link">
-            <LogoIcon className="w-10 h-10 sm:w-11 sm:h-11" />
+            <LogoIcon className="w-11 h-11" />
             <div className="hidden sm:block leading-none">
-              <div className="font-display text-[28px] font-bold tracking-tight">
-                <span className="text-brand">Right</span><span className={logoTeamColor}>Team</span>
+              <div 
+                className={`text-[28px] tracking-normal ${isHome ? 'text-white' : 'text-[#0B1E3D]'}`}
+                style={{ fontFamily: "'Yatra One', cursive, sans-serif", fontWeight: 400 }}
+              >
+                RightTeam
               </div>
             </div>
           </Link>
@@ -252,7 +255,7 @@ export const Footer = () => {
           <div className="lg:col-span-5 space-y-6">
             <div>
               <div className="flex items-center gap-3">
-                <LogoIcon className="w-10 h-10 sm:w-11 sm:h-11" />
+                <LogoIcon className="w-11 h-11" />
                 <div className="hidden sm:block font-display text-lg font-bold">
                   <span className="text-brand">Right</span><span className="text-white">Team</span><span className="text-brand">.in</span>
                 </div>

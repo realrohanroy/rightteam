@@ -221,7 +221,7 @@ export default function Home() {
 
   return (
     <Layout>
-      <section className="relative bg-[#050B14] overflow-hidden min-h-[85vh] flex flex-col justify-center pt-24 pb-16" data-testid="hero-section">
+      <section className="relative bg-[#050B14] overflow-hidden min-h-[85vh] flex flex-col justify-center pt-24 pb-36" data-testid="hero-section">
         {/* Background Image — Surreal/Dramatic Abstract */}
         <div className="absolute inset-0 z-0">
           <img 
@@ -291,7 +291,7 @@ export default function Home() {
         </div>
 
         {/* ── Trusted-by strip — transparent backdrop, overlays the hero background, infinite horizontal marquee on mobile/desktop ── */}
-        <div className="lg:absolute relative bottom-0 left-0 right-0 z-10 border-t border-white/10 bg-transparent py-6 overflow-hidden">
+        <div className="absolute bottom-0 left-0 right-0 z-10 border-t border-white/10 bg-transparent py-6 overflow-hidden">
           <p className="text-center text-[11px] tracking-widest text-white uppercase font-semibold mb-5 px-6">
             Trusted by 2000+ Indian businesses — startups, manufacturers &amp; enterprises
           </p>
