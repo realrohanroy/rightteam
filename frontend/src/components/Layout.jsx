@@ -85,8 +85,7 @@ export const Header = () => {
             <LogoIcon className="w-11 h-11" />
             <div className="hidden sm:block leading-none">
               <div 
-                className={`text-[28px] tracking-normal ${isHome ? 'text-white' : 'text-[#0B1E3D]'}`}
-                style={{ fontFamily: "'Yatra One', cursive, sans-serif", fontWeight: 400 }}
+                className={`text-[36px] tracking-normal font-wordmark ${isHome ? 'text-white' : 'text-[#0B1E3D]'}`}
               >
                 RightTeam
               </div>
@@ -258,8 +257,7 @@ export const Footer = () => {
                 <LogoIcon className="w-11 h-11" />
                 <div className="hidden sm:block leading-none">
                   <div 
-                    className="text-[28px] tracking-normal text-white"
-                    style={{ fontFamily: "'Yatra One', cursive, sans-serif", fontWeight: 400 }}
+                    className="text-[36px] tracking-normal font-wordmark text-white"
                   >
                     RightTeam
                   </div>
