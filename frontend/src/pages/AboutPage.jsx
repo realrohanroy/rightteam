@@ -27,26 +27,35 @@ export default function AboutPage() {
 
   return (
     <Layout>
-      <section className="container-x pt-10 relative">
+      <section className="container-x pt-10 relative pb-10">
         <div className="mono text-[11px] uppercase tracking-[0.22em] text-slate2">Home / About the practice</div>
-        <div className="mt-4 max-w-4xl">
-          <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl text-ink leading-[1.05]">
-            A statutory compliance practice run by chartered accountants and company secretaries.
-          </h1>
-          <p className="text-base sm:text-lg text-ink/75 mt-5 leading-relaxed prose-narrow">
-            Incorporated in Ahmedabad in 2026, Right Team now services 2000+ businesses across 24 states and UT with in-house CAs, CS and IP attorneys.
-          </p>
-
-          <div className="mt-8 relative h-[300px] sm:h-[400px] w-full lg:hidden rounded-sm overflow-hidden mb-10">
-            <DuotoneImage 
-              src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1469&auto=format&fit=crop" 
-              alt="Professional Indian office setting"
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center mt-4">
+          <div className="max-w-xl">
+            <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl text-ink leading-[1.05]">
+              A statutory compliance practice run by chartered accountants and company secretaries.
+            </h1>
+            <p className="text-base sm:text-lg text-ink/75 mt-5 leading-relaxed prose-narrow">
+              Incorporated in Ahmedabad in 2026, Right Team now services 2000+ businesses across 24 states and UT with in-house CAs, CS and IP attorneys.
+            </p>
+            
+            <div className="mt-8 relative h-[300px] w-full lg:hidden rounded-md overflow-hidden mb-6 shadow-xl border border-ink/5">
+              <img 
+                src="/images/about_hero.png" 
+                alt="Professional Indian corporate accounting office"
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+          </div>
+          <div className="hidden lg:block relative h-[450px] w-full rounded-md overflow-hidden shadow-2xl transition-transform hover:-translate-y-1 duration-500 border border-ink/5">
+            <img 
+              src="/images/about_hero.png" 
+              alt="Professional Indian corporate accounting office"
+              className="w-full h-full object-cover"
+              loading="lazy"
             />
           </div>
-
-      
         </div>
-        
       </section>
 
       <section className="container-x py-20">
@@ -72,11 +81,22 @@ export default function AboutPage() {
       </section>
 
       <section id="faq" className="scroll-mt-32 container-x pb-20 grid lg:grid-cols-12 gap-10">
-        <div className="lg:col-span-5">
-          <div className="mono text-[11px] uppercase tracking-[0.22em] text-slate2">FAQs</div>
-          <h2 className="font-display text-3xl sm:text-4xl text-ink mt-3 leading-tight">
-            Frequently Asked Questions
-          </h2>
+        <div className="lg:col-span-5 flex flex-col justify-start">
+          <div>
+            <div className="mono text-[11px] uppercase tracking-[0.22em] text-slate2">FAQs</div>
+            <h2 className="font-display text-3xl sm:text-4xl text-ink mt-3 leading-tight">
+              Frequently Asked Questions
+            </h2>
+          </div>
+          <div className="hidden lg:flex mt-20 ml-10 justify-start">
+            <img 
+              src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/questions_75e0.svg" 
+              alt="FAQ illustration" 
+              className="w-64 opacity-90 transition-opacity hover:opacity-100 mix-blend-multiply" 
+              style={{ filter: "sepia(1) hue-rotate(330deg) saturate(3) brightness(0.9)" }}
+              loading="lazy"
+            />
+          </div>
         </div>
         <div className="lg:col-span-7">
           <Accordion.Root type="multiple" defaultValue={["faq-0"]} className="space-y-0 border-t border-ink/10">

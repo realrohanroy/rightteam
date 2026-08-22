@@ -41,19 +41,32 @@ export const CompliancePDFCta = ({ variant = "default" }) => {
 
   return (
     <section
-      className={`relative overflow-hidden w-full py-16 ${
-        variant === "dark" ? "bg-ink text-white" : "bg-[#EDEFF5] text-ink"
+      className={`relative overflow-hidden w-full py-20 border-y border-ink/5 ${
+        variant === "dark" ? "bg-[#050B14] text-white" : variant === "white" ? "bg-white text-ink" : "bg-[#EDEFF5] text-ink"
       }`}
       data-testid="compliance-pdf-cta"
     >
-      <div className="container-x flex justify-center">
+      {/* Background Watermark Illustration */}
+      {(variant === "dark" || variant === "white") && (
+        <div 
+          className={`absolute inset-0 pointer-events-none ${variant === "white" ? "opacity-[0.25]" : "opacity-[0.12]"}`}
+          style={{
+            backgroundImage: "url('https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/envelope_n8lc.svg')",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "right center",
+            backgroundSize: "auto 120%",
+            filter: "sepia(1) hue-rotate(330deg) saturate(2)"
+          }}
+        />
+      )}
+      <div className="container-x relative z-10 flex justify-center">
 
         {/* Center Column: Form & Heading */}
         <div className="flex flex-col justify-center items-center text-center w-full max-w-xl mx-auto">
-          <h3 className="font-display text-2xl sm:text-3xl font-bold tracking-tight text-ink">
+          <h3 className={`font-display text-2xl sm:text-3xl font-bold tracking-tight ${variant === "dark" ? "text-white" : "text-ink"}`}>
             Never Miss an Important Business Update
           </h3>
-          <p className="mt-3 text-xs sm:text-sm text-ink/80 max-w-md leading-relaxed font-medium">
+          <p className={`mt-3 text-xs sm:text-sm max-w-md leading-relaxed font-medium ${variant === "dark" ? "text-white/80" : "text-ink/80"}`}>
             Receive timely updates on company registrations, GST, ROC compliance, trademark registrations, and government policy changes.
           </p>
 
@@ -120,7 +133,7 @@ export const CompliancePDFCta = ({ variant = "default" }) => {
             </div>
           )}
 
-          <div className="mt-6 text-[10px] sm:text-xs font-mono uppercase tracking-widest text-ink/60">
+          <div className={`mt-6 text-[10px] sm:text-xs font-mono uppercase tracking-widest ${variant === "dark" ? "text-white/60" : "text-ink/60"}`}>
             ✓ Weekly Business Updates • Compliance Alerts • Expert Insights
           </div>
         </div>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Phone, Mail, ChevronDown } from "lucide-react";
+import { Menu, X, Phone, Mail, ChevronDown, MapPin } from "lucide-react";
 import { PILLARS, SERVICES } from "../data/services";
 import { CornerSeal } from "./Seal";
 
@@ -251,32 +251,41 @@ export const Footer = () => {
       <div className="container-x py-14">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           {/* Left Column: Logo, description and contact info */}
-          <div className="lg:col-span-5 space-y-6">
+          <div className="lg:col-span-5 space-y-8 pr-0 lg:pr-10">
             <div>
-              <div className="flex items-center gap-3">
-                <LogoIcon className="w-11 h-11" />
-                <div className="hidden sm:block leading-none">
-                  <div 
-                    className="text-[36px] tracking-normal font-wordmark text-white"
-                  >
+              <Link to="/" className="flex items-center gap-3 inline-flex group">
+                <LogoIcon className="w-12 h-12 group-hover:scale-105 transition-transform duration-300" />
+                <div className="hidden sm:block leading-none mt-1">
+                  <div className="text-[34px] tracking-normal font-wordmark text-white">
                     RightTeam
                   </div>
                 </div>
-              </div>
-              <p className="text-sm text-white/70 mt-3 max-w-xl leading-relaxed">
-                Indian compliance and registration practice. Chartered accountants, company secretaries and IP attorneys, in-house.
+              </Link>
+              <p className="text-[15px] text-white/70 mt-5 max-w-sm leading-relaxed font-light">
+                India's premier compliance and registration practice. We provide end-to-end chartered accounting, secretarial, and legal services in-house.
               </p>
             </div>
             
-            {/* Contact info below the description */}
-            <div className="mono text-[11px] uppercase tracking-widest text-white/60 space-y-2">
-              <div className="flex flex-col sm:flex-row gap-2 sm:gap-4">
-                <div><span className="text-brand">EMAIL:</span> hello@rightteam.in</div>
-                <div className="hidden sm:block text-white/20">|</div>
-                <div><span className="text-brand">CALL:</span> 1800 410 3090</div>
-              </div>
-              <div className="max-w-md text-white/50 leading-relaxed normal-case">
-                Palladium Building, B1-505, Corporate Rd, near Vodafone House, Prahlad Nagar, Ahmedabad, Gujarat 380015
+            <div className="space-y-4">
+              <a href="mailto:hello@rightteam.in" className="flex items-center gap-4 text-white/70 hover:text-white transition-colors group">
+                <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:border-brand/40 group-hover:bg-brand/10 transition-colors bg-white/5">
+                  <Mail size={16} className="text-brand" />
+                </div>
+                <span className="text-[15px] font-medium tracking-wide">hello@rightteam.in</span>
+              </a>
+              <a href="tel:18004103090" className="flex items-center gap-4 text-white/70 hover:text-white transition-colors group">
+                <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:border-brand/40 group-hover:bg-brand/10 transition-colors bg-white/5">
+                  <Phone size={16} className="text-brand" />
+                </div>
+                <span className="text-[15px] font-medium tracking-wide">1800 410 3090</span>
+              </a>
+              <div className="flex items-start gap-4 text-white/60">
+                <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center bg-white/5 shrink-0 mt-0.5">
+                  <MapPin size={16} className="text-brand" />
+                </div>
+                <span className="text-sm leading-relaxed max-w-[280px] pt-1">
+                  Palladium Building, B1-505, Corporate Rd, Prahlad Nagar, Ahmedabad, Gujarat 380015
+                </span>
               </div>
             </div>
           </div>

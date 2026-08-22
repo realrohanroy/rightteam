@@ -240,15 +240,15 @@
   background: #0B1E3D; /* Navy track */
 }
 ::-webkit-scrollbar-thumb {
-  background: #E8522B; /* Brand orange-red thumb */
+  background: #FFFFFF; /* White thumb */
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #C14410; /* Darker orange-red on hover */
+  background: rgba(255, 255, 255, 0.8); /* Slightly dim on hover */
 }
 html {
   scrollbar-width: thin;
-  scrollbar-color: #E8522B #0B1E3D;
+  scrollbar-color: #FFFFFF #0B1E3D;
 }
 
 /* ── Hover and Focus States sitewide ─────────────────────────────────── */

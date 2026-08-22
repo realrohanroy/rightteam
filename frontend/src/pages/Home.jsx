@@ -424,7 +424,6 @@ export default function Home() {
                 Filings we complete most often.
               </h2>
             </div>
-
           </div>
 
           <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5" ref={servicesGridRef}>
@@ -455,7 +454,7 @@ export default function Home() {
       <ResourcesAndCta />
 
       {/* ── COMPLIANCE PDF CTA ───────────────────────────────────────────────── */}
-      <CompliancePDFCta variant="default" />
+      <CompliancePDFCta variant="white" />
 
     </Layout>
   );
