@@ -256,8 +256,13 @@ export const Footer = () => {
             <div>
               <div className="flex items-center gap-3">
                 <LogoIcon className="w-11 h-11" />
-                <div className="hidden sm:block font-display text-lg font-bold">
-                  <span className="text-brand">Right</span><span className="text-white">Team</span><span className="text-brand">.in</span>
+                <div className="hidden sm:block leading-none">
+                  <div 
+                    className="text-[28px] tracking-normal text-white"
+                    style={{ fontFamily: "'Yatra One', cursive, sans-serif", fontWeight: 400 }}
+                  >
+                    RightTeam
+                  </div>
                 </div>
               </div>
               <p className="text-sm text-white/70 mt-3 max-w-xl leading-relaxed">

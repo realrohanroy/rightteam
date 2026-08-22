@@ -225,8 +225,8 @@ export default function Home() {
         {/* Background Image — Surreal/Dramatic Abstract */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop" 
-            alt="Dramatic abstract surreal landscape"
+            src="https://images.unsplash.com/photo-1554469384-e58fac16e23a?q=80&w=2564&auto=format&fit=crop" 
+            alt="Dark blue corporate glass window grid"
             className="w-full h-full object-cover opacity-80"
           />
           {/* Subtle gradient overlays to ensure text legibility while keeping it dark */}
