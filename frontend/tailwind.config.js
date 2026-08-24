@@ -58,7 +58,7 @@ module.exports = {
         display: ['"Fraunces"', "Georgia", "serif"],
         sans: ['"Inter"', "system-ui", "sans-serif"],
         mono: ['"IBM Plex Mono"', "ui-monospace", "monospace"],
-        wordmark: ['"Rozha One"', "serif"],
+        wordmark: ['"Yatra One"', "cursive", "sans-serif"],
       },
       borderRadius: {
         lg: "var(--radius)",
