@@ -102,18 +102,47 @@ export const ResourcesAndCta = () => {
       </section>
 
       {/* 2. Logo Wall Section */}
-      <section className="bg-[#F3F4F6] py-8 border-y border-slate-200/50" data-testid="credibility-logo-wall">
+      <section className="bg-[#F3F4F6] py-8 border-y border-slate-200/50 overflow-hidden" data-testid="credibility-logo-wall">
         <div className="container-x">
-          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-y-6 gap-x-4 items-center justify-items-center">
+          {/* Desktop & Tablet Grid */}
+          <div className="hidden sm:grid grid-cols-4 lg:grid-cols-7 gap-y-6 gap-x-4 items-center justify-items-center">
             {LOGOS.map((logo, index) => {
               const Icon = logo.icon;
               return (
                 <div key={index} className="flex items-center gap-2 text-slate2 hover:text-[#0B1E3D] transition-colors duration-300">
                   <Icon size={18} className="shrink-0" strokeWidth={2} />
-                  <span className="font-sans font-semibold text-[13px] tracking-tight">{logo.name}</span>
+                  <span className="font-sans font-semibold text-[13px] tracking-tight whitespace-nowrap">{logo.name}</span>
                 </div>
               );
             })}
+          </div>
+
+          {/* Mobile Marquee */}
+          <div className="sm:hidden relative w-full flex">
+            <div className="animate-marquee-left flex w-max items-center gap-8 hover:[animation-play-state:paused]">
+              <div className="flex shrink-0 items-center gap-8">
+                {LOGOS.map((logo, index) => {
+                  const Icon = logo.icon;
+                  return (
+                    <div key={`mob1-${index}`} className="flex items-center gap-2 text-slate2">
+                      <Icon size={18} className="shrink-0" strokeWidth={2} />
+                      <span className="font-sans font-semibold text-[13px] tracking-tight whitespace-nowrap">{logo.name}</span>
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="flex shrink-0 items-center gap-8" aria-hidden="true">
+                {LOGOS.map((logo, index) => {
+                  const Icon = logo.icon;
+                  return (
+                    <div key={`mob2-${index}`} className="flex items-center gap-2 text-slate2">
+                      <Icon size={18} className="shrink-0" strokeWidth={2} />
+                      <span className="font-sans font-semibold text-[13px] tracking-tight whitespace-nowrap">{logo.name}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           </div>
         </div>
       </section>
