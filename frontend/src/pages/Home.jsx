@@ -251,15 +251,15 @@ export default function Home() {
           {/* Left: headline + CTA */}
           <div className="lg:col-span-6" ref={heroRef}>
             {/* Pill overline */}
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/10 text-xs font-semibold text-white/90">
-              <span className="text-white">✔ Trusted by Growing Businesses Across India</span> 
-              <span className="text-white/60 mx-1">|</span>
-              <a href="/contact" className="hover:text-white transition-colors flex items-center gap-1">Talk to an Expert<ArrowRight size={12} /></a>
+            <div className="inline-flex max-w-full items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/10 text-[10px] sm:text-xs font-semibold text-white/90 whitespace-nowrap">
+              <span className="text-white truncate">✔ Trusted by Growing Businesses<span className="hidden sm:inline"> Across India</span></span> 
+              <span className="text-white/60 shrink-0 mx-0.5 sm:mx-1">|</span>
+              <a href="/contact" className="hover:text-white transition-colors flex items-center gap-1 shrink-0">Talk to an Expert<ArrowRight size={12} className="w-2.5 h-2.5 sm:w-3 sm:h-3" /></a>
             </div>
 
             {/* Headline */}
-            <h1 className="font-display text-2xl sm:text-3xl lg:text-4xl leading-[1.05] mt-6 text-white font-bold tracking-tight">
-              Compliance, Done Right. Every Time.
+            <h1 className="font-display text-2xl sm:text-3xl lg:text-4xl lg:text-[2.75rem] leading-[1.05] mt-6 text-white font-bold tracking-tight">
+              GET EVERYTHING DONE <br className="hidden sm:block" />WITH ONE RIGHT TEAM.
             </h1>
 
             {/* Subhead */}
