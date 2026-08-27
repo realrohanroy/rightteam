@@ -278,9 +278,56 @@ export const ComplianceChecklist = ({ inverted = false, defaultEntity = "" }) =>
                         <h3 className="text-sm font-bold text-ink mb-1 group-hover:text-brand transition-colors">
                           {service.name}
                         </h3>
-                        <p className="text-[13px] text-ink/70 leading-relaxed">
-                          {service.oneLine}
-                        </p>
+                        {service.slug === "roc-annual-filing" && (
+                          (() => {
+                            const ROC_FORMS = {
+                              "llp": [
+                                { name: "LLP Form 3", purpose: "Filing/changes in LLP Agreement" },
+                                { name: "LLP Form 11", purpose: "Annual Return of LLP" },
+                                { name: "LLP Form 8", purpose: "Statement of Account & Solvency" },
+                                { name: "LLP Form 4", purpose: "Appointment, resignation, or change in Partner details" },
+                                { name: "LLP Form 5", purpose: "Change of LLP Name" },
+                                { name: "LLP Form 15", purpose: "Change in Registered Office" },
+                                { name: "Form DIR-3 KYC", purpose: "Annual KYC of Designated Partners" }
+                              ],
+                              "opc": [
+                                { name: "ADT-1", purpose: "Appointment or reappointment of statutory auditor" },
+                                { name: "INC-20A", purpose: "Declaration for commencement of business" },
+                                { name: "AOC-4", purpose: "Filing of annual financial statements with ROC" },
+                                { name: "MGT-7 / MGT-7A", purpose: "Filing of annual return of the company" },
+                                { name: "DIR-3 KYC", purpose: "Annual KYC compliance for directors holding DIN" },
+                                { name: "DPT-3", purpose: "Return of deposits and specified outstanding loans/amounts" }
+                              ],
+                              "pvt-ltd": [
+                                { name: "ADT-1", purpose: "Appointment or reappointment of statutory auditor" },
+                                { name: "INC-20A", purpose: "Declaration for commencement of business" },
+                                { name: "AOC-4", purpose: "Filing of annual financial statements with ROC" },
+                                { name: "MGT-7 / MGT-7A", purpose: "Filing of annual return of the company" },
+                                { name: "DIR-3 KYC", purpose: "Annual KYC compliance for directors holding DIN" },
+                                { name: "DPT-3", purpose: "Return of deposits and specified outstanding loans/amounts" }
+                              ]
+                            };
+                            
+                            const forms = ROC_FORMS[entity];
+                            return forms ? (
+                              <div className="mt-3 grid grid-cols-1 md:grid-cols-2 gap-2.5">
+                                {forms.map(f => (
+                                  <div key={f.name} className="flex items-start gap-2.5 bg-white border border-ink/10 rounded-lg p-2.5 shadow-sm hover:border-brand/30 transition-colors">
+                                    <div className="mt-1.5 shrink-0 w-1.5 h-1.5 rounded-full bg-brand" />
+                                    <div className="flex flex-col">
+                                      <span className="text-[12.5px] font-bold text-ink leading-tight">{f.name}</span>
+                                      <span className="text-[11.5px] text-ink/60 mt-1 leading-snug">{f.purpose}</span>
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                            ) : (
+                              <p className="text-[13px] text-ink/70 leading-relaxed">
+                                {service.oneLine}
+                              </p>
+                            );
+                          })()
+                        )}
                       </div>
                     </div>
                     <div className="sm:shrink-0 flex items-center justify-end">
