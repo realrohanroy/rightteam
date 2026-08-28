@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Disallow: /hr
+Disallow: /hr/dashboard
+
+Sitemap: https://rightteam.in/sitemap.xml

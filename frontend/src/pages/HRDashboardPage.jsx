@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:8000";
 const API = `${BACKEND_URL}/api`;
@@ -144,6 +145,10 @@ export default function HRDashboardPage() {
 
   return (
     <div style={s.page}>
+      <Helmet>
+        <meta name="robots" content="noindex, nofollow" />
+        <title>HR Dashboard | RightTeam</title>
+      </Helmet>
       {/* Header */}
       <header style={s.header}>
         <span style={s.brand}>RightTeam <span style={s.tag}>HR</span></span>

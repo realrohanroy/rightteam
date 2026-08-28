@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:8000";
 const API = `${BACKEND_URL}/api`;
@@ -62,6 +63,10 @@ export default function HRLoginPage() {
 
   return (
     <div style={styles.page}>
+      <Helmet>
+        <meta name="robots" content="noindex, nofollow" />
+        <title>HR Portal Login | RightTeam</title>
+      </Helmet>
       <div style={styles.card}>
         <div style={styles.logo}>RightTeam</div>
         <div style={styles.subtitle}>HR Portal</div>
