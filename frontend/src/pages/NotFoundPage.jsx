@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import { Layout } from "../components/Layout";
-import { Home, FileSearch, Calendar, MessageSquare } from "lucide-react";
+import { Home, FileSearch, BookOpen, MessageSquare } from "lucide-react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
@@ -101,13 +101,13 @@ export default function NotFoundPage() {
               </div>
             </Link>
 
-            <Link to="/compliance-calendar" className="quick-link-card group p-6 rounded-xl border border-slate-200 bg-white hover:border-brand hover:shadow-xl hover:shadow-brand/5 transition-all duration-300 flex items-start gap-4 cursor-pointer">
+            <Link to="/blogs" className="quick-link-card group p-6 rounded-xl border border-slate-200 bg-white hover:border-brand hover:shadow-xl hover:shadow-brand/5 transition-all duration-300 flex items-start gap-4 cursor-pointer">
               <div className="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 group-hover:bg-brand group-hover:text-white transition-colors shrink-0">
-                <Calendar className="w-5 h-5" />
+                <BookOpen className="w-5 h-5" />
               </div>
               <div>
-                <h4 className="text-ink font-semibold text-lg group-hover:text-brand transition-colors">Compliance Calendar</h4>
-                <p className="text-slate2 text-sm mt-1">Check upcoming due dates and stay ahead of penalties.</p>
+                <h4 className="text-ink font-semibold text-lg group-hover:text-brand transition-colors">Read our Blogs</h4>
+                <p className="text-slate2 text-sm mt-1">Stay updated with the latest compliance insights and news.</p>
               </div>
             </Link>
           </div>
