@@ -95,7 +95,7 @@ export default function QuotePage() {
       setResult(data);
       setStep(3);
     } catch (e) {
-      setError("Something went wrong. Please try again or WhatsApp us at +91 99999 99999.");
+      setError("Something went wrong. Please try again or WhatsApp us at +91 89809 35000.");
     } finally {
       setSubmitting(false);
     }
@@ -465,7 +465,7 @@ export default function QuotePage() {
           <div className="border border-ink/20 bg-ink text-paper p-6">
             <div className="mono text-[11px] uppercase tracking-widest text-brand">Prefer a call?</div>
             <div className="font-display text-2xl mt-2 leading-tight">Speak to a manager now.</div>
-            <a href="tel:+919999999999" className="mono text-sm text-paper mt-3 block">+91 99999 99999</a>
+            <a href="tel:+918980935000" className="mono text-sm text-paper mt-3 block">+91 89809 35000</a>
             <div className="mono text-[10px] uppercase tracking-widest text-paper/60 mt-1">Mon-Sat · 10am – 8pm IST</div>
           </div>
         </aside>

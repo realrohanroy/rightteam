@@ -69,11 +69,11 @@ export const Header = () => {
               hello@rightteam.in
             </a>
             <a
-              href="tel:18004103090"
+              href="tel:+918980935000"
               className="flex items-center gap-1.5 hover:text-brand transition-colors"
             >
               <Phone size={14} className="text-brand" />
-              1800 410 3090
+              +91 89809 35000
             </a>
           </div>
         </div>
@@ -273,11 +273,11 @@ export const Footer = () => {
                 </div>
                 <span className="text-[15px] font-medium tracking-wide">hello@rightteam.in</span>
               </a>
-              <a href="tel:18004103090" className="flex items-center gap-4 text-white/70 hover:text-white transition-colors group">
+              <a href="tel:+918980935000" className="flex items-center gap-4 text-white/70 hover:text-white transition-colors group">
                 <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:border-brand/40 group-hover:bg-brand/10 transition-colors bg-white/5">
                   <Phone size={16} className="text-brand" />
                 </div>
-                <span className="text-[15px] font-medium tracking-wide">1800 410 3090</span>
+                <span className="text-[15px] font-medium tracking-wide">+91 89809 35000</span>
               </a>
               <div className="flex items-start gap-4 text-white/60">
                 <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center bg-white/5 shrink-0 mt-0.5">

@@ -581,7 +581,7 @@ export default function PrivacyPolicyPage() {
                     </div>
                   </a>
                   <a
-                    href="tel:+91XXXXXXXXXX"
+                    href="tel:+918980935000"
                     className="flex items-center gap-4 px-6 py-4 hover:bg-alt transition-colors group"
                   >
                     <div className="w-8 h-8 rounded-sm bg-brand/10 border border-brand/20 flex items-center justify-center shrink-0">

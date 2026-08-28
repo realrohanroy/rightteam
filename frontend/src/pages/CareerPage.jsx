@@ -857,8 +857,8 @@ export default function CareerPage() {
                 <a href="mailto:careers@rightteam.in" className="flex items-center gap-2.5 text-sm text-ink font-medium hover:text-brand transition-colors mb-2">
                   <Mail className="w-4 h-4 text-brand" /> careers@rightteam.in
                 </a>
-                <a href="tel:18004103090" className="flex items-center gap-2.5 text-sm text-ink font-medium hover:text-brand transition-colors">
-                  <Phone className="w-4 h-4 text-brand" /> 1800 410 3090
+                <a href="tel:+918980935000" className="flex items-center gap-2.5 text-sm text-ink font-medium hover:text-brand transition-colors">
+                  <Phone className="w-4 h-4 text-brand" /> +91 89809 35000
                 </a>
               </div>
             </div>

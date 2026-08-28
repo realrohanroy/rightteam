@@ -200,8 +200,8 @@ export default function ServicePage() {
             >
               Request a Quote <ArrowRight size={16} />
             </Link>
-            <a href="tel:+919999999999" className="mono text-sm text-white/70 text-center inline-flex items-center gap-1 justify-center">
-              <Phone size={12} /> or +91 99999 99999
+            <a href="tel:+918980935000" className="mono text-sm text-white/70 text-center inline-flex items-center gap-1 justify-center">
+              <Phone size={12} /> or +91 89809 35000
             </a>
           </div>
         </div>

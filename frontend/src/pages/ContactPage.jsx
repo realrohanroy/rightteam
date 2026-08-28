@@ -77,7 +77,7 @@ export default function ContactPage() {
               </div>
               <div>
                 <div className="mono text-[11px] uppercase tracking-widest text-slate2">Phone / WhatsApp</div>
-                <a href="tel:+919999999999" className="text-ink font-semibold">+91 99999 99999</a>
+                <a href="tel:+918980935000" className="text-ink font-semibold">+91 89809 35000</a>
                 <div className="mono text-[10px] uppercase tracking-widest text-slate2 mt-1">Mon-Sat · 10am – 8pm IST</div>
               </div>
             </div>
