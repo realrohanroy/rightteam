@@ -86,3 +86,7 @@ android-sdk/
 credentials.json
 *.key
 .credentials
+
+# Personal work documentation (never commit)
+WORK_LOG.md
+security_audit.md
